@@ -9,7 +9,9 @@ namespace Server
         [Key]
         public int              employee_id {get; set;}
         public string           name {get; set;}
+        public string           phone {get; set;}
         public string           email {get; set; }
+        public string           address {get; set;}
         public string           status {get; set;}
         public bool             comments {get; set;}
         [ForeignKey("project_id")]
