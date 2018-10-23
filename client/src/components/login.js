@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class login extends Component {
+class Login extends Component {
         state = { 
             username: "",
             password: ""
@@ -42,4 +42,4 @@ onSubmit = e => {
     }
 }
  
-export default login;
+export default Login;
