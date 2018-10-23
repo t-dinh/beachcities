@@ -11506,11 +11506,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/patrick/Documents/lucas.work/BcpServer/BcpServer.csproj",
+      "projectUniqueName": "/home/patrick/Documents/lucas.work/Projects/beachcities/Server/BcpServer.csproj",
       "projectName": "BcpServer",
-      "projectPath": "/home/patrick/Documents/lucas.work/BcpServer/BcpServer.csproj",
+      "projectPath": "/home/patrick/Documents/lucas.work/Projects/beachcities/Server/BcpServer.csproj",
       "packagesPath": "/home/patrick/.nuget/packages/",
-      "outputPath": "/home/patrick/Documents/lucas.work/BcpServer/obj/",
+      "outputPath": "/home/patrick/Documents/lucas.work/Projects/beachcities/Server/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/share/dotnet/sdk/NuGetFallbackFolder"

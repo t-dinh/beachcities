@@ -9,8 +9,8 @@ namespace Server
         [Key]
         public int              project_id {get; set;}
         [ForeignKey("client_id")]
-        public int              client_id {get; set;}
-        public Contact          client {get; set;}
+        public int              contact_id {get; set;}
+        public Contact          contact {get; set;}
         public string           address {get; set; }
         public string           est_cost{get; set;}
         public string           est_finish {get; set;}
