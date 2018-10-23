@@ -59,18 +59,18 @@ namespace Server
             return CreatedAtRoute("GetContact", new { id = contact.contact_id}, contact);
         }
 
-//         [HttpPut("{id}")]
-//         public IActionResult Put(int id, [FromBody] Thread thread)
-//         {
-//             if (thread == null || thread.thread_id != id)
-//             {
-//                 return BadRequest();
-//             }
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody] Contact contact)
+        {
+            if (contact == null || contact.contact_id != id)
+            {
+                return BadRequest();
+            }
 
-//             _context.thread.Update(thread);
-//             _context.SaveChanges();
-//             return NoContent();
-//         }
+            _context.contact.Update(contact);
+            _context.SaveChanges();
+            return NoContent();
+        }
 
 //         [HttpDelete("{id}")]
 //         public IActionResult Delete(int id)
