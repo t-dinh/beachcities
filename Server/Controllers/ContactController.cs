@@ -7,78 +7,89 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Server
 {
     [Route("api/contacts")]
     [ApiController]
-    public class ClientController : Controller
+    public class ContactController : Controller
     {
 
         private BcpDBContext _context;
 
-        public ClientController(BcpDBContext context)
+        public ContactController(BcpDBContext context)
         {
             _context = context;
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public List<Contact> Get()
         {
-            if (_context.Contact.ToList().Count == 0)
+            return _context.contact.ToList();
+        }
+
+
+        [HttpGet("{id}", Name = "GetContact")]
+        public IActionResult GetById(int? id)
+        {  
+            
+            Contact contact = _context.contact.Find(id);
+            if (contact == null)
             {
                 return NotFound();
             }
 
-            return Ok(_context.Contact.ToList());
+            return Ok(contact);
         }
-        // [HttpPost]
-        // public ActionResult<AppUser> Register([FromBody] AppUser user)
-        // {
 
-        //     user.password = BCrypt.Net.BCrypt.HashPassword(user.password);
+        [HttpPost]
+        public IActionResult Create([FromBody] Contact contact)
+        {
+            if (contact == null)
+            {
+                return BadRequest();
+            }
 
-        //     _context.appuser.Add(user);
-        //     _context.SaveChanges();
+            _context.contact.Add(contact);
+            _context.SaveChanges();
+            
+            return CreatedAtRoute("GetContact", new { id = contact.contact_id}, contact);
+        }
 
-        //     return Ok(user);
-        // }
+//         [HttpPut("{id}")]
+//         public IActionResult Put(int id, [FromBody] Thread thread)
+//         {
+//             if (thread == null || thread.thread_id != id)
+//             {
+//                 return BadRequest();
+//             }
 
-        // [HttpPost("login")]
-        // public ActionResult Login([FromBody] AppUser user)
-        // {
-        //     foreach (AppUser u in _context.appuser)
-        //     {
-        //         if (u.username == user.username)
-        //         {
-        //             bool verified = BCrypt.Net.BCrypt.Verify(user.password, u.password);
-        //             if (verified)
-        //             {
-        //                 string token = BuildToken(u);
-        //                 return Ok(token);
-        //             }
-        //             else
-        //             {
-        //                 return NotFound();
-        //             }
-        //         }
-        //     }
+//             _context.thread.Update(thread);
+//             _context.SaveChanges();
+//             return NoContent();
+//         }
 
-        //     return NotFound();
-        // }
+//         [HttpDelete("{id}")]
+//         public IActionResult Delete(int id)
+//         {
+//             Thread item = _context.thread.Find(id);
 
-        // public string BuildToken(AppUser user)
-        // {
-        //     var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretsuperSecretsuperSecret"));
-        //     var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+//             if (item == null)
+//             {
+//                 return NotFound();
+//             }
 
-        //     var token = new JwtSecurityToken(
-        //         "localhost", 
-        //         "localhost", 
-        //         expires: DateTime.Now.AddSeconds(15),
-        //         signingCredentials: creds);
+//             _context.thread.Remove(item);
+//             _context.SaveChanges();
+//             return Ok(item);
+//         }
 
-        //     return new JwtSecurityTokenHandler().WriteToken(token);
-        // }
+
+//     }
+// }
+
     }
 }
