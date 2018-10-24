@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Server
 {
-    public class User
+    public class AppUser
     {
         [Key]
         public int              user_id {get; set;}
@@ -13,7 +13,7 @@ namespace Server
         public string           password {get; set;}
         public bool             admin {get; set;}
         
-        public User()
+        public AppUser()
         {
             
         }

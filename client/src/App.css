@@ -1,11 +1,11 @@
-.App {
-  text-align: center;
+.table {
+  border-bottom: 1px solid black;
+  border-top: none;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.tableBox {
+  width: 1000px;
 }
+<<<<<<< HEAD
 
 .App-header {
   background-color: #282c34;
@@ -240,4 +240,14 @@ min-width: 100px;
 }	
 .modal form label {
 font-weight: normal;
+=======
+.table tr button { 
+  /* display: none; */
+  opacity:0;
+  float:right 
+>>>>>>> 7ae7b6313f82a761be24a81597ed3ac996a4c7b9
+}
+.table tr:hover button { 
+  opacity:1 
+  /* display: inline; */
 }

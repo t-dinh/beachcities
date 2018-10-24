@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class login extends Component {
+class Login extends Component {
         state = { 
             username: "",
             password: ""
@@ -29,7 +29,7 @@ onSubmit = e => {
 
     render() { 
         return ( 
-            <div>
+            <div className="container">
         <div className= "loginBox" >
         <label>Username</label>
             <input className="form-control" type="text" value={this.state.username} onChange= {this.onUsernameChange} />
@@ -42,4 +42,4 @@ onSubmit = e => {
     }
 }
  
-export default login;
+export default Login;
