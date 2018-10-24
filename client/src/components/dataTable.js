@@ -13,8 +13,8 @@ class DataTable extends Component {
         axios.get('http://localhost:5000/api/contacts')
         .then(res => {
             this.setState({
-                // employees: res.data,
-                // projects: res.data,
+                employees: res.data,
+                projects: res.data,
                 contacts: res.data
             })
     })
