@@ -6,6 +6,11 @@
   width: 1000px;
 }
 .table tr button { 
-  opacity:0; float:right }
+  /* display: none; */
+  opacity:0;
+  float:right 
+}
 .table tr:hover button { 
-  opacity:1 }
+  opacity:1 
+  /* display: inline; */
+}

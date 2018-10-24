@@ -54,7 +54,8 @@ CREATE TABLE Employee (
 
 INSERT INTO Contact(name, phone, email, address, status, comments)
 VALUES 
-('John Smith', '714-999-9999' , 'johnsmith@fake.com', '123 Fake Street Huntington Beach, CA 92605', 'Return Client', 'Happy with service');
+('John Smith', '714-999-9999' , 'johnsmith@fake.com', '123 Fake Street Huntington Beach, CA 92605', 'Return Client', 'Happy with service'),
+('Jane Doe', '714-321-4567', 'janetest@gmail.com', '123 Fake Street Huntington Beach, CA 92605', 'Return Client', 'Happy with service');
 
 INSERT INTO Lead (consult_date, est_cost, est_finish, comments, contact_id)
 VALUES
