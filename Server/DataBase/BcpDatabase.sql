@@ -37,7 +37,7 @@ CREATE TABLE Project(
     materials       varchar(500),
     actual_cost     varchar(50),
     comments        varchar(500),
-    satisfication   varchar(500),
+    satisfaction   varchar(500),
     contact_id      int REFERENCES Contact (contact_id)
 );
 
@@ -65,11 +65,11 @@ VALUES
 
 INSERT INTO Bid (consult_date, last_contact, est_cost, est_finish, bid_status, comments, contact_id)
 VALUES
-( 'October 23rd, 2018', '$3000.00', '3 Weeks', 'Will start 10/31', 3),
-( 'October 23rd, 2018', '$4000.00', '1 Week', 'Wants to move forward next week', 3),
-( 'October 23rd, 2018', '$5500.00', '3 Weeks', 'Unsure', 4),
-( 'October 23rd, 2018', '$3000.00', '4 Days', 'Decision to be made by Friday', 4),
-( 'October 23rd, 2018', '$1000.00', '2 Weeks', 'Bid counter', 4);
+( 'October 23rd, 2018', 'October 23rd, 2018', '$3000.00', '3 Weeks', 'Won', 'Will start 10/31', 3),
+( 'October 23rd, 2018', 'October 31st, 2018','$4000.00', '1 Week', 'Won', 'Wants to move forward next week', 3),
+( 'October 23rd, 2018', 'October 24th, 2018', '$5500.00', '3 Weeks', 'Open', 'Unsure', 4),
+( 'October 23rd, 2018', 'October 26th', '2018''$3000.00', '4 Days', 'Open', 'Decision to be made by Friday', 4),
+( 'October 23rd, 2018', 'October 23rd, 2018', '$1000.00', '2 Weeks', 'Closed', 'Bid counter', 4);
 
 INSERT INTO Project (address, est_cost, est_finish, start_date, end_date, materials, actual_cost, comments, satisfaction, contact_id)
 VALUES
