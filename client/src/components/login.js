@@ -29,7 +29,7 @@ onSubmit = e => {
 
     render() { 
         return ( 
-            <div>
+            <div className="container">
         <div className= "loginBox" >
         <label>Username</label>
             <input className="form-control" type="text" value={this.state.username} onChange= {this.onUsernameChange} />

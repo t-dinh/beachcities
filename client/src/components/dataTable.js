@@ -1,24 +1,29 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 
 class DataTable extends Component {
     state = {
         employees: [],
-        projects: []
+        projects: [],
+        contacts: []
     }
 
-    // grabData = employees => {
-    //     axios.get()
-    //     .then(res => {
-    //         this.setState({
-    //             employees: res.data,
-    //             projects: res.data
-    //         })
-    //     })
-    // }
-    // componentDidMount() {
-    //     this.grabData();
-    // }
+    grabData = data => {
+        axios.get('http://localhost:5000/api/contacts')
+        .then(res => {
+            this.setState({
+                employees: res.data,
+                projects: res.data,
+                contacts: res.data
+            })
+    })
+}
+//test
+
+    componentDidMount() {
+        this.grabData();
+    }
 
 
     render() {
@@ -32,13 +37,19 @@ class DataTable extends Component {
                             <th>ID</th>
                             <th>Name</th>
                             <th>Phone</th>
+                            <th>Email</th>
                         </tr>
+                        {this.state.contacts.map(c => {
+                            return(
                         <tr className="hoverButton">
-                            <td>Example1id</td>
-                            <td>example1name</td>
-                            <td>(714)123-4567</td>
+                            <td>{c.contact_id}</td>
+                            <td>{c.name}</td>
+                            <td>{c.phone}</td>
+                            <td>{c.email}</td>
                             <button className="btn btn-danger" id="showButtons">x</button>
                         </tr>
+                        
+                        )})}
                     </table>
                 </div>
             </div>
