@@ -16,11 +16,13 @@ CREATE TABLE Contact (
     comments        varchar(500)
     );
 
-CREATE TABLE Lead (
-    lead_id         SERIAL PRIMARY KEY,
+CREATE TABLE Bid (
+    bid_id          SERIAL PRIMARY KEY,
     consult_date    varchar(50),
+    last_contact    varchar(50),
     est_cost        varchar(50),
     est_finish      varchar(50),
+    bid_status      varchar(50),
     comments        varchar(500),
     contact_id      int REFERENCES Contact (contact_id)
 );
@@ -35,6 +37,7 @@ CREATE TABLE Project(
     materials       varchar(500),
     actual_cost     varchar(50),
     comments        varchar(500),
+    satisfication   varchar(500),
     contact_id      int REFERENCES Contact (contact_id)
 );
 
