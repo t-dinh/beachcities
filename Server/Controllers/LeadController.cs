@@ -7,28 +7,28 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server
 {
-    [Route("api/leads")]
+    [Route("api/bids")]
     [ApiController]
-    public class LeadController : Controller
+    public class bidController : Controller
     {
 
         private BcpDBContext _context;
 
-        public LeadController(BcpDBContext context)
+        public bidController(BcpDBContext context)
         {
             _context = context;
         }
 
         [HttpGet]
-        public List<Lead> Get()
+        public List<Bid> Get()
         {
-            return _context.lead
+            return _context.bid
                                     .Include(l => l.contact)
                                     .ToList();
         }
 
 
-        [HttpGet("{id}", Name = "GetLead")]
+        [HttpGet("{id}", Name = "Getbid")]
         public async Task<IActionResult> GetById(int? id)
         {  
             if (id == null)
@@ -36,69 +36,69 @@ namespace Server
                 return NotFound();
             }
             
-            Lead lead = await _context.lead
+            Bid bid = await _context.bid
                                 .Include(e => e.contact)
-                                .SingleOrDefaultAsync(l => l.lead_id == id);
-            if (lead == null)
+                                .SingleOrDefaultAsync(l => l.bid_id == id);
+            if (bid == null)
             {
                 return NotFound();
             }
 
-            return Ok(lead);
+            return Ok(bid);
         }
 
     [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Lead lead)
+        public async Task<IActionResult> Post([FromBody] Bid bid)
         {
-            if (lead == null)
+            if (bid == null)
             {
                 return BadRequest();
             }
 
-            _context.lead.Add(lead);
+            _context.bid.Add(bid);
             _context.SaveChanges();
 
             // Grab the newly created job such that can return below in "CreatedAtRoute"
-            Lead newLead = await _context.lead
+            Bid newbid = await _context.bid
                                 .Include(l => l.contact)
-                                .SingleOrDefaultAsync(l => l.lead_id == lead.lead_id);
+                                .SingleOrDefaultAsync(l => l.bid_id == bid.bid_id);
             
-            if (newLead == null)
+            if (newbid == null)
             {
                 return BadRequest();
             }
 
-            return CreatedAtRoute("GetLead", new {id = lead.lead_id }, newLead);
+            return CreatedAtRoute("Getbid", new {id = bid.bid_id }, newbid);
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateById(int id, [FromBody]Lead lead)
+        public IActionResult UpdateById(int id, [FromBody]Bid bid)
         {
-            Lead item = _context.lead.Find(id);
+            Bid item = _context.bid.Find(id);
             
-            if (lead == null)
+            if (bid == null)
             {
                 return NotFound();
             }
 
-            _context.lead.Remove(item);
-            _context.lead.Add(lead);
+            _context.bid.Remove(item);
+            _context.bid.Add(bid);
             _context.SaveChanges();
 
-            return Ok(lead);
+            return Ok(bid);
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            Lead item = _context.lead.Find(id);
+            Bid item = _context.bid.Find(id);
 
             if (item == null)
             {
                 return NotFound();
             }
 
-            _context.lead.Remove(item);
+            _context.bid.Remove(item);
             _context.SaveChanges();
             return Ok(item);
         }

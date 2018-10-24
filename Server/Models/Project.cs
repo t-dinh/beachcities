@@ -16,6 +16,7 @@ namespace Server
         public string           materials   {get; set;}
         public string           actual_cost {get; set;}
         public string           comments    {get; set;}
+        public string           satisfaction {get; set;}
         [ForeignKey("contact_id")]
         public int?             contact_id  {get; set;}
         public Contact          contact     {get; set;}

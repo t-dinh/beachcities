@@ -12,7 +12,9 @@ namespace Server
         public string           phone       {get; set;}
         public string           email       {get; set; }
         public string           address     {get; set;}
+        public string           city        {get; set;}
         public string           status      {get; set;}
+        public string           satisfaction {get; set;}
         public string           comments    {get; set;}
         
         public Contact()
@@ -22,6 +24,7 @@ namespace Server
             this.email    = email; 
             this.address  = address; 
             this.status   = status; 
+            this.status   = satisfaction;
             this.comments = comments; 
         }
     }
