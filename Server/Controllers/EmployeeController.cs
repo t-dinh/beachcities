@@ -1,93 +1,109 @@
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
 using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-// namespace Server
-// {
-//     [Route("api/contacts")]
-//     [ApiController]
-//     public class ContactController : Controller
-//     {
+namespace Server
+{
+    [Route("api/employees")]
+    [ApiController]
+    public class EmployeeController : Controller
+    {
 
-//         private BcpDBContext _context;
+        private BcpDBContext _context;
 
-//         public ContactController(BcpDBContext context)
-//         {
-//             _context = context;
-//         }
+        public EmployeeController(BcpDBContext context)
+        {
+            _context = context;
+        }
 
-//         [HttpGet]
-//         public List<Contact> Get()
-//         {
-//             return _context.contact.ToList();
-//         }
+        [HttpGet]
+        public List<Employee> Get()
+        {
+            return _context.employee
+                                    .Include(e => e.project)
+                                    .ToList();
+        }
 
 
-//         [HttpGet("{id}", Name = "GetContact")]
-//         public IActionResult GetById(int? id)
-//         {  
+        [HttpGet("{id}", Name = "GetEmployee")]
+        public async Task<IActionResult> GetById(int? id)
+        {  
+            if (id == null)
+            {
+                return NotFound();
+            }
             
-//             Contact contact = _context.contact.Find(id);
-//             if (contact == null)
-//             {
-//                 return NotFound();
-//             }
+            Employee employee = await _context.employee
+                                .Include(e => e.project)
+                                .SingleOrDefaultAsync(e => e.employee_id == id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
 
-//             return Ok(contact);
-//         }
+            return Ok(employee);
+        }
 
-//         [HttpPost]
-//         public IActionResult Create([FromBody] Contact contact)
-//         {
-//             if (contact == null)
-//             {
-//                 return BadRequest();
-//             }
+    [HttpPost]
+        public async Task<IActionResult> Post([FromBody] Employee employee)
+        {
+            if (employee == null)
+            {
+                return BadRequest();
+            }
 
-//             _context.contact.Add(contact);
-//             _context.SaveChanges();
+            _context.employee.Add(employee);
+            _context.SaveChanges();
+
+            // Grab the newly created job such that can return below in "CreatedAtRoute"
+            Employee newEmployee = await _context.employee
+                                .Include(e => e.project)
+                                .SingleOrDefaultAsync(e => e.employee_id == employee.employee_id);
             
-//             return CreatedAtRoute("GetContact", new { id = contact.contact_id}, contact);
-//         }
+            if (newEmployee == null)
+            {
+                return BadRequest();
+            }
 
-//         [HttpPut("{id}")]
-//         public IActionResult Put(int id, [FromBody] Contact contact)
-//         {
-//             if (contact == null || contact.contact_id != id)
-//             {
-//                 return BadRequest();
-//             }
+            return CreatedAtRoute("GetEmployee", new {id = employee.employee_id }, newEmployee);
+        }
 
-//             _context.contact.Update(contact);
-//             _context.SaveChanges();
-//             return NoContent();
-//         }
+        [HttpPut("{id}")]
+        public IActionResult UpdateById(int id, [FromBody]Employee employee)
+        {
+            Employee item = _context.employee.Find(id);
+            
+            if (employee == null)
+            {
+                return NotFound();
+            }
 
-//         [HttpDelete("{id}")]
-//         public IActionResult Delete(int id)
-//         {
-//             Thread item = _context.thread.Find(id);
+            _context.employee.Remove(item);
+            _context.employee.Add(employee);
+            _context.SaveChanges();
 
-//             if (item == null)
-//             {
-//                 return NotFound();
-//             }
+            return Ok(employee);
+        }
 
-//             _context.thread.Remove(item);
-//             _context.SaveChanges();
-//             return Ok(item);
-//         }
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            Employee item = _context.employee.Find(id);
+
+            if (item == null)
+            {
+                return NotFound();
+            }
+
+            _context.employee.Remove(item);
+            _context.SaveChanges();
+            return Ok(item);
+        }
 
 
-//     }
-// }
+    }
+}
 
