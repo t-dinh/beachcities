@@ -57,22 +57,37 @@ CREATE TABLE Employee (
 
 INSERT INTO Contact(name, phone, email, address, status, comments)
 VALUES 
-('John Smith', '714-999-9999' , 'johnsmith@fake.com', '123 Fake Street Huntington Beach, CA 92605', 'Return Client', 'Happy with service'),
-('Jane Doe', '714-321-4567', 'janetest@gmail.com', '123 Fake Street Huntington Beach, CA 92605', 'Return Client', 'Happy with service');
+('John Smith', '714-999-9999' , 'johnsmith@fake.com', '123 Fake Street Huntington Beach, CA 92605', 'Client', 'Happy with service'),
+('Frank Doe', '714-321-4567', 'franktest@gmail.com', '12233 Fake Street Huntington Beach, CA 92605', 'Client', 'Happy with service'),
+('Jane Bustos', '562-321-4567', 'janetest@gmail.com', '432 Fake Street Huntington Beach, CA 92605', 'Bidding', 'Wants a call back on the 4th'),
+('Randy Hawk', '213-321-4567', 'randytest@gmail.com', '987 Fake Street Huntington Beach, CA 92605', 'Prospect', 'Chose another company due to cost'),
+('Buzz Woodson', '756-321-4567', 'buzztest@gmail.com', '15432 Fake Street Huntington Beach, CA 92605', 'Client', 'May need new service in 6 months');
 
-INSERT INTO Lead (consult_date, est_cost, est_finish, comments, contact_id)
+INSERT INTO Bid (consult_date, last_contact, est_cost, est_finish, bid_status, comments, contact_id)
 VALUES
-( 'October 23rd, 2018', '$3000.00', '2 Weeks', 'Decision to be made by Friday', 1);
+( 'October 23rd, 2018', '$3000.00', '3 Weeks', 'Will start 10/31', 3),
+( 'October 23rd, 2018', '$4000.00', '1 Week', 'Wants to move forward next week', 3),
+( 'October 23rd, 2018', '$5500.00', '3 Weeks', 'Unsure', 4),
+( 'October 23rd, 2018', '$3000.00', '4 Days', 'Decision to be made by Friday', 4),
+( 'October 23rd, 2018', '$1000.00', '2 Weeks', 'Bid counter', 4);
 
-INSERT INTO Project (address, est_cost, est_finish, start_date, materials,comments)
+INSERT INTO Project (address, est_cost, est_finish, start_date, end_date, materials, actual_cost, comments, satisfaction, contact_id)
 VALUES
-('123 Fake Street', '$2000.00', '11/14/18', '10/10/18', 'Primer, Enamel Paint', 'Ahead of Schedule');
+('123 Fake Street', '$2000.00', '11/14/18', '10/10/18', '10/31/18', 'Primer, Enamel Paint', '$2100.00', 'happy', 'Ahead of Schedule', 1),
+('123 Fake Street', '$2000.00', '11/14/18', '10/10/18', null, 'Primer, Enamel Paint', null, 'content', 'Ahead of Schedule', 2),
+('123 Fake Street', '$2000.00', '11/14/18', '10/10/18', null, 'Primer, Enamel Paint', null, 'happy', 'Ahead of Schedule', 5),
+('123 Fake Street', '$2000.00', '11/14/18', '10/10/18', '10/29/18','Primer, Enamel Paint', '1900.00', 'upset', 'Ahead of Schedule', 1),
+('123 Fake Street', '$2000.00', '11/14/18', '10/10/18', null, 'Primer, Enamel Paint', '1500.00', 'happy', 'Ahead of Schedule', 2);
 
 
 
 INSERT INTO Employee (name, phone, email, address, status, comments, project_id)
 VALUES
-('Jane Smith', '714-555-5555', 'jsmith@fake.com', '321 Fake Street Fountain Valley, CA 92728', 'Employed', 'Great Employee', 1);
+('Bill Nguyen', '714-555-5555', 'jsmith@fake.com', '32145 Fake Street Fountain Valley, CA 92728', 'Employed', 'Great Employee', 1),
+('Carlos Cruz', '714-545-4355', 'jsmith@fake.com', '2321 Fake Street Fountain Valley, CA 92728', 'Employed', 'Great Employee', 1),
+('Frank Smith', '714-555-5434', 'jsmith@fake.com', '34321 Fake Street Fountain Valley, CA 92728', 'Employed', 'Great Employee', 1),
+('Tyler Fanley', '714-555-8655', 'jsmith@fake.com', '3212 Fake Street Fountain Valley, CA 92728', 'Employed', 'Great Employee', 1),
+('Jill Wilson', '714-555-4567', 'jsmith@fake.com', '354 Fake Street Fountain Valley, CA 92728', 'Employed', 'Great Employee', 1);
 
 
 
