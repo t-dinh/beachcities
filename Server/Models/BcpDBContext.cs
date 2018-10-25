@@ -9,12 +9,12 @@ namespace Server
 
         }
 
-        public DbSet<Contact>       contact { get; set; }
-        public DbSet<Employee>      employee { get; set; }
+        public DbSet<Contact>       contact     { get; set; }
+        public DbSet<Employee>      employee    { get; set; }
 
-        public DbSet<Lead>          lead { get; set; }
+        public DbSet<Bid>           bid         { get; set; }
 
-        public DbSet<Project>       project { get; set; }
-        public DbSet<AppUser>       appUser { get; set; }
+        public DbSet<Project>       project     { get; set; }
+        public DbSet<AppUser>       appUser     { get; set; }
     }
 }
