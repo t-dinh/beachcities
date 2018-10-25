@@ -11,7 +11,9 @@ CREATE TABLE Contact (
     name            varchar(50),
     phone           varchar(50),
     email           varchar(50),
-    address         varchar(255),
+    address         varchar(50),
+    city            varchar(50),
+    zip             varchar(10),
     status          varchar(50),
     comments        varchar(500)
     );
@@ -46,7 +48,9 @@ CREATE TABLE Employee (
     name            varchar(50),
     phone           varchar(50),
     email           varchar(50),
-    address         varchar(255),
+    address         varchar(50),
+    city            varchar(50),
+    zip             varchar(10),
     status          varchar(50),
     comments        varchar(500),
     project_id      int REFERENCES Project (project_id)
