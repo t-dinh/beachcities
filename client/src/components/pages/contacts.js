@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class Contact extends Component {
+class Contacts extends Component {
     state = {
         contacts: []
     }
@@ -52,4 +52,4 @@ class Contact extends Component {
     }
 }
 
-export default Contact;
+export default Contacts;

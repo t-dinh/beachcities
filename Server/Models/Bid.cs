@@ -7,7 +7,7 @@ namespace Server
     public class Bid
     {
         [Key]
-        public int              bid_id         {get; set;}
+        public int             bid_id         {get; set;}
         [ForeignKey("contact_id")]
         public int              contact_id      {get; set;}
         public Contact          contact         {get; set;}
