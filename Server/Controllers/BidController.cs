@@ -7,28 +7,28 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server
 {
-    [Route("api/projects")]
+    [Route("api/bids")]
     [ApiController]
-    public class ProjectController : Controller
+    public class bidController : Controller
     {
 
         private BcpDBContext _context;
 
-        public ProjectController(BcpDBContext context)
+        public bidController(BcpDBContext context)
         {
             _context = context;
         }
 
         [HttpGet]
-        public List<Project> Get()
+        public List<Bid> Get()
         {
-            return _context.project
-                                    .Include(p => p.contact)
+            return _context.bid
+                                    .Include(l => l.contact)
                                     .ToList();
         }
 
 
-        [HttpGet("{id}", Name = "GetProject")]
+        [HttpGet("{id}", Name = "Getbid")]
         public async Task<IActionResult> GetById(int? id)
         {  
             if (id == null)
@@ -36,69 +36,69 @@ namespace Server
                 return NotFound();
             }
             
-            Project project = await _context.project
+            Bid bid = await _context.bid
                                 .Include(e => e.contact)
-                                .SingleOrDefaultAsync(p => p.project_id == id);
-            if (project == null)
+                                .SingleOrDefaultAsync(l => l.bid_id == id);
+            if (bid == null)
             {
                 return NotFound();
             }
 
-            return Ok(project);
+            return Ok(bid);
         }
 
     [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Project project)
+        public async Task<IActionResult> Post([FromBody] Bid bid)
         {
-            if (project == null)
+            if (bid == null)
             {
                 return BadRequest();
             }
 
-            _context.project.Add(project);
+            _context.bid.Add(bid);
             _context.SaveChanges();
 
             // Grab the newly created job such that can return below in "CreatedAtRoute"
-            Project newProject = await _context.project
-                                .Include(p => p.contact)
-                                .SingleOrDefaultAsync(p => p.project_id == project.project_id);
+            Bid newbid = await _context.bid
+                                .Include(l => l.contact)
+                                .SingleOrDefaultAsync(l => l.bid_id == bid.bid_id);
             
-            if (newProject == null)
+            if (newbid == null)
             {
                 return BadRequest();
             }
 
-            return CreatedAtRoute("Getproject", new {id = project.project_id }, newProject);
+            return CreatedAtRoute("Getbid", new {id = bid.bid_id }, newbid);
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateById(int id, [FromBody]Project project)
+        public IActionResult UpdateById(int id, [FromBody]Bid bid)
         {
-            Project item = _context.project.Find(id);
+            Bid item = _context.bid.Find(id);
             
-            if (project == null)
+            if (bid == null)
             {
                 return NotFound();
             }
 
-            _context.project.Remove(item);
-            _context.project.Add(project);
+            _context.bid.Remove(item);
+            _context.bid.Add(bid);
             _context.SaveChanges();
 
-            return Ok(project);
+            return Ok(bid);
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            Project item = _context.project.Find(id);
+            Bid item = _context.bid.Find(id);
 
             if (item == null)
             {
                 return NotFound();
             }
 
-            _context.project.Remove(item);
+            _context.bid.Remove(item);
             _context.SaveChanges();
             return Ok(item);
         }
