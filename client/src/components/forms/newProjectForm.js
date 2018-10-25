@@ -67,7 +67,7 @@ class NewProjectForm extends Component {
     formLogin = event => {
         event.preventDefault();
 
-        this.props.addToItems(this.state);
+        // this.props.addToItems(this.state);
 
         this.setState({
             username: ' ',
