@@ -10,25 +10,28 @@ class NewProjectForm extends Component {
         address: '',
         city: '',
         zip: '',
-        status: '',
-        comments: ''
+        estCost:'',
+        estFinish: '',
+        startDate:'',
+        materials:'',
+        comments: '',
     }
 
-    onNameChange = event => {
+    onAddressChange = event => {
         this.setState({
             name: event.target.value
         })
     }
 
-    onPhoneChange = event => {
+    onCityChange = event => {
         this.setState({
-            phone: event.target.value
+            city: event.target.value
         })
     }
 
-    onEmailChange = event => {
+    onZipChange = event => {
         this.setState({
-            email: event.target.value
+            zip: event.target.value
         })
     }
 
@@ -38,9 +41,20 @@ class NewProjectForm extends Component {
         })
     }
 
-    onStatusChange = event => {
+    onEstCostChange = event => {
         this.setState({
-            status: event.target.value
+            estCost: event.target.value
+        })
+    }
+    
+    onEstFinishChange = event => {
+        this.setState({
+            estFinish: event.target.value
+        })
+    }
+    onStartDateChange = event => {
+        this.setState({
+            startDate: event.target.value
         })
     }
 
@@ -50,16 +64,16 @@ class NewProjectForm extends Component {
         })
     }
 
-    // formLogin = event => {
-    //     event.preventDefault();
+    formLogin = event => {
+        event.preventDefault();
 
-    //     this.props.addToItems(this.state);
+        this.props.addToItems(this.state);
 
-    //     this.setState({
-    //         username: ' ',
-    //         password: ' '
-    //     })
-    // }
+        this.setState({
+            username: ' ',
+            password: ' '
+        })
+    }
 
     render() {
         return (
@@ -80,31 +94,31 @@ class NewProjectForm extends Component {
                     <div className="form-group form-group-top">
                                 <login onSubmit={this.formLogin}>
                                     <label>Address</label>
-                                    <input type="text" value={this.state.name} onChange={this.onUsernameChange} className="form-control" placeholder="" />
+                                    <input type="text" value={this.state.address} onChange={this.onAddressChange} className="form-control" placeholder="" />
                                 </login>
                             </div>
                             <div className="form-group">
                                     <login onSubmit={this.formLogin}>
                                     <label>City</label>
-                                    <input type="text" value={this.state.phone} onChange={this.onUsernameChange} className="form-control" placeholder="" />
+                                    <input type="text" value={this.state.city} onChange={this.onCityChange} className="form-control" placeholder="" />
                                 </login>
                             </div>
                             <div className="form-group">
                             <login onSubmit={this.formLogin}>
                                     <label>Zip</label>
-                                    <input type="text" value={this.state.email} onChange={this.onUsernameChange} className="form-control" placeholder="" />
+                                    <input type="text" value={this.state.zip} onChange={this.onZipChange} className="form-control" placeholder="" />
                                 </login>
                             </div>
                             <div className="form-group">
                             <login onSubmit={this.formLogin}>
                                     <label>Est. Cost</label>
-                                    <input type="text" value={this.state.zipCode} onChange={this.onUsernameChange} className="form-control" placeholder="" />
+                                    <input type="text" value={this.state.estCost} onChange={this.onEstCostChange} className="form-control" placeholder="" />
                                 </login>
                             </div>
                             <div className="form-group">
                             <login onSubmit={this.formLogin}>
-                                    <label>Est. Finish Time</label>
-                                    <input type="text" value={this.state.status} onChange={this.onUsernameChange} className="form-control" placeholder="" />
+                                    <label>Est. Finish Date</label>
+                                    <input type="text" value={this.state.estFinish} onChange={this.onEstFinishChange} className="form-control" placeholder="" />
                                 </login>
                             </div>
                             <div className="form-group">
@@ -116,12 +130,12 @@ class NewProjectForm extends Component {
                             <div className="form-group">
                             <login onSubmit={this.formLogin}>
                                     <label>Materials</label>
-                                    <input type="text" value={this.state.status} onChange={this.onUsernameChange} className="form-control" placeholder="" />
+                                    <input type="text" value={this.state.startDate} onChange={this.onStartDateChange} className="form-control" placeholder="" />
                                 </login>
                             </div>
                             <div className="form-group">
                                     <label>Comments</label>
-                                    <input type="text" value={this.state.comments} onChange={this.onPasswordChange} className="form-control" placeholder="" />
+                                    <input type="text" value={this.state.comments} onChange={this.onCommentsChange} className="form-control" placeholder="" />
                                     <button className="btn btn-primary swap" float-right onClick={() => { /*this.props.changePage("logInPage")*/ }}> Submit </button>
                             </div>
                             </div>
