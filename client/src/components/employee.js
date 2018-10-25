@@ -11,6 +11,20 @@ class Employee extends Component {
     employees: []
   }
 
+  grabEmployee = data => {
+            axios.get('http://localhost:5000/api/')
+                .then(res => {
+                    this.setState({
+                        employees: res.data
+                    })
+                })
+        }
+      
+    
+        componentDidMount() {
+            this.grabEmployee();
+        }
+
   onLastNameChange = e => {
     this.setState({
       lastName: e.target.value
@@ -241,3 +255,4 @@ grabEmployee = data => {
 }
 
 export default Employee;
+

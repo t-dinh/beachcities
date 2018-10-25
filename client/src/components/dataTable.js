@@ -12,7 +12,7 @@ class DataTable extends Component {
     render() {
         return (
             <div>
-            
+            test
             </div>
         );
     }

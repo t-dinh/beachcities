@@ -9,6 +9,8 @@ namespace Server
         [Key]
         public int              project_id  {get; set;}
         public string           address     {get; set;}
+        public string           city        {get; set;}
+        public string           zip         {get; set;}
         public string           est_cost    {get; set;}
         public string           est_finish  {get; set;}
         public string           start_date  {get; set;}

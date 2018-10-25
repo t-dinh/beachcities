@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class Employee extends Component {
+class Employees extends Component {
     state = {
         employees: [],
         name: ""
@@ -75,6 +75,7 @@ class Employee extends Component {
                             <th>Phone</th>
                             <th>Email</th>
                             <th>Address</th>
+                            <th>City</th>
                             <th>Status</th>
                         </tr>
                         {this.state.employees.map(e => {
@@ -84,6 +85,7 @@ class Employee extends Component {
                                     <td>{e.phone}</td>
                                     <td>{e.email}</td>
                                     <td>{e.address}</td>
+                                    <td>{e.city}</td>
                                     <td>{e.status}</td>
                                     <button className="btn btn-danger" id="showButtons">x</button>
                                 </tr>
@@ -205,4 +207,4 @@ class Employee extends Component {
     }
 }
 
-export default Employee;
+export default Employees;
