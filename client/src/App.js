@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Login from './components/login';
 import DataTable from './components/dataTable';
+import Projects from './components/pages/projects'
 import './App.css';
 import {Switch, Route} from 'react-router-dom';
 import Contacts from './components/pages/contacts';
@@ -12,7 +13,7 @@ class App extends Component {
         <DataTable />
         <Switch>
             <div className="container">
-            <Route exact path="/" render={() => <DataTable />} />
+            <Route exact path="/" render={() => <Projects />} />
             <Route path="/contacts" render={() => <Contacts />}/>
             {/* <Route path="/employees" component={Employee} /> */}
             </div>

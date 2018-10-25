@@ -8,7 +8,7 @@
 
 
 //     grabEmployee = data => {
-//         axios.get('http://localhost:5000/api/contacts')
+//         axios.get('http://localhost:5000/api/')
 //             .then(res => {
 //                 this.setState({
 //                     employees: res.data
