@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Login from './components/login';
-import Employees from './components/employee';
+import Employees from './components/pages/employees';
 import DataTable from './components/dataTable';
 import Projects from './components/pages/projects';
 import './App.css';

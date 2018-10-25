@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-class Employee extends Component {
 
+
+class Employee extends Component {
   state = {
-    lastName: "",
-    firstName: "",
+    name: "",
     email: "",
     phone: "",
     status: "",
-    action: "",
     employees: []
   }
 
@@ -64,10 +63,8 @@ grabEmployee = data => {
     return (
 
       <body>
-
-        
         <div className="container">
-          <div className="table-wrapper">
+          <div className="tableBox">
             <div className="table-title">
               <div className="row">
                 <div className="col-sm-6">
@@ -99,9 +96,8 @@ grabEmployee = data => {
                 </tr>
               
               
-              {
-                    this.state.employees.map(e => {
-                      return(
+              { this.state.employees.map(e => {
+                 return(
                 <tr>
                   <td>
                     <span className="custom-checkbox">
