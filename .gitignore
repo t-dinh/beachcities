@@ -55,3 +55,4 @@ msbuild.err
 msbuild.wrn
 # Visual Studio 2015
 .vs/
+.DS_Store
