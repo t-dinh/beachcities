@@ -59,13 +59,13 @@ CREATE TABLE Employee (
 
 
 
-INSERT INTO Contact(name, phone, email, address, status, comments)
+INSERT INTO Contact(name, phone, email, address, city, zip, status, comments)
 VALUES 
-('John Smith', '714-999-9999' , 'johnsmith@fake.com', '123 Fake Street Huntington Beach, CA 92605', 'Client', 'Happy with service'),
-('Frank Doe', '714-321-4567', 'franktest@gmail.com', '12233 Fake Street Huntington Beach, CA 92605', 'Client', 'Happy with service'),
-('Jane Bustos', '562-321-4567', 'janetest@gmail.com', '432 Fake Street Huntington Beach, CA 92605', 'Bidding', 'Wants a call back on the 4th'),
-('Randy Hawk', '213-321-4567', 'randytest@gmail.com', '987 Fake Street Huntington Beach, CA 92605', 'Prospect', 'Chose another company due to cost'),
-('Buzz Woodson', '756-321-4567', 'buzztest@gmail.com', '15432 Fake Street Huntington Beach, CA 92605', 'Client', 'May need new service in 6 months');
+('John Smith', '714-999-9999' , 'johnsmith@fake.com', '123 Fake Street', 'Huntington Beach', '92605', 'Client', 'Happy with service'),
+('Frank Doe', '714-321-4567', 'franktest@gmail.com', '12233 Fake Street', 'Huntington Beach', '92605', 'Client', 'Happy with service'),
+('Jane Bustos', '562-321-4567', 'janetest@gmail.com', '432 Fake Street', 'Huntington Beach','92605', 'Bidding', 'Wants a call back on the 4th'),
+('Randy Hawk', '213-321-4567', 'randytest@gmail.com', '987 Fake Street', 'Huntington Beach',  '92605', 'Prospect', 'Chose another company due to cost'),
+('Buzz Woodson', '756-321-4567', 'buzztest@gmail.com', '15432 Fake Street', 'Huntington Beach','92605', 'Client', 'May need new service in 6 months');
 
 INSERT INTO Bid (consult_date, last_contact, est_cost, est_finish, bid_status, comments, contact_id)
 VALUES
@@ -85,13 +85,13 @@ VALUES
 
 
 
-INSERT INTO Employee (name, phone, email, address, status, comments, project_id)
+INSERT INTO Employee (name, phone, email, address, city, zip, status, comments, project_id)
 VALUES
-('Bill Nguyen', '714-555-5555', 'jsmith@fake.com', '32145 Fake Street Fountain Valley, CA 92728', 'Employed', 'Great Employee', 1),
-('Carlos Cruz', '714-545-4355', 'jsmith@fake.com', '2321 Fake Street Fountain Valley, CA 92728', 'Employed', 'Great Employee', 1),
-('Frank Smith', '714-555-5434', 'jsmith@fake.com', '34321 Fake Street Fountain Valley, CA 92728', 'Employed', 'Great Employee', 1),
-('Tyler Fanley', '714-555-8655', 'jsmith@fake.com', '3212 Fake Street Fountain Valley, CA 92728', 'Employed', 'Great Employee', 1),
-('Jill Wilson', '714-555-4567', 'jsmith@fake.com', '354 Fake Street Fountain Valley, CA 92728', 'Employed', 'Great Employee', 1);
+('Bill Nguyen', '714-555-5555', 'jsmith@fake.com', '32145 Fake Street', 'Fountain Valley', '92728', 'Employed', 'Great Employee', 1),
+('Carlos Cruz', '714-545-4355', 'jsmith@fake.com', '2321 Fake Street','Fountain Valley', '92728', 'Employed', 'Great Employee', 1),
+('Frank Smith', '714-555-5434', 'jsmith@fake.com', '34321 Fake Street' ,'Fountain Valley', '92728', 'Employed', 'Great Employee', 1),
+('Tyler Fanley', '714-555-8655', 'jsmith@fake.com', '3212 Fake Street', 'Fountain Valley', '92728', 'Employed', 'Great Employee', 1),
+('Jill Wilson', '714-555-4567', 'jsmith@fake.com', '354 Fake Street', 'Fountain Valley','92728', 'Employed', 'Great Employee', 1);
 
 
 
