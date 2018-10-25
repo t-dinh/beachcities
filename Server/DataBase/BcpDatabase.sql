@@ -15,6 +15,7 @@ CREATE TABLE Contact (
     city            varchar(50),
     zip             varchar(10),
     status          varchar(50),
+    satisfaction    varchar(50),
     comments        varchar(500)
     );
 
@@ -22,6 +23,9 @@ CREATE TABLE Bid (
     bid_id          SERIAL PRIMARY KEY,
     consult_date    varchar(50),
     last_contact    varchar(50),
+    address         varchar(50),
+    city            varchar(50),
+    zip             varchar(10),
     est_cost        varchar(50),
     est_finish      varchar(50),
     bid_status      varchar(50),
@@ -69,13 +73,13 @@ VALUES
 ('Randy Hawk', '213-321-4567', 'randytest@gmail.com', '987 Fake Street', 'Huntington Beach',  '92605', 'Prospect', 'Chose another company due to cost'),
 ('Buzz Woodson', '756-321-4567', 'buzztest@gmail.com', '15432 Fake Street', 'Huntington Beach','92605', 'Client', 'May need new service in 6 months');
 
-INSERT INTO Bid (consult_date, last_contact, est_cost, est_finish, bid_status, comments, contact_id)
+INSERT INTO Bid (consult_date, last_contact, address, city, zip, est_cost, est_finish, bid_status, comments, contact_id)
 VALUES
-( 'October 23rd, 2018', 'October 23rd, 2018', '$3000.00', '3 Weeks', 'Won', 'Will start 10/31', 3),
-( 'October 23rd, 2018', 'October 31st, 2018','$4000.00', '1 Week', 'Won', 'Wants to move forward next week', 3),
-( 'October 23rd, 2018', 'October 24th, 2018', '$5500.00', '3 Weeks', 'Open', 'Unsure', 4),
-( 'October 23rd, 2018', 'October 26th', '2018''$3000.00', '4 Days', 'Open', 'Decision to be made by Friday', 4),
-( 'October 23rd, 2018', 'October 23rd, 2018', '$1000.00', '2 Weeks', 'Closed', 'Bid counter', 4);
+( 'October 23rd, 2018', 'October 23rd, 2018','123 Fake Street', 'Huntington Beach', '92605', '$3000.00', '3 Weeks', 'Won', 'Will start 10/31', 3),
+( 'October 23rd, 2018', 'October 31st, 2018','123 Fake Street', 'Huntington Beach', '92605', '$4000.00', '1 Week', 'Won', 'Wants to move forward next week', 3),
+( 'October 23rd, 2018', 'October 24th, 2018', '123 Fake Street', 'Huntington Beach', '92605','$5500.00', '3 Weeks', 'Open', 'Unsure', 4),
+( 'October 23rd, 2018', 'October 26th, 2018', '123 Fake Street', 'Huntington Beach', '92605', ' $3000.00', '4 Days', 'Open', 'Decision to be made by Friday', 4),
+( 'October 23rd, 2018', 'October 23rd, 2018', '123 Fake Street', 'Huntington Beach','92605', '$1000.00', '2 Weeks', 'Closed', 'Bid counter', 4);
 
 INSERT INTO Project (address, city, zip, est_cost, est_finish, start_date, end_date, materials, actual_cost, comments, satisfaction, contact_id)
 VALUES

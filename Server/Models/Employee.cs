@@ -12,6 +12,8 @@ namespace Server
         public string           phone       {get; set;}
         public string           email       {get; set;}
         public string           address     {get; set;}
+        public string           city        {get; set;}
+        public string           zip         {get; set;}
         public string           status      {get; set;}
         public string           comments    {get; set;}
         [ForeignKey("project_id")]
