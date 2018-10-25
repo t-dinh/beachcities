@@ -96,6 +96,7 @@ class NewBidForm extends Component {
     //     })
     // }
 
+  //  l
     render() {
         return (
             <div className="login-page-background">
