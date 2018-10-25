@@ -32,6 +32,8 @@ CREATE TABLE Bid (
 CREATE TABLE Project(
     project_id      SERIAL PRIMARY KEY,
     address         varchar(50),
+    city            varchar(50),
+    zip             varchar(10),
     est_cost        varchar(50),
     est_finish      varchar(50),
     start_date      varchar(50),
@@ -75,13 +77,13 @@ VALUES
 ( 'October 23rd, 2018', 'October 26th', '2018''$3000.00', '4 Days', 'Open', 'Decision to be made by Friday', 4),
 ( 'October 23rd, 2018', 'October 23rd, 2018', '$1000.00', '2 Weeks', 'Closed', 'Bid counter', 4);
 
-INSERT INTO Project (address, est_cost, est_finish, start_date, end_date, materials, actual_cost, comments, satisfaction, contact_id)
+INSERT INTO Project (address, city, zip, est_cost, est_finish, start_date, end_date, materials, actual_cost, comments, satisfaction, contact_id)
 VALUES
-('123 Fake Street', '$2000.00', '11/14/18', '10/10/18', '10/31/18', 'Primer, Enamel Paint', '$2100.00', 'happy', 'Ahead of Schedule', 1),
-('123 Fake Street', '$2000.00', '11/14/18', '10/10/18', null, 'Primer, Enamel Paint', null, 'content', 'Ahead of Schedule', 2),
-('123 Fake Street', '$2000.00', '11/14/18', '10/10/18', null, 'Primer, Enamel Paint', null, 'happy', 'Ahead of Schedule', 5),
-('123 Fake Street', '$2000.00', '11/14/18', '10/10/18', '10/29/18','Primer, Enamel Paint', '1900.00', 'upset', 'Ahead of Schedule', 1),
-('123 Fake Street', '$2000.00', '11/14/18', '10/10/18', null, 'Primer, Enamel Paint', '1500.00', 'happy', 'Ahead of Schedule', 2);
+('123 Fake Street', 'Huntington Beach', '92605','$2000.00', '11/14/18', '10/10/18', '10/31/18', 'Primer, Enamel Paint', '$2100.00', 'happy', 'Ahead of Schedule', 1),
+('1233 Fake Street', 'Huntington Beach', '92605', '$2000.00', '11/14/18', '10/10/18', null, 'Primer, Enamel Paint', null, 'content', 'Ahead of Schedule', 2),
+('1223 Fake Street', 'Fountain Valley', '92728','$2000.00', '11/14/18', '10/10/18', null, 'Primer, Enamel Paint', null, 'happy', 'Ahead of Schedule', 5),
+('1253 Fake Street', 'Fountain Valley', '92728', '$2000.00', '11/14/18', '10/10/18', '10/29/18','Primer, Enamel Paint', '1900.00', 'upset', 'Ahead of Schedule', 1),
+('123 Fake Street', 'Huntington Beach', '92605', '$2000.00', '11/14/18', '10/10/18', null, 'Primer, Enamel Paint', '1500.00', 'happy', 'Ahead of Schedule', 2);
 
 
 
