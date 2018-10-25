@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import Contact from './pages/contact';
+import {Route, Switch, Link} from 'react-router-dom';
+import Contacts from './pages/contacts';
+import Employee from './pages/employees';
 
 
 class DataTable extends Component {
@@ -10,9 +11,13 @@ class DataTable extends Component {
 
     render() {
         return (
-            <div className="container">
-            <div className="nav"><button className="btn btn-link">Contacts</button></div>
-                
+            <div>
+            
+            <div className="header">
+            <Link to="/">DataPage</Link>
+            <Link to="/contacts">Contacts</Link>
+            <Link to="/employees">Employees</Link>
+            </div>
             </div>
         );
     }
