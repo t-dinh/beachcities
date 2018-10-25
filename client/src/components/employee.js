@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import axios from 'axios';
 class Employee extends Component {
 
   state = {
@@ -8,7 +8,8 @@ class Employee extends Component {
     email: "",
     phone: "",
     status: "",
-    action: ""
+    action: "",
+    employees: []
   }
 
   onLastNameChange = e => {
@@ -43,6 +44,21 @@ class Employee extends Component {
       action: e.target.value
     })
   }
+// async addEmployee = e => {
+//   await 
+// }
+
+grabEmployee = data => {
+          axios.get('http://localhost:5000/api/employees')
+              .then(res => {
+                  this.setState({
+                      employees: res.data
+                  })
+              })
+      }
+           componentDidMount() {
+                this.grabEmployee();
+            }
 
   render() {
     return (
@@ -67,27 +83,25 @@ class Employee extends Component {
               </div>
             </div>
             <table className="table-employee">
-              <thead>
+              
                 <tr>
                   <th>
                     <span className="checkbox" id="selectAll">
                       <label for="selectAll">
-
                       </label>
-
-
                     </span>
-
                   </th>
-                  <th>Last Name</th>
-                  <th>First Name</th>
+                  <th>Name</th>
+                  <th>Phone</th>
                   <th>Email</th>
-                  <th>Phone #</th>
+                  <th>Address</th>
                   <th>Status</th>
-                  <th>Actions</th>
                 </tr>
-              </thead>
-              <tbody>
+              
+              
+              {
+                    this.state.employees.map(e => {
+                      return(
                 <tr>
                   <td>
                     <span className="custom-checkbox">
@@ -95,17 +109,22 @@ class Employee extends Component {
                       <label for="checkbox1"></label>
                     </span>
                   </td>
-                  <td>Patel</td>
-                  <td>Hemal</td>
-                  <td>TheHemalPatel@gmail.com</td>
-                  <td>1-714-369-9032</td>
-                  <td>Active</td>
-                  <td>
-                    {/* <a href="#editEmployeeModal" className="edit" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a> */}
-                    <a href="#deleteEmployeeModal" className="delete" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a></td>
+                  
+                        <td>{e.name}</td>
+                        <td>{e.phone}</td>
+                        <td>{e.email}</td>
+                        <td>{e.address}</td>
+                        <td>{e.status}</td>
+                        
+                        <td>
+                        <a href="#deleteEmployeeModal" className="delete" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a></td>
                 </tr>
-
-              </tbody>
+                      )
+                    }) 
+                  }
+                  
+                    {/* <a href="#editEmployeeModal" className="edit" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a> */}
+                    
             </table>
 
           </div>
