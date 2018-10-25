@@ -5,7 +5,6 @@
 .tableBox {
   width: 1000px;
 }
-<<<<<<< HEAD
 
 .App-header {
   background-color: #282c34;
@@ -22,8 +21,8 @@
   color: #61dafb;
 }
 
-body {
-  color: darkblue;
+.body {
+color: darkblue;
 background: lightblue;
 font-family: 'Varela Round', sans-serif;
 font-size: 20px;
@@ -240,12 +239,11 @@ min-width: 100px;
 }	
 .modal form label {
 font-weight: normal;
-=======
+}
 .table tr button { 
   /* display: none; */
   opacity:0;
-  float:right 
->>>>>>> 7ae7b6313f82a761be24a81597ed3ac996a4c7b9
+  float:right;
 }
 .table tr:hover button { 
   opacity:1 
