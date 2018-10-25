@@ -10,9 +10,15 @@ import Projects from './components/projects';
 =======
 import Login from './components/login';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Employee from './components/employee'
 
 >>>>>>> a24c3b4bc2db817bb913da00c0cd47011ce09d69
+=======
+import Employees from './components/employee';
+import DataTable from './components/dataTable';
+import Projects from './components/pages/projects';
+>>>>>>> 582b46a28c5464f369c782a33a2ea14a72e1304c
 =======
 import Employees from './components/employee';
 import DataTable from './components/dataTable';
@@ -34,6 +40,7 @@ class App extends Component {
             <Route path="/employees" render={() => <Employees />} />
             </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
             </Switch>
             {/* <Contacts /> */}
 
@@ -48,6 +55,9 @@ class App extends Component {
           <Route path="/projects" render={()=> <Projects />} />
         </Switch>
 
+=======
+            </Switch>        
+>>>>>>> 582b46a28c5464f369c782a33a2ea14a72e1304c
 =======
             </Switch>        
 >>>>>>> 582b46a28c5464f369c782a33a2ea14a72e1304c

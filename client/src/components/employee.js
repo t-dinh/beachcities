@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD
 
 
 
@@ -230,6 +231,8 @@ class Employee extends Component {
     
     export default Employee;
 
+=======
+>>>>>>> 582b46a28c5464f369c782a33a2ea14a72e1304c
 import axios from 'axios';
 class Employee extends Component {
 
