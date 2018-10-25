@@ -13,11 +13,6 @@ class DataTable extends Component {
         return (
             <div>
             
-            <div className="header">
-            <Link to="/">DataPage</Link>
-            <Link to="/contacts">Contacts</Link>
-            <Link to="/employees">Employees</Link>
-            </div>
             </div>
         );
     }
