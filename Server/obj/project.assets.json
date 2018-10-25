@@ -5225,7 +5225,7 @@
       ]
     },
     "Microsoft.AspNetCore.Razor.Design/2.1.1": {
-      "sha512": "f8PKGcxiezL1RVqmnmrazj24Mj4KCTSXqwdotl7Lc+82h8iLV7ItxEIShTJakG7M9iw0ZuCocM0J/IhYesdQrg==",
+      "sha512": "BOK5fckW9v7xWjpEI6bPGwkjw10OPVASZcAa8HoWJo/0Mmg4Azddj92v8noU+YgvD/6zNZ9o/RiRXXKxk5rYwQ==",
       "type": "package",
       "path": "microsoft.aspnetcore.razor.design/2.1.1",
       "files": [
@@ -11584,23 +11584,23 @@
     ]
   },
   "packageFolders": {
-    "/home/patrick/.nuget/packages/": {},
-    "/usr/share/dotnet/sdk/NuGetFallbackFolder": {}
+    "/Users/Hemal/.nuget/packages/": {},
+    "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/patrick/Documents/lucas.work/Projects/beachcities/Server/BcpServer.csproj",
+      "projectUniqueName": "/Users/Hemal/Desktop/beachcities/Server/BcpServer.csproj",
       "projectName": "BcpServer",
-      "projectPath": "/home/patrick/Documents/lucas.work/Projects/beachcities/Server/BcpServer.csproj",
-      "packagesPath": "/home/patrick/.nuget/packages/",
-      "outputPath": "/home/patrick/Documents/lucas.work/Projects/beachcities/Server/obj/",
+      "projectPath": "/Users/Hemal/Desktop/beachcities/Server/BcpServer.csproj",
+      "packagesPath": "/Users/Hemal/.nuget/packages/",
+      "outputPath": "/Users/Hemal/Desktop/beachcities/Server/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+        "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/home/patrick/.nuget/NuGet/NuGet.Config"
+        "/Users/Hemal/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"

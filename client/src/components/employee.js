@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-<<<<<<< HEAD
+
+
 
 
 class Employee extends Component {
@@ -228,7 +229,7 @@ class Employee extends Component {
     }
     
     export default Employee;
-=======
+
 class Employee extends Component {
 
   state = {
@@ -239,6 +240,20 @@ class Employee extends Component {
     status: "",
     action: ""
   }
+
+  grabEmployee = data => {
+            axios.get('http://localhost:5000/api/')
+                .then(res => {
+                    this.setState({
+                        employees: res.data
+                    })
+                })
+        }
+      
+    
+        componentDidMount() {
+            this.grabEmployee();
+        }
 
   onLastNameChange = e => {
     this.setState({
@@ -455,4 +470,4 @@ class Employee extends Component {
 }
 
 export default Employee;
->>>>>>> a24c3b4bc2db817bb913da00c0cd47011ce09d69
+

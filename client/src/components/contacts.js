@@ -9,16 +9,21 @@ class Contacts extends Component {
     grabData = data => {
         axios.get('http://localhost:5000/api/contacts')
         .then(response => {
-            console.log(response.server.contacts)
-            let contacts = response.server.contacts;
+            console.log(response.data)
+            let contacts = response.data;
             this.setState({
     
-                contacts: contacts
+                contacts: data
             })
     });
-}
+    }
+
+    g
+
+    
     componentDidMount() {
         this.grabData();
+
     }
 
     render() {
