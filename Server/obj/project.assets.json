@@ -11590,11 +11590,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Red-Leader\\Desktop\\beachcities\\Server\\BcpServer.csproj",
+      "projectUniqueName": "C:\\Users\\Red-Leader\\Desktop\\beachcities\\Server\\BcpServer.csproj",
       "projectName": "BcpServer",
-      "projectPath": "c:\\Users\\Red-Leader\\Desktop\\beachcities\\Server\\BcpServer.csproj",
+      "projectPath": "C:\\Users\\Red-Leader\\Desktop\\beachcities\\Server\\BcpServer.csproj",
       "packagesPath": "C:\\Users\\Red-Leader\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Red-Leader\\Desktop\\beachcities\\Server\\obj\\",
+      "outputPath": "C:\\Users\\Red-Leader\\Desktop\\beachcities\\Server\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
