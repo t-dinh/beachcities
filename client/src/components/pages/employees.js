@@ -146,9 +146,14 @@ class Employees extends Component {
 
     render() {
         return (
+<<<<<<< HEAD
             
 <div>
                 <div className="nav"><a href="#addEmployeeModal" className="btn btn-success" data-toggle="modal">
+=======
+            <div>
+                <div className="nav"><a href="#editEmployeeModal" className="btn btn-success" data-toggle="modal">
+>>>>>>> trambranch
                     <i className="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
                     <a href="#updateEmployeeModal" className="btn btn-success" data-toggle="modal">
                     <i className="material-icons">&#xE147;</i> <span>Update Employee</span></a>
@@ -361,7 +366,7 @@ class Employees extends Component {
                                 <div className="modal-body">
                                     <div className="form-group">
                                         <label>Last Name</label>
-                                        <input type="text" className="form-control" id={this.state.checkedId} value={this.state.lastName}
+                                        <input type="text" className="form-control" id={this.state.name} defaultValue={this.state.name}
                                             onChange={this.onLastNameChange} required />
                                     </div>
                                     <div className="form-group">
