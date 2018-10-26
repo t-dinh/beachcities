@@ -4,6 +4,7 @@ import axios from 'axios';
 class Employees extends Component {
     state = {
         employees: [],
+        id:'',
         name: '',
         phone: '',
         email: '',
@@ -12,7 +13,8 @@ class Employees extends Component {
         zip: '',
         status: '',
         comments: '',
-        isEmployee: false,
+        isChecked: false,
+        checkedId: ''
     }
 
     onNameChange = e => {
@@ -104,51 +106,58 @@ class Employees extends Component {
     //     }
     // }
 
-    handleInputChange(event) {
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-    
-        this.setState({
-          [name]: value
+    handleInputChange(e){
+     this.setState({
+          checkedId: e.target.id,
+          isChecked: true
         });
       }
-
-    //   `employees/?name={name}`
+      
+     deleteEmployee = employee => {
+         if (this.state.isChecked == true) {
+            let response = axios.delete(`http://localhost:5000/api/employees/${this.state.checkedId}`)
+         }
+        }
+   
 
     render() {
         return (
             <div>
                 <div className="nav"><a href="#addEmployeeModal" className="btn btn-success" data-toggle="modal">
                     <i className="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
-                    <a href="#deleteEmployeeModal" className="btn btn-danger" data-toggle="modal"><i className="material-icons">&#xE15C;</i> <span>Delete
+                    <a href="#deleteEmployeeModal" className="btn btn-danger" onClick={this.deleteEmployee} data-toggle="modal"><i className="material-icons">&#xE15C;</i> <span>Delete
                 </span></a></div>
                 <div className="tableBox">
                     {/* what gets rendered in this table will come from the database */}
                     <table className="table">
                         <tr>
+                            <th></th>
                             <th>Name</th>
                             <th>Phone</th>
                             <th>Email</th>
                             <th>Address</th>
                             <th>City</th>
                             <th>Status</th>
+                            <th>Comments</th>
                         </tr>
                         {this.state.employees.map(e => {
                             return (
-                                <tr className="hoverButton">
-                                    <td><input type="checkbox" 
-                                    name= 'isEmployee' 
-                                    checked={this.state.isEmployee} 
-                                    onChange={this.handleInputChange}>
-                                    </input></td>
+                                <tr>
+                                    <td>
+                                    <input className="checkbox" type="checkbox" 
+                                    value= {this.state.isChecked} 
+                                    id={e.employee_id}
+                                    onChange={this.handleInputChange.bind(this)}>
+                                    </input>
+                                    </td>
                                     <td>{e.name}</td>
                                     <td>{e.phone}</td>
                                     <td>{e.email}</td>
                                     <td>{e.address}</td>
                                     <td>{e.city}</td>
                                     <td>{e.status}</td>
-                                    <button className="btn btn-danger" id="showButtons">x</button>
+                                    <td>{e.comments}</td>
+                                    
                                 </tr>
                             )
                         })}

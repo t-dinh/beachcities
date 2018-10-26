@@ -1,11 +1,33 @@
+
+a {
+  color: #022968;
+  font-weight: bold;
+}
+a:hover {
+  color: #c49300;
+}
+a:active {
+  color: #c49300;
+}
 .table {
   border-bottom: 1px solid black;
   border-top: none;
 }
 .tableBox {
-  width: 1000px;
+  width: 900px;
 }
-
+.nav{
+  float: right;
+}
+.navi{
+  margin-top: 100px;
+}
+.btn-link {
+  font-size: 25px;
+}
+th {
+  color: gray;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

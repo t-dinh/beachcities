@@ -12,7 +12,7 @@ class DataTable extends Component {
     render() {
         return (
             <div className="container">
-            
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.."></input>
             </div>
         );
     }

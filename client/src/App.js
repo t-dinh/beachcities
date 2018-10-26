@@ -17,9 +17,13 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <div className="container">
-        {/* <DataTable /> */}
-        <div className="nav"><Navbar/></div>
+      <div className="row">
+      <div className="col-md-3" id="side">
+      <div>this is the sidebar</div>
+      </div>
+      <div className="tablecontainer">
+      <div>Welcome, ...</div>
+        <div className="navi"><Navbar/></div>
         <Switch>
             <div className="dataBox">
             <Route exact path="/" render={() => <Projects />} />
@@ -27,6 +31,7 @@ class App extends Component {
             <Route path="/employee" render={() => <Employees />} />
             </div>
             </Switch>        
+      </div>
       </div>
     );
   }
