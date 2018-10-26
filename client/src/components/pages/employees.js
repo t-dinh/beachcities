@@ -84,9 +84,7 @@ class Employees extends Component {
     }
     addNewEmployee = async employee => {
         console.log('add new employee invoked');
-        let res = await axios.post('http://localhost:5000/api/employees', {
-            name: this.state.name
-        }); // res.data => new employee object
+        let res = await axios.post('http://localhost:5000/api/employees', employee); // res.data => new employee object
 
         console.log("res: ", res.data);
         if (res.data) {
@@ -166,7 +164,9 @@ class Employees extends Component {
                 </div>
 
 
-                <NewEmployeeForm />
+                <NewEmployeeForm 
+                addNewEmployee={this.addNewEmployee}
+                name={this.state.name}/>
 
 
 
