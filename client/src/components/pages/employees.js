@@ -146,14 +146,11 @@ class Employees extends Component {
 
     render() {
         return (
-<<<<<<< HEAD
+
             
 <div>
                 <div className="nav"><a href="#addEmployeeModal" className="btn btn-success" data-toggle="modal">
-=======
-            <div>
-                <div className="nav"><a href="#editEmployeeModal" className="btn btn-success" data-toggle="modal">
->>>>>>> trambranch
+
                     <i className="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
                     <a href="#updateEmployeeModal" className="btn btn-success" data-toggle="modal">
                     <i className="material-icons">&#xE147;</i> <span>Update Employee</span></a>
@@ -163,6 +160,7 @@ class Employees extends Component {
                     {/* what gets rendered in this table will come from the database */}
                     <table className="table">
                         <tr>
+                            <th> </th>
                             <th>Name</th>
                             <th>Phone</th>
                             <th>Email</th>
@@ -192,11 +190,12 @@ class Employees extends Component {
                         })}
                     </table>
                 </div>
-
+<NewEmployeeForm 
+addNewEmployee={this.addNewEmployee}/>
                  
 
 
-                <div id="addEmployeeModal" className="modal fade">
+                {/* <div id="addEmployeeModal" className="modal fade">
                     <div className="modal-dialog">
                         <div className="modal-content">
                             <form>
@@ -210,7 +209,7 @@ class Employees extends Component {
                                         <input type="text" className="form-control" value={this.state.lastName}
                                             onChange={this.onLastNameChange} required />
                                     </div> */}
-                                    <div className="form-group">
+                                    {/* <div className="form-group">
                                         <label>Name</label>
                                         <input type="text" className="form-control" value={this.state.name}
                                             onChange={this.onNameChange} required />
@@ -229,7 +228,7 @@ class Employees extends Component {
                                         <label>Status</label>
                                         <input type="text" className="form-control" value={this.state.status}
                                             onChange={this.onStatusChange} required />
-                                    </div>
+                                    </div> */} 
                                     {/* <div className="form-group">
                                         <label>Email</label>
                                         <input type="text" className="form-control" value={this.state.email}
@@ -243,14 +242,14 @@ class Employees extends Component {
                                         <input type="text" className="form-control" value={this.state.status}
                                             onChange={this.onStatusChange} required />                  </div>
                                 </div> */}
-                                <div className="modal-footer">
+                                {/* <div className="modal-footer">
                                     <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel" />
                                     <input type="submit" className="btn btn-success" value="Add" onClick={this.onClick}/>
                                 </div>
                             </form>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
                  <div id="updateEmployeeModal" className="modal fade">
                     <div className="modal-dialog">
@@ -313,6 +312,7 @@ class Employees extends Component {
                             <form>
                                 <div className="modal-header">
                                     <h4 className="modal-title">Delete Employee</h4>
+                                    <h5>This Cannot Be Undone</h5>
                                     <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                 </div>
                                 {/* <div className="modal-body">
@@ -320,13 +320,13 @@ class Employees extends Component {
                                         <label>Last Name</label>
                                         <input type="text" className="form-control" value={this.state.lastName}
                                             onChange={this.onLastNameChange} required />
-                                    </div> */}
+                                    </div>
                                     <div className="form-group">
                                         <label>Name</label>
                                         <input type="text" className="form-control" value={this.state.name}
                                             onChange={this.onNameChange} required />
                                     </div>
-                                    {/* <div className="form-group">
+                                    <div className="form-group">
                                         <label>Email</label>
                                         <input type="text" className="form-control" value={this.state.email}
                                             onChange={this.onEmailChange} required />                  </div>
@@ -339,9 +339,9 @@ class Employees extends Component {
                                         <input type="text" className="form-control" value={this.state.status}
                                             onChange={this.onStatusChange} required />                  </div>
                                 </div> */}
-                                <div className="modal-footer">
+                                 <div className="modal-footer">
                                     <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel" />
-                                    <input type="submit" className="btn btn-success" value="Add" onClick={this.deleteEmployee}/>
+                                    <input type="submit" className="btn btn-success" value="Delete" onClick={this.deleteEmployee}/>
                                 </div>
                             </form>
                         </div>

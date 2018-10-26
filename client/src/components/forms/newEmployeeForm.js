@@ -64,7 +64,14 @@ class NewEmployeeForm extends Component {
         e.preventDefault();
         this.props.addNewEmployee(this.state);
         this.setState({
-            name: ""
+            name: "",
+            phone: '',
+            email: '',
+            address: '',
+            city: '',
+            zip: '',
+            status: '',
+            comments: ''
         });
         // this.grabEmployee();
         console.log("end of onClick");
