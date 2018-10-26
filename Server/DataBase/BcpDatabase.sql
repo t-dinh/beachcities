@@ -1,6 +1,6 @@
-DROP DATABASE beachcities;
-CREATE DATABASE beachcities;
-\c beachcities;
+DROP DATABASE BcpDatabase;
+CREATE DATABASE BcpDatabase;
+\c BcpDatabase;
 
 CREATE TABLE AppUser(
     user_id         SERIAL PRIMARY KEY,
