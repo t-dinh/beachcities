@@ -182,7 +182,7 @@ class Employees extends Component {
                                 <div className="modal-body">
                                     <div className="form-group">
                                         <label>Last Name</label>
-                                        <input type="text" className="form-control" value={this.state.lastName}
+                                        <input type="text" className="form-control" id={this.state.checkedId} value={this.state.lastName}
                                             onChange={this.onLastNameChange} required />
                                     </div>
                                     <div className="form-group">

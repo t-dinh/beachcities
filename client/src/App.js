@@ -28,7 +28,8 @@ class App extends Component {
         <div className="navi"><Navbar/></div>
         <Switch>
             <div className="dataBox">
-            <Route exact path="/" render={() => <Projects />} />
+            <Route exact path="/" render={() => <Login />} />
+            <Route path="/dataTable" render={() => <DataTable />} />
             <Route path="/contacts" render={() => <Contacts />}/>
             <Route path="/employee" render={() => <Employees />} />
             </div>
