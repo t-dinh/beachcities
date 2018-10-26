@@ -189,7 +189,7 @@ class Projects extends Component {
 
 
 
-                <div id="editprojectModal" className="modal fade">
+                {/* <div id="editprojectModal" className="modal fade">
                     <div className="modal-dialog">
                         <div className="modal-content">
                             <form>
@@ -228,7 +228,7 @@ class Projects extends Component {
                             </form>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
 
                 <div id="deleteprojectModal" className="modal fade">
