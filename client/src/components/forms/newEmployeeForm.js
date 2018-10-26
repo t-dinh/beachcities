@@ -190,7 +190,7 @@ class NewEmployeeForm extends Component {
                         </div>
                             <div className="modal-footer">
                                 <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel" />
-                                <input type="submit" className="btn btn-success" value="Add" onClick={this.onClick} />
+                                <input type="submit" className="btn btn-success" value="Add" onClick={this.onClick} data-dismiss="modal" />
                             </div>
                         </form>
                     </div>

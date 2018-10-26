@@ -156,58 +156,9 @@ class Employees extends Component {
                     </table>
                 </div>
 
-                {/* modal */}
 
-                {/* <div id="addEmployeeModal" className="modal fade">
-                    <div className="modal-dialog">
-                        <div className="modal-content">
-                            <form>
-                                <div className="modal-header">
-                                    <h4 className="modal-title">Add Employee</h4>
-                                    <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                </div> */}
-                                <NewEmployeeForm />
-                                {/* <div className="modal-body">
-                                    <div className="form-group">
-                                        <label>Last Name</label>
-                                        <input type="text" className="form-control" value={this.state.lastName}
-                                            onChange={this.onLastNameChange} required />
-                                    </div> */}
-<<<<<<< HEAD
-                                    {/* <div className="form-group">
-                                        <label>Name</label>
-                                        <input type="text" className="form-control" value={this.state.name}
-                                            onChange={this.onNameChange} required />
-                                    </div> */}
-                                    {/* <div className="form-group">
-=======
-                                <div className="form-group">
-                                    <label>Name</label>
-                                    <input type="text" className="form-control" value={this.state.name}
-                                        onChange={this.onNameChange} required />
-                                </div>
-                                {/* <div className="form-group">
->>>>>>> 36f42f9e03a723542a1513c65814fb92893ba3ea
-                                        <label>Email</label>
-                                        <input type="text" className="form-control" value={this.state.email}
-                                            onChange={this.onEmailChange} required />                  </div>
-                                    <div className="form-group">
-                                        <label>Phone</label>
-                                        <input type="text" className="form-control" value={this.state.phone}
-                                            onChange={this.onPhoneChange} required />                  </div>
-                                    <div className="form-group">
-                                        <label>Status</label>
-                                        <input type="text" className="form-control" value={this.state.status}
-                                            onChange={this.onStatusChange} required />                  </div>
-                                </div> */}
-                                {/* <div className="modal-footer">
-                                    <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel" />
-                                    <button type="submit" className="btn btn-success" value="Add" onClick={this.onClick} data-dismiss="modal" >Submit</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div> */}
+                <NewEmployeeForm />
+
 
 
 
