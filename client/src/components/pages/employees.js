@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import NewEmployeeForm from '../forms/newEmployeeForm';
 
 class Employees extends Component {
     state = {
@@ -96,25 +97,26 @@ class Employees extends Component {
 
                 {/* modal */}
 
-                <div id="addEmployeeModal" className="modal fade">
+                {/* <div id="addEmployeeModal" className="modal fade">
                     <div className="modal-dialog">
                         <div className="modal-content">
                             <form>
                                 <div className="modal-header">
                                     <h4 className="modal-title">Add Employee</h4>
                                     <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                </div>
+                                </div> */}
+                                <NewEmployeeForm />
                                 {/* <div className="modal-body">
                                     <div className="form-group">
                                         <label>Last Name</label>
                                         <input type="text" className="form-control" value={this.state.lastName}
                                             onChange={this.onLastNameChange} required />
                                     </div> */}
-                                    <div className="form-group">
+                                    {/* <div className="form-group">
                                         <label>Name</label>
                                         <input type="text" className="form-control" value={this.state.name}
                                             onChange={this.onNameChange} required />
-                                    </div>
+                                    </div> */}
                                     {/* <div className="form-group">
                                         <label>Email</label>
                                         <input type="text" className="form-control" value={this.state.email}
@@ -128,14 +130,14 @@ class Employees extends Component {
                                         <input type="text" className="form-control" value={this.state.status}
                                             onChange={this.onStatusChange} required />                  </div>
                                 </div> */}
-                                <div className="modal-footer">
+                                {/* <div className="modal-footer">
                                     <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel" />
                                     <input type="submit" className="btn btn-success" value="Add" onClick={this.onClick}/>
                                 </div>
                             </form>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
 
 
