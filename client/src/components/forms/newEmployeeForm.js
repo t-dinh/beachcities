@@ -4,6 +4,7 @@ import axios from 'axios';
 class NewEmployeeForm extends Component {
 
     state = {
+        employees: [],
         name: '',
         phone: '',
         email: '',
@@ -60,7 +61,62 @@ class NewEmployeeForm extends Component {
             comments: event.target.value
         })
     }
+    onClick = async e => {
+        e.preventDefault();
+        this.addNewEmployee();
+        this.setState({
+            name: ""
+        });
+        await this.grabEmployee();
+        console.log("end of onClick");
+    }
 
+    submitEmployee = async employee => {
+        let response = await axios.post('http://localhost:5000/api/employees', employee)
+    }
+
+    grabEmployee = async data => {
+        console.log('grab employee invoked');
+        let res = await axios.get('http://localhost:5000/api/employees')
+        this.setState({
+            employees: res.data
+        })
+
+    }
+    addNewEmployee = async employee => {
+        console.log('add new employee invoked');
+        let res = await axios.post('http://localhost:5000/api/employees', {
+            name: this.state.name,
+            phone: this.state.phone,
+            email: this.state.email,
+            address: this.state.address,
+            city: this.state.city,
+            zip: this.state.zip,
+            status: this.state.status,
+            comments: this.state.comments
+        }); 
+        //res.data => new employee object
+
+        console.log("res: ", res.data);
+        if (res.data) {
+            this.setState({
+                employees: [...this.state.employees, res.data]
+            });
+        }
+    }
+
+    componentDidMount() {
+        this.grabEmployee();
+        //this.addNewEmployee();
+        // this.deleteEmployees();
+    }
+
+    deleteEmployees() {
+        for (let i = 59; i <= 65; i++) {
+            axios.delete(`http://localhost:5000/api/employees/${i}`);
+        }
+
+    }
     // formLogin = event => {
     //     event.preventDefault();
 
@@ -74,85 +130,79 @@ class NewEmployeeForm extends Component {
 
     render() {
         return (
-            <div className="login-page-background">
-                <div className='container'>
-                    
-                    
-                    
-                    <div className="row title-row">
-                        
-                    </div>
-                    <div className="row">
-                        <div class="col-md-4 div-height"></div>
-                        <div class="col-md-4 div-height" style ={{background: 'blue'}}>
-                        <h2> Add New Employee </h2>
+            <div id="addEmployeeModal" className="modal fade">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <form>
+                            <div className="modal-header">
+                                <h4 className="modal-title">Add Employee</h4>
+                                <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
 
-                    {/* FORM CODE */}
-                    <div className="form-group form-group-top">
-                                <login onSubmit={this.formLogin}>
+
+                            <div className="form-group form-group-top">
+                                
                                     <label>Employee Name</label>
                                     <input type="text" value={this.state.name} onChange={this.onNameChange} className="form-control" placeholder="" />
-                                </login>
+                                
                             </div>
                             <div className="form-group">
-                                    <login onSubmit={this.formLogin}>
+                                
                                     <label>Phone</label>
                                     <input type="text" value={this.state.phone} onChange={this.onPhoneChange} className="form-control" placeholder="" />
-                                </login>
+                                
                             </div>
                             <div className="form-group">
-                            <login onSubmit={this.formLogin}>
+                                
                                     <label>Email</label>
                                     <input type="text" value={this.state.email} onChange={this.onEmailChange} className="form-control" placeholder="" />
-                                </login>
+                                
                             </div>
                             <div className="form-group">
-                            <login onSubmit={this.formLogin}>
+                                
                                     <label>Address</label>
                                     <input type="text" value={this.state.address} onChange={this.onAddressChange} className="form-control" placeholder="" />
-                                </login>
+                                
                             </div>
                             <div className="form-group">
-                            <login onSubmit={this.formLogin}>
+                                
                                     <label>City</label>
                                     <input type="text" value={this.state.city} onChange={this.onCityChange} className="form-control" placeholder="" />
-                                </login>
+                                
                             </div>
                             <div className="form-group">
-                            <login onSubmit={this.formLogin}>
+                                
                                     <label>Zip</label>
                                     <input type="text" value={this.state.zip} onChange={this.onZipChange} className="form-control" placeholder="" />
-                                </login>
+                                
                             </div>
                             <div className="form-group">
-                            <login onSubmit={this.formLogin}>
+                                
                                     <label>Status</label>
                                     <input type="text" value={this.state.status} onChange={this.onStatusChange} className="form-control" placeholder="" />
-                                </login>
+                                
                             </div>
                             <div className="form-group">
-                                    <label>Comments</label>
-                                    <input type="text" value={this.state.comments} onChange={this.onCommentsChange} className="form-control" placeholder="" />
-                                    <button className="btn btn-primary swap" float-right onClick={() => { /*this.props.changePage("logInPage")*/ }}> Submit </button>
-                            </div>
-                            </div>
-                            <div class="col-md-4 div-height"></div>
-                     {/* END FORM CODE */}
-
-
+                                
+                                <label>Comments</label>
+                                <input type="text" value={this.state.comments} onChange={this.onCommentsChange} className="form-control" placeholder="" />
+                            
                         </div>
-                    
-                    
-                    
-                    </div >
+                            <div className="modal-footer">
+                                <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel" />
+                                <input type="submit" className="btn btn-success" value="Add" onClick={this.onClick} data-dismiss="modal" />
+                            </div>
+                        </form>
+                    </div>
                 </div>
+            </div>
 
 
-                );
-            }
-        
-        }
-        
 
-                    
+        );
+
+    }
+
+}
+
 export default NewEmployeeForm;

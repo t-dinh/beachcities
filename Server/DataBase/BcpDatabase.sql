@@ -1,6 +1,5 @@
 DROP DATABASE BcpDatabase;
 CREATE DATABASE BcpDatabase;
-\c bcpdatabase;
 
 CREATE TABLE AppUser(
     user_id         SERIAL PRIMARY KEY,

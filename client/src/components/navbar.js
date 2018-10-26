@@ -9,11 +9,11 @@ class Navbar extends Component {
     
             <div className="navbar">
             <div id="button-links-container">
-                <Link to="/dataTable"><button className="btn btn-link">Homepage</button></Link>
-                <Link to="/employee"><button className="btn btn-link">Employee</button></Link>
-                <Link to="/contacts"><button className="btn btn-link">Contacts</button></Link>
-                <Link to="/bids"><button className="btn btn-link">Bids</button></Link>
-                <Link to="/projects"><button className="btn btn-link">Projects</button></Link>
+                {/* <Link to="/dataTable"><a className="btn btn-link">Homepage</a></Link> */}
+                <Link to="/employee"><a className="btn btn-link">Employees</a></Link>
+                <Link to="/contacts"><a className="btn btn-link">Contacts</a></Link>
+                <Link to="/bids"><a className="btn btn-link">Bids</a></Link>
+                <Link to="/projects"><a className="btn btn-link">Projects</a></Link>
             </div>
             </div>
         );
