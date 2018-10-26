@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import DataTable from './components/dataTable';
 import Navbar from './components/navbar';
-import Contacts from './components/contacts';
-import Bids from './components/bids';
+import Contacts from './components/pages/contacts';
+import Bids from './components/pages/bids';
 import Projects from './components/projects';
 import Login from './components/login';
 import Employees from './components/pages/employees';
@@ -31,6 +31,7 @@ class App extends Component {
             <Route exact path="/" render={() => <Projects />} />
             <Route path="/contacts" render={() => <Contacts />}/>
             <Route path="/employee" render={() => <Employees />} />
+            <Route path="/bids" render={() => <Bids />} />
             </div>
             </Switch>        
       </div>
