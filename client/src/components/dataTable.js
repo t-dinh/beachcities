@@ -12,12 +12,7 @@ class DataTable extends Component {
     render() {
         return (
             <div>
-            
-            <div className="header">
-            <Link to="/">DataPage</Link>
-            <Link to="/contacts">Contacts</Link>
-            <Link to="/employees">Employees</Link>
-            </div>
+            test
             </div>
         );
     }

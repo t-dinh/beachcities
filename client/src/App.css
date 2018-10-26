@@ -21,8 +21,8 @@
   color: #61dafb;
 }
 
-body {
-  color: darkblue;
+.body {
+color: darkblue;
 background: lightblue;
 font-family: 'Varela Round', sans-serif;
 font-size: 20px;
@@ -239,6 +239,11 @@ min-width: 100px;
 }	
 .modal form label {
 font-weight: normal;
+}
+.table tr button { 
+  /* display: none; */
+  opacity:0;
+  float:right;
 }
 .table tr:hover button { 
   opacity:1 
