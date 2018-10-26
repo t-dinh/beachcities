@@ -146,14 +146,11 @@ class Employees extends Component {
 
     render() {
         return (
-<<<<<<< HEAD
             
 <div>
                 <div className="nav"><a href="#addEmployeeModal" className="btn btn-success" data-toggle="modal">
 =======
-            <div>
-                <div className="nav"><a href="#editEmployeeModal" className="btn btn-success" data-toggle="modal">
->>>>>>> trambranch
+
                     <i className="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
                     <a href="#updateEmployeeModal" className="btn btn-success" data-toggle="modal">
                     <i className="material-icons">&#xE147;</i> <span>Update Employee</span></a>
