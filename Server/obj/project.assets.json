@@ -11584,23 +11584,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Red-Leader\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "/Users/Hemal/.nuget/packages/": {},
+    "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Red-Leader\\Desktop\\beachcities\\Server\\BcpServer.csproj",
+      "projectUniqueName": "/Users/Hemal/Desktop/beachcity/beachcities/Server/BcpServer.csproj",
       "projectName": "BcpServer",
-      "projectPath": "C:\\Users\\Red-Leader\\Desktop\\beachcities\\Server\\BcpServer.csproj",
-      "packagesPath": "C:\\Users\\Red-Leader\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Red-Leader\\Desktop\\beachcities\\Server\\obj\\",
+      "projectPath": "/Users/Hemal/Desktop/beachcity/beachcities/Server/BcpServer.csproj",
+      "packagesPath": "/Users/Hemal/.nuget/packages/",
+      "outputPath": "/Users/Hemal/Desktop/beachcity/beachcities/Server/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Red-Leader\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/Hemal/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"

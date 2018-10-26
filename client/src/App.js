@@ -13,6 +13,7 @@ import NewEmployeeForm from './components/forms/newEmployeeForm';
 import NewContactForm from './components/forms/newContactForm';
 import NewBidForm from './components/forms/newBidForm';
 import NewProjectForm from './components/forms/newProjectForm';
+import Calendar from 'react-calendar';
 import './App.css';
 
 
@@ -28,7 +29,9 @@ class App extends Component {
             <Route path="/contacts" render={() => <Contacts />}/>
             <Route path="/employee" render={() => <Employees />} />
             </div>
-            </Switch>        
+            </Switch>    
+
+            <Calendar/>  
       </div>
     );
   }
