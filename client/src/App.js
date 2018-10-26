@@ -19,11 +19,11 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <DataTable />
-        <Navbar/>
+      <div className="container">
+        {/* <DataTable /> */}
+        <div className="nav"><Navbar/></div>
         <Switch>
-            <div className="container">
+            <div className="dataBox">
             <Route exact path="/" render={() => <Projects />} />
             <Route path="/contacts" render={() => <Contacts />}/>
             <Route path="/employee" render={() => <Employees />} />

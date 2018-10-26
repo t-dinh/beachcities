@@ -5,28 +5,73 @@ import NewEmployeeForm from '../forms/newEmployeeForm';
 class Employees extends Component {
     state = {
         employees: [],
-        name: ""
+        name: '',
+        phone: '',
+        email: '',
+        address: '',
+        city: '',
+        zip: '',
+        status: '',
+        comments: '',
+        isEmployee: false,
     }
 
-    onNameChange = e =>{
+    onNameChange = e => {
         this.setState({
             name: e.target.value
         })
     }
-        onClick = async e => {
-            e.preventDefault();
-            this.addNewEmployee();
-            this.setState({
-                name: ""
-            });
-            await this.grabEmployee();
-            console.log("end of onClick");
-        }
+    onPhoneChange = event => {
+        this.setState({
+            phone: event.target.value
+        })
+    }
 
-        submitEmployee = async employee => {
-            let response = await axios.post('http://localhost:5000/api/employees', employee)
-        }
-    
+    onEmailChange = event => {
+        this.setState({
+            email: event.target.value
+        })
+    }
+
+    onAddressChange = event => {
+        this.setState({
+            address: event.target.value
+        })
+    }
+    onCityChange = event => {
+        this.setState({
+            city: event.target.value
+        })
+    }
+
+    onZipChange = event => {
+        this.setState({
+            zip: event.target.value
+        })
+    }
+
+    onStatusChange = event => {
+        this.setState({
+            status: event.target.value
+        })
+    }
+
+    onCommentsChange = event => {
+        this.setState({
+            comments: event.target.value
+        })
+    }
+
+    onClick = async e => {
+        e.preventDefault();
+        this.addNewEmployee();
+        this.setState({
+            name: ""
+        });
+        await this.grabEmployee();
+        console.log("end of onClick");
+    }
+
     grabEmployee = async data => {
         console.log('grab employee invoked');
         let res = await axios.get('http://localhost:5000/api/employees')
@@ -35,31 +80,42 @@ class Employees extends Component {
         })
 
     }
-   addNewEmployee = async employee => {
-       console.log('add new employee invoked');
-       let res = await axios.post('http://localhost:5000/api/employees', {
-           name: this.state.name
-       }); // res.data => new employee object
-       
-       console.log("res: ", res.data);
-       if (res.data) {
-           this.setState({
-               employees: [...this.state.employees, res.data]
-           });
-       }
-   }
+    addNewEmployee = async employee => {
+        console.log('add new employee invoked');
+        let res = await axios.post('http://localhost:5000/api/employees', {
+            name: this.state.name
+        }); // res.data => new employee object
+
+        console.log("res: ", res.data);
+        if (res.data) {
+            this.setState({
+                employees: [...this.state.employees, res.data]
+            });
+        }
+    }
 
     componentDidMount() {
         this.grabEmployee();
-        // this.addNewEmployee();
         // this.deleteEmployees();
     }
 
-    deleteEmployees() {
-        for (let i = 59; i <= 65; i++) {
-            axios.delete(`http://localhost:5000/api/employees/${i}`);
-        }
-    }
+    // deleteEmployees() {
+    //     for (let i = 6; i <= 11; i++) {
+    //         axios.delete(`http://localhost:5000/api/employees/${i}`);
+    //     }
+    // }
+
+    handleInputChange(event) {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+    
+        this.setState({
+          [name]: value
+        });
+      }
+
+    //   `employees/?name={name}`
 
     render() {
         return (
@@ -82,6 +138,11 @@ class Employees extends Component {
                         {this.state.employees.map(e => {
                             return (
                                 <tr className="hoverButton">
+                                    <td><input type="checkbox" 
+                                    name= 'isEmployee' 
+                                    checked={this.state.isEmployee} 
+                                    onChange={this.handleInputChange}>
+                                    </input></td>
                                     <td>{e.name}</td>
                                     <td>{e.phone}</td>
                                     <td>{e.email}</td>
@@ -112,12 +173,21 @@ class Employees extends Component {
                                         <input type="text" className="form-control" value={this.state.lastName}
                                             onChange={this.onLastNameChange} required />
                                     </div> */}
+<<<<<<< HEAD
                                     {/* <div className="form-group">
                                         <label>Name</label>
                                         <input type="text" className="form-control" value={this.state.name}
                                             onChange={this.onNameChange} required />
                                     </div> */}
                                     {/* <div className="form-group">
+=======
+                                <div className="form-group">
+                                    <label>Name</label>
+                                    <input type="text" className="form-control" value={this.state.name}
+                                        onChange={this.onNameChange} required />
+                                </div>
+                                {/* <div className="form-group">
+>>>>>>> 36f42f9e03a723542a1513c65814fb92893ba3ea
                                         <label>Email</label>
                                         <input type="text" className="form-control" value={this.state.email}
                                             onChange={this.onEmailChange} required />                  </div>
@@ -132,7 +202,7 @@ class Employees extends Component {
                                 </div> */}
                                 {/* <div className="modal-footer">
                                     <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel" />
-                                    <input type="submit" className="btn btn-success" value="Add" onClick={this.onClick}/>
+                                    <button type="submit" className="btn btn-success" value="Add" onClick={this.onClick} data-dismiss="modal" >Submit</button>
                                 </div>
                             </form>
                         </div>
