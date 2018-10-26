@@ -1,3 +1,6 @@
+DROP DATABASE BcpDatabase;
+CREATE DATABASE BcpDatabase;
+
 CREATE TABLE AppUser(
     user_id         SERIAL PRIMARY KEY,
     username        varchar(50),
