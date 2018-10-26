@@ -122,7 +122,7 @@ class Employees extends Component {
     render() {
         return (
             <div>
-                <div className="nav"><a href="#addEmployeeModal" className="btn btn-success" data-toggle="modal">
+                <div className="nav"><a href="#editEmployeeModal" className="btn btn-success" data-toggle="modal">
                     <i className="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
                     <a href="#deleteEmployeeModal" className="btn btn-danger" onClick={this.deleteEmployee} data-toggle="modal"><i className="material-icons">&#xE15C;</i> <span>Delete
                 </span></a></div>
@@ -182,7 +182,7 @@ class Employees extends Component {
                                 <div className="modal-body">
                                     <div className="form-group">
                                         <label>Last Name</label>
-                                        <input type="text" className="form-control" id={this.state.checkedId} value={this.state.lastName}
+                                        <input type="text" className="form-control" id={this.state.name} defaultValue={this.state.name}
                                             onChange={this.onLastNameChange} required />
                                     </div>
                                     <div className="form-group">
