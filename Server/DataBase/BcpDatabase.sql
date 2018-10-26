@@ -1,3 +1,7 @@
+DROP DATABASE beachcities;
+CREATE DATABASE beachcities;
+\c beachcities;
+
 CREATE TABLE AppUser(
     user_id         SERIAL PRIMARY KEY,
     username        varchar(50),
