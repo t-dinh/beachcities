@@ -146,11 +146,10 @@ class Employees extends Component {
 
     render() {
         return (
+
             
 <div>
                 <div className="nav"><a href="#addEmployeeModal" className="btn btn-success" data-toggle="modal">
-=======
-
                     <i className="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
                     <a href="#updateEmployeeModal" className="btn btn-success" data-toggle="modal">
                     <i className="material-icons">&#xE147;</i> <span>Update Employee</span></a>
@@ -160,6 +159,7 @@ class Employees extends Component {
                     {/* what gets rendered in this table will come from the database */}
                     <table className="table">
                         <tr>
+                            <th> </th>
                             <th>Name</th>
                             <th>Phone</th>
                             <th>Email</th>
@@ -189,65 +189,12 @@ class Employees extends Component {
                         })}
                     </table>
                 </div>
-
+<NewEmployeeForm 
+addNewEmployee={this.addNewEmployee}/>
                  
 
 
-                <div id="addEmployeeModal" className="modal fade">
-                    <div className="modal-dialog">
-                        <div className="modal-content">
-                            <form>
-                                <div className="modal-header">
-                                    <h4 className="modal-title">Add Employee</h4>
-                                    <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                </div>
-                                {/* <div className="modal-body">
-                                    <div className="form-group">
-                                        <label>Last Name</label>
-                                        <input type="text" className="form-control" value={this.state.lastName}
-                                            onChange={this.onLastNameChange} required />
-                                    </div> */}
-                                    <div className="form-group">
-                                        <label>Name</label>
-                                        <input type="text" className="form-control" value={this.state.name}
-                                            onChange={this.onNameChange} required />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Email</label>
-                                        <input type="text" className="form-control" value={this.state.email}
-                                            onChange={this.onEmailChange} required />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Phone</label>
-                                        <input type="text" className="form-control" value={this.state.phone}
-                                            onChange={this.onPhoneChange} required />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Status</label>
-                                        <input type="text" className="form-control" value={this.state.status}
-                                            onChange={this.onStatusChange} required />
-                                    </div>
-                                    {/* <div className="form-group">
-                                        <label>Email</label>
-                                        <input type="text" className="form-control" value={this.state.email}
-                                            onChange={this.onEmailChange} required />                  </div>
-                                    <div className="form-group">
-                                        <label>Phone</label>
-                                        <input type="text" className="form-control" value={this.state.phone}
-                                            onChange={this.onPhoneChange} required />                  </div>
-                                    <div className="form-group">
-                                        <label>Status</label>
-                                        <input type="text" className="form-control" value={this.state.status}
-                                            onChange={this.onStatusChange} required />                  </div>
-                                </div> */}
-                                <div className="modal-footer">
-                                    <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel" />
-                                    <input type="submit" className="btn btn-success" value="Add" onClick={this.onClick}/>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+      
 
                  <div id="updateEmployeeModal" className="modal fade">
                     <div className="modal-dialog">
@@ -310,35 +257,12 @@ class Employees extends Component {
                             <form>
                                 <div className="modal-header">
                                     <h4 className="modal-title">Delete Employee</h4>
+                                    <h5>This Cannot Be Undone</h5>
                                     <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                 </div>
-                                {/* <div className="modal-body">
-                                    <div className="form-group">
-                                        <label>Last Name</label>
-                                        <input type="text" className="form-control" value={this.state.lastName}
-                                            onChange={this.onLastNameChange} required />
-                                    </div> */}
-                                    <div className="form-group">
-                                        <label>Name</label>
-                                        <input type="text" className="form-control" value={this.state.name}
-                                            onChange={this.onNameChange} required />
-                                    </div>
-                                    {/* <div className="form-group">
-                                        <label>Email</label>
-                                        <input type="text" className="form-control" value={this.state.email}
-                                            onChange={this.onEmailChange} required />                  </div>
-                                    <div className="form-group">
-                                        <label>Phone</label>
-                                        <input type="text" className="form-control" value={this.state.phone}
-                                            onChange={this.onPhoneChange} required />                  </div>
-                                    <div className="form-group">
-                                        <label>Status</label>
-                                        <input type="text" className="form-control" value={this.state.status}
-                                            onChange={this.onStatusChange} required />                  </div>
-                                </div> */}
-                                <div className="modal-footer">
+                                 <div className="modal-footer">
                                     <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel" />
-                                    <input type="submit" className="btn btn-success" value="Add" onClick={this.deleteEmployee}/>
+                                    <input type="submit" className="btn btn-success" value="Delete" onClick={this.deleteEmployee}/>
                                 </div>
                             </form>
                         </div>

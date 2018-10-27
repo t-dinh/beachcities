@@ -88,11 +88,9 @@ class Contacts extends Component {
         })
 
     }
-    addNewContact = async Contact => {
+    addNewContact = async contact => {
         console.log('add new Contact invoked');
-        let res = await axios.post('http://localhost:5000/api/contacts', {
-            name: this.state.name
-        }); // res.data => new Contact object
+        let res = await axios.post('http://localhost:5000/api/contacts', contact);
 
         console.log("res: ", res.data);
         if (res.data) {
@@ -102,37 +100,57 @@ class Contacts extends Component {
         }
     }
 
+    deleteContact = async contact => {
+        console.log('delete contact');
+        let res = await axios.delete('http://localhost:5000/api/contacts/?name={name}', {
+            name: this.state.name
+        });
+        console.log("res: ", res.data);
+        if(res.data){
+            this.setState({
+                contacts: [...this.state.contacts, res.data]
+            });
+        }
+    }
+    updateContact = async contact => {
+        console.log('update existing contact invoked');
+        let res = await axios.put('http://localhost:5000/api/id/?id={id}',{
+             name: this.state.name      
+    });
+ 
+    console.log("res: ", res.data);
+    if (res.data) {
+        this.setState({
+            contacts: [...this.state.contacts, res.data]
+        });
+    }
+ }
+
     componentDidMount() {
         this.grabContact();
         // this.deletecontacts();
     }
 
-    // deletecontacts() {
-    //     for (let i = 6; i <= 11; i++) {
-    //         axios.delete(`http://localhost:5000/api/contacts/${i}`);
-    //     }
-    // }
-
-    handleInputChange(c){
-     this.setState({
-          checkedId: c.target.id,
-          isChecked: true
-        });
-      }
-      
-     deleteContact = Contact => {
-         if (this.state.isChecked == true) {
-            let response = axios.delete(`http://localhost:5000/api/contacts/${this.state.checkedId}`)
+    handleInputChange(e){
+        this.setState({
+             checkedId: e.target.id,
+             isChecked: true
+           });
          }
-        }
-   
+         
+        deleteContact = contact => {
+            if (this.state.isChecked == true) {
+               let response = axios.delete(`http://localhost:5000/api/contacts/${this.state.checkedId}`)
+            }
+           }
+
 
     render() {
         return (
             <div>
                 <div className="nav"><a href="#addContactModal" className="btn btn-success" data-toggle="modal">
                     <i className="material-icons">&#xE147;</i> <span>Add New Contact</span></a>
-                    <a href="#deleteContactModal" className="btn btn-danger" onClick={this.deleteContact} data-toggle="modal"><i className="material-icons">&#xE15C;</i> <span>Delete
+                    <a href="#deleteContactModal" className="btn btn-danger" data-toggle="modal"><i className="material-icons">&#xE15C;</i> <span>Delete
                 </span></a></div>
                 <div className="tableBox">
                     {/* what gets rendered in this table will come from the database */}
@@ -172,7 +190,8 @@ class Contacts extends Component {
                 </div>
 
 
-                <NewContactForm />
+                <NewContactForm
+                addNewContact={this.addNewContact} />
 
 
 
