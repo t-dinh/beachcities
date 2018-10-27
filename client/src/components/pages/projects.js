@@ -93,9 +93,7 @@ class Projects extends Component {
     }
     addNewProject = async project => {
         console.log('add new project invoked');
-        let res = await axios.post('http://localhost:5000/api/projects', {
-            name: this.state.name
-        }); // res.data => new project object
+        let res = await axios.post('http://localhost:5000/api/projects', project); // res.data => new project object
 
         console.log("res: ", res.data);
         if (res.data) {
@@ -105,37 +103,56 @@ class Projects extends Component {
         }
     }
 
+    deleteProject = async project => {
+        console.log('delete project');
+        let res = await axios.delete('http://localhost:5000/api/projects/?name={name}', {
+            name: this.state.name
+        });
+        console.log("res: ", res.data);
+        if(res.data){
+            this.setState({
+                projects: [...this.state.projects, res.data]
+            });
+        }
+    }
+    updateProject = async project => {
+        console.log('update existing project invoked');
+        let res = await axios.put('http://localhost:5000/api/id/?id={id}',{
+             name: this.state.name      
+    });
+ 
+    console.log("res: ", res.data);
+    if (res.data) {
+        this.setState({
+            projects: [...this.state.projects, res.data]
+        });
+    }
+ }
+
     componentDidMount() {
         this.grabProject();
         // this.deleteprojects();
     }
 
-    // deleteprojects() {
-    //     for (let i = 6; i <= 11; i++) {
-    //         axios.delete(`http://localhost:5000/api/projects/${i}`);
-    //     }
-    // }
-
-    handleInputChange(c){
-     this.setState({
-          checkedId: c.target.id,
-          isChecked: true
-        });
-      }
-      
-     deleteproject = project => {
-         if (this.state.isChecked == true) {
-            let response = axios.delete(`http://localhost:5000/api/projects/${this.state.checkedId}`)
+    handleInputChange(e){
+        this.setState({
+             checkedId: e.target.id,
+             isChecked: true
+           });
          }
-        }
-   
+         
+        deleteProject = project => {
+            if (this.state.isChecked == true) {
+               let response = axios.delete(`http://localhost:5000/api/projects/${this.state.checkedId}`)
+            }
+           }
 
     render() {
         return (
             <div>
                 <div className="nav"><a href="#addProjectModal" className="btn btn-success" data-toggle="modal">
                     <i className="material-icons">&#xE147;</i> <span>Add New Project</span></a>
-                    <a href="#deleteProjectModal" className="btn btn-danger" onClick={this.deleteProject} data-toggle="modal"><i className="material-icons">&#xE15C;</i> <span>Delete
+                    <a href="#deleteProjectModal" className="btn btn-danger" data-toggle="modal"><i className="material-icons">&#xE15C;</i> <span>Delete
                 </span></a></div>
                 <div className="tableBox">
                     {/* what gets rendered in this table will come from the database */}
@@ -184,54 +201,14 @@ class Projects extends Component {
                 </div>
 
 
-                <NewProjectForm />
+                <NewProjectForm
+                addNewProject={this.addNewProject} />
 
 
 
 
-                {/* <div id="editprojectModal" className="modal fade">
-                    <div className="modal-dialog">
-                        <div className="modal-content">
-                            <form>
-                                <div className="modal-header">
-                                    <h4 className="modal-title">Edit project</h4>
-                                    <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                </div>
-                                <div className="modal-body">
-                                    <div className="form-group">
-                                        <label>Last Name</label>
-                                        <input type="text" className="form-control" value={this.state.lastName}
-                                            onChange={this.onLastNameChange} required />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>First Name</label>
-                                        <input type="text" className="form-control" value={this.state.firstName}
-                                            onChange={this.onFirstNameChange} required />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Email</label>
-                                        <input type="text" className="form-control" value={this.state.email}
-                                            onChange={this.onEmailChange} required />                  </div>
-                                    <div className="form-group">
-                                        <label>Phone</label>
-                                        <input type="text" className="form-control" value={this.state.phone}
-                                            onChange={this.onPhoneChange} required />                  </div>
-                                    <div className="form-group">
-                                        <label>Status</label>
-                                        <input type="text" className="form-control" value={this.state.status}
-                                            onChange={this.onStatusChange} required />                  </div>
-                                </div>
-                                <div className="modal-footer">
-                                    <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel" />
-                                    <input type="submit" className="btn btn-info" value="Save" />
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div> */}
 
-
-                <div id="deleteprojectModal" className="modal fade">
+                <div id="deleteProjectModal" className="modal fade">
                     <div className="modal-dialog">
                         <div className="modal-content">
                             <form>

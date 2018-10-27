@@ -72,7 +72,6 @@ class NewEmployeeForm extends Component {
             zip: '',
             status: '',
             comments: ''
-
         });
         // this.grabEmployee();
         console.log("end of onClick");
