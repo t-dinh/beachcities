@@ -15,7 +15,7 @@ class Employees extends Component {
         status: '',
         comments: '',
         isChecked: false,
-        checkedId: ''
+        checkedId: []
     }
 
     onNameChange = e => {
@@ -110,6 +110,7 @@ class Employees extends Component {
           checkedId: e.target.id,
           isChecked: true
         });
+        console.log(this.state.checkedId);
       }
       
      deleteEmployee = employee => {
@@ -118,6 +119,17 @@ class Employees extends Component {
          }
         }
    
+        updateEmployee = () => {
+            let employee = {
+                "employee_id": this.state.checkedId,
+                "name": this.state.name,
+                "email": this.state.email
+            }
+            if (this.state.isChecked == true) {
+                let res = axios.put(`http://localhost:5000/api/employees/${this.state.checkedId}`, employee)
+            }
+        }
+
 
     render() {
         return (
@@ -181,15 +193,15 @@ class Employees extends Component {
                                 </div>
                                 <div className="modal-body">
                                     <div className="form-group">
-                                        <label>Last Name</label>
-                                        <input type="text" className="form-control" id={this.state.name} defaultValue={this.state.name}
-                                            onChange={this.onLastNameChange} required />
+                                        <label>Name</label>
+                                        <input type="text" className="form-control" id={this.state.checkedId} initalState= {this.state.name} defaultValue={this.state.name}
+                                            onChange={this.onNameChange} required />
                                     </div>
-                                    <div className="form-group">
+                                    {/* <div className="form-group">
                                         <label>First Name</label>
                                         <input type="text" className="form-control" value={this.state.firstName}
                                             onChange={this.onFirstNameChange} required />
-                                    </div>
+                                    </div> */}
                                     <div className="form-group">
                                         <label>Email</label>
                                         <input type="text" className="form-control" value={this.state.email}
@@ -205,7 +217,7 @@ class Employees extends Component {
                                 </div>
                                 <div className="modal-footer">
                                     <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel" />
-                                    <input type="submit" className="btn btn-info" value="Save" />
+                                    <input type="submit" className="btn btn-info" value="Save" onClick={() => this.updateEmployee()} />
                                 </div>
                             </form>
                         </div>
