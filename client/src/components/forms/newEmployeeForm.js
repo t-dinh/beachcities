@@ -64,7 +64,15 @@ class NewEmployeeForm extends Component {
         e.preventDefault();
         this.props.addNewEmployee(this.state);
         this.setState({
-            name: ""
+            name: '',
+            phone: '',
+            email: '',
+            address: '',
+            city: '',
+            zip: '',
+            status: '',
+            comments: ''
+
         });
         // this.grabEmployee();
         console.log("end of onClick");
@@ -94,7 +102,7 @@ class NewEmployeeForm extends Component {
     //         status: this.state.status,
     //         comments: this.state.comments
     //     }); 
-        //res.data => new employee object
+    //res.data => new employee object
 
     //     console.log("res: ", res.data);
     //     if (res.data) {
@@ -140,53 +148,53 @@ class NewEmployeeForm extends Component {
 
 
                             <div className="form-group form-group-top">
-                                
-                                    <label>Employee Name</label>
-                                    <input type="text" value={this.state.name} onChange={this.onNameChange} className="form-control" placeholder="" />
-                                
+
+                                <label>Employee Name</label>
+                                <input type="text" value={this.state.name} onChange={this.onNameChange} className="form-control" placeholder="" />
+
                             </div>
                             <div className="form-group">
-                                
-                                    <label>Phone</label>
-                                    <input type="text" value={this.state.phone} onChange={this.onPhoneChange} className="form-control" placeholder="" />
-                                
+
+                                <label>Phone</label>
+                                <input type="text" value={this.state.phone} onChange={this.onPhoneChange} className="form-control" placeholder="" />
+
                             </div>
                             <div className="form-group">
-                                
-                                    <label>Email</label>
-                                    <input type="text" value={this.state.email} onChange={this.onEmailChange} className="form-control" placeholder="" />
-                                
+
+                                <label>Email</label>
+                                <input type="text" value={this.state.email} onChange={this.onEmailChange} className="form-control" placeholder="" />
+
                             </div>
                             <div className="form-group">
-                                
-                                    <label>Address</label>
-                                    <input type="text" value={this.state.address} onChange={this.onAddressChange} className="form-control" placeholder="" />
-                                
+
+                                <label>Address</label>
+                                <input type="text" value={this.state.address} onChange={this.onAddressChange} className="form-control" placeholder="" />
+
                             </div>
                             <div className="form-group">
-                                
-                                    <label>City</label>
-                                    <input type="text" value={this.state.city} onChange={this.onCityChange} className="form-control" placeholder="" />
-                                
+
+                                <label>City</label>
+                                <input type="text" value={this.state.city} onChange={this.onCityChange} className="form-control" placeholder="" />
+
                             </div>
                             <div className="form-group">
-                                
-                                    <label>Zip</label>
-                                    <input type="text" value={this.state.zip} onChange={this.onZipChange} className="form-control" placeholder="" />
-                                
+
+                                <label>Zip</label>
+                                <input type="text" value={this.state.zip} onChange={this.onZipChange} className="form-control" placeholder="" />
+
                             </div>
                             <div className="form-group">
-                                
-                                    <label>Status</label>
-                                    <input type="text" value={this.state.status} onChange={this.onStatusChange} className="form-control" placeholder="" />
-                                
+
+                                <label>Status</label>
+                                <input type="text" value={this.state.status} onChange={this.onStatusChange} className="form-control" placeholder="" />
+
                             </div>
                             <div className="form-group">
-                                
+
                                 <label>Comments</label>
                                 <input type="text" value={this.state.comments} onChange={this.onCommentsChange} className="form-control" placeholder="" />
-                            
-                        </div>
+
+                            </div>
                             <div className="modal-footer">
                                 <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel" />
                                 <input type="submit" className="btn btn-success" value="Add" onClick={this.onClick} data-dismiss="modal" />
