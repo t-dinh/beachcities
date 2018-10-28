@@ -14,7 +14,7 @@ An enterprise resource planning web application for a local company to manage an
 Setting up your project to include front and back end.
 
 Frontend:
-1. From terminal: mkdir <yourapp>
+1. From terminal: mkdir yourapp
 2. In the root of your app folder: create and install: npm install create-react-app client
 3. Npm install: axios, react-router-dom
 
