@@ -99,19 +99,14 @@ class NewBidForm extends Component {
   //  l
     render() {
         return (
-            <div className="login-page-background">
-                <div className='container'>
-                    
-                    
-                    
-                    <div className="row title-row">
-                        
-                    </div>
-                    <div className="row">
-                        <div class="col-md-4 div-height"></div>
-                        <div class="col-md-4 div-height" style ={{background: 'blue'}}>
-                        <h2> Add New Bid </h2>
-
+            <div id="addBidModal" className="modal fade">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <form>
+                            <div className="modal-header">
+                                <h4 className="modal-title">Add New Bid</h4>
+                                <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
                     {/* FORM CODE */}
                     <div className="form-group form-group-top">
                                 <login onSubmit={this.formLogin}>
@@ -172,17 +167,14 @@ class NewBidForm extends Component {
                                     <input type="text" value={this.state.comments} onChange={this.onCommentsChange} className="form-control" placeholder="" />
                                     <button className="btn btn-primary swap" float-right onClick={() => { /*this.props.changePage("logInPage")*/ }}> Submit </button>
                             </div>
+                            <div className="modal-footer">
+                                <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel" />
+                                <input type="submit" className="btn btn-success" value="Add" onClick={this.onClick} data-dismiss="modal" />
                             </div>
-                            <div class="col-md-4 div-height"></div>
-                     {/* END FORM CODE */}
-
-
-                        </div>
-                    
-                    
-                    
-                    </div >
+                        </form>
+                    </div>
                 </div>
+            </div>
                 );
             }
         

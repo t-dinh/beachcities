@@ -182,6 +182,7 @@ class Bids extends Component {
 
 
 
+              
 
 
                 <div id="deleteBidModal" className="modal fade">
