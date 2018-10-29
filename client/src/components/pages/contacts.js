@@ -128,7 +128,7 @@ class Contacts extends Component {
 
     componentDidMount() {
         this.grabContact();
-        this.deletecontacts();
+        this.deleteContact();
     }
 
     handleInputChange(e){

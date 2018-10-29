@@ -188,8 +188,8 @@ class Employees extends Component {
             "zip": this.state.zip,
             "status": this.state.status
         }
-        if (this.state.isChecked == true) {
-            let res = axios.put(`http://localhost:5000/api/employees/${this.state.employees.employee_id}`, employee)
+        if (this.state.isChecked === true) {
+            axios.put(`http://localhost:5000/api/employees/${this.state.employees.employee_id}`, employee)
         }
     }
     deleteEmployee = async employee => {

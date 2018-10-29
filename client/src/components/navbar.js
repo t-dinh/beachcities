@@ -9,9 +9,6 @@ class Navbar extends Component {
 
             <div className="navbar">
                 <div id="button-links-container">
-                    <Link to="/website"><a className="btn btn-primary">Website</a></Link>
-                    <Link to="/login"><a className="btn btn-primary">Login</a></Link>
-                    {/* <Link to="/dataTable"><a className="btn btn-link">Homepage</a></Link> */}
                     <Link to="/employee"><a className="btn btn-primary">Employees</a></Link>
                     <Link to="/contacts"><a className="btn btn-secondary">Contacts</a></Link>
                     <Link to="/bids"><a className="btn btn-info">Bids</a></Link>
@@ -22,4 +19,4 @@ class Navbar extends Component {
         );
     }
 }
-export default Navbar;
+export default Navbar;  
