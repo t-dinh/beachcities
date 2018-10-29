@@ -42,6 +42,7 @@ class EmoployeeUpdateForm extends Component {
     }
 
     updateEmployee = (e) => {
+        console.log (this.props.editingEmployee)
         let employee = {
             "name": this.state.name,
             "phone": this.state.phone,
