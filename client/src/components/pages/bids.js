@@ -182,47 +182,7 @@ class Bids extends Component {
 
 
 
-
-                <div id="editBidModal" className="modal fade">
-                    <div className="modal-dialog">
-                        <div className="modal-content">
-                            <form>
-                                <div className="modal-header">
-                                    <h4 className="modal-title">Edit Bid</h4>
-                                    <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                </div>
-                                <div className="modal-body">
-                                    <div className="form-group">
-                                        <label>Last Name</label>
-                                        <input type="text" className="form-control" value={this.state.lastName}
-                                            onChange={this.onLastNameChange} required />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>First Name</label>
-                                        <input type="text" className="form-control" value={this.state.firstName}
-                                            onChange={this.onFirstNameChange} required />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Email</label>
-                                        <input type="text" className="form-control" value={this.state.email}
-                                            onChange={this.onEmailChange} required />                  </div>
-                                    <div className="form-group">
-                                        <label>Phone</label>
-                                        <input type="text" className="form-control" value={this.state.phone}
-                                            onChange={this.onPhoneChange} required />                  </div>
-                                    <div className="form-group">
-                                        <label>Status</label>
-                                        <input type="text" className="form-control" value={this.state.status}
-                                            onChange={this.onStatusChange} required />                  </div>
-                                </div>
-                                <div className="modal-footer">
-                                    <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel" />
-                                    <input type="submit" className="btn btn-info" value="Save" />
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+              
 
 
                 <div id="deleteBidModal" className="modal fade">
