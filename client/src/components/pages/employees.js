@@ -15,7 +15,7 @@ class Employees extends Component {
         status: '',
         comments: '',
         isChecked: false,
-        checkedId: ''
+        checkedId: []
     }
 
     onNameChange = e => {
@@ -64,15 +64,32 @@ class Employees extends Component {
         })
     }
 
-    onClick = async e => {
+    onClick = e => {
         e.preventDefault();
         this.addNewEmployee();
         this.setState({
             name: ""
         });
-        await this.grabEmployee();
+        this.grabEmployee();
         console.log("end of onClick");
     }
+
+    handleInputChange = e => {
+        const checkedId = this.state.checkedId
+        let index
+           if (e.target.checked) {
+            checkedId.push(+e.target.id)
+          } else {
+            index = checkedId.indexOf(+e.target.id)
+            checkedId.splice(index, 1)
+          }
+          this.setState({
+             checkedId: checkedId,
+             isChecked: e.target.checked
+           });
+           console.log(this.state.checkedId);
+         }
+
 
     grabEmployee = async data => {
         console.log('grab employee invoked');
@@ -129,29 +146,44 @@ class Employees extends Component {
     //         axios.delete(`http://localhost:5000/api/employees/${i}`);
     //     }
     // }
-
-    handleInputChange(e){
-     this.setState({
-          checkedId: e.target.id,
-          isChecked: true
-        });
-      }
-      
-     deleteEmployee = employee => {
-         if (this.state.isChecked == true) {
-            let response = axios.delete(`http://localhost:5000/api/employees/${this.state.checkedId}`)
-         }
+    popId = e => {
+        let checkedId= this.state.checkedId.pop();
+        this.setState({
+            checkedId: checkedId
+        })
+        console.log(checkedId)
+    }
+ updateEmployee = () => {
+            let employee = {
+                "employee_id": this.state.checkedId,
+                "name": this.state.name,
+                "phone": this.state.phone,
+                "email": this.state.email,
+                "address": this.state.address,
+                "city": this.state.city,
+                "zip": this.state.zip,
+                "status": this.state.status
+            }           
+            if (this.state.isChecked == true) {
+                let res = axios.put(`http://localhost:5000/api/employees/${this.state.checkedId}`, employee)
+            }
         }
-   
-
+        deleteEmployee = async employee => {
+            console.log('delete employee');
+            for (var i = 0; i < this.state.checkedId.length; i++){
+            let res = await axios.delete("http://localhost:5000/api/employees/" + this.state.checkedId[i]);
+            console.log("res: ", res.data);
+        }
+        }
+     
+checkstate = e => {console.log(this.state.checkedId)}
     render() {
         return (
-
-            
-<div>
-                <div className="nav"><a href="#addEmployeeModal" className="btn btn-success" data-toggle="modal">
+            <div>
+                <button onClick={this.checkstate}>hi</button>
+                 <div className="nav"><a href="#addEmployeeModal" className="btn btn-success" data-toggle="modal">
                     <i className="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
-                    <a href="#updateEmployeeModal" className="btn btn-success" data-toggle="modal">
+                    <a href="#updateEmployeeModal" className="btn btn-success" data-toggle="modal" onClick={this.popId}>
                     <i className="material-icons">&#xE147;</i> <span>Update Employee</span></a>
                     <a href="#deleteEmployeeModal" className="btn btn-danger" data-toggle="modal"><i className="material-icons">&#xE15C;</i> <span>Delete
                 </span></a></div>
@@ -276,25 +308,24 @@ addNewEmployee={this.addNewEmployee}/>
 
 
 
-                <div id="editEmployeeModal" className="modal fade">
+                <div id="updateEmployeeModal" className="modal fade">
                     <div className="modal-dialog">
                         <div className="modal-content">
                             <form>
                                 <div className="modal-header">
                                     <h4 className="modal-title">Edit Employee</h4>
-                                    <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                 </div>
                                 <div className="modal-body">
                                     <div className="form-group">
-                                        <label>Last Name</label>
-                                        <input type="text" className="form-control" id={this.state.name} defaultValue={this.state.name}
-                                            onChange={this.onLastNameChange} required />
+                                        <label>Name</label>
+                                        <input type="text" className="form-control" id="name" initalState= {this.state.name}
+                                            onChange={this.onNameChange} required />
                                     </div>
-                                    <div className="form-group">
+                                    {/* <div className="form-group">
                                         <label>First Name</label>
                                         <input type="text" className="form-control" value={this.state.firstName}
                                             onChange={this.onFirstNameChange} required />
-                                    </div>
+                                    </div> */}
                                     <div className="form-group">
                                         <label>Email</label>
                                         <input type="text" className="form-control" value={this.state.email}
@@ -309,8 +340,8 @@ addNewEmployee={this.addNewEmployee}/>
                                             onChange={this.onStatusChange} required />                  </div>
                                 </div>
                                 <div className="modal-footer">
-                                    <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel" />
-                                    <input type="submit" className="btn btn-info" value="Save" />
+                                    <input type="button" className="btn btn-default" data-dismiss="modal" onClick={() => this.setState({checkedId: []})} value="Cancel" />
+                                    <input type="submit" className="btn btn-info" value="Save" onClick={() => this.updateEmployee()} />
                                 </div>
                             </form>
                         </div>
@@ -332,7 +363,7 @@ addNewEmployee={this.addNewEmployee}/>
                                 </div>
                                 <div className="modal-footer">
                                     <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel" />
-                                    <input type="submit" className="btn btn-danger" value="Delete" />
+                                    <input type="submit" className="btn btn-danger" value="Delete" onClick={this.deleteEmployee}/>
                                 </div>
                             </form>
                         </div>
