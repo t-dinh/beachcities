@@ -118,7 +118,7 @@ class NewProjectForm extends Component {
     }
 
     submitProject = async project => {
-        let response = await axios.post('http://localhost:5000/api/projects', project)
+        await axios.post('http://localhost:5000/api/projects', project)
     }
 
     grabProject = async data => {

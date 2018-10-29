@@ -165,7 +165,7 @@ class Employees extends Component {
                 "status": this.state.status
             }           
             if (this.state.isChecked === true) {
-                let res = axios.put(`http://localhost:5000/api/employees/${this.state.checkedId}`, employee)
+                axios.put(`http://localhost:5000/api/employees/${this.state.checkedId}`, employee)
             }
         }
         deleteEmployee = async employee => {

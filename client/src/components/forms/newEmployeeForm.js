@@ -78,7 +78,7 @@ class NewEmployeeForm extends Component {
     }
 
     submitEmployee = async employee => {
-        let response = await axios.post('http://localhost:5000/api/employees', employee)
+        await axios.post('http://localhost:5000/api/employees', employee)
     }
 
     grabEmployee = async data => {

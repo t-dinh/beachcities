@@ -140,7 +140,7 @@ class Contacts extends Component {
          
         deleteContact = contact => {
             if (this.state.isChecked === true) {
-               let response = axios.delete(`http://localhost:5000/api/contacts/${this.state.checkedId}`)
+               axios.delete(`http://localhost:5000/api/contacts/${this.state.checkedId}`)
             }
            }
 
