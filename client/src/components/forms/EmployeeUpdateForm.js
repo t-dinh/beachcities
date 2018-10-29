@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class EmoployeeUpdateForm extends Component {
     state = {
-        name: "test`",
-        phone: "test`",
-        email: "test`",
-        address: "test`",
-        city: "test`",
-        zip: "test`",
-        status: "test`",
-        comments: "test`"
+        name: "test",
+        phone: "",
+        email: "",
+        address: "",
+        city: "",
+        zip: "",
+        status: "",
+        comments: ""
     }
 
     onNameChange = () => {
@@ -40,7 +41,22 @@ class EmoployeeUpdateForm extends Component {
         console.log('on name change');
     }
 
-
+    updateEmployee = (e) => {
+        let employee = {
+            "name": this.state.name,
+            "phone": this.state.phone,
+            "email": this.state.email,
+            "address": this.state.address,
+            "city": this.state.city,
+            "zip": this.state.zip,
+            "status": this.state.status
+        }
+        console.log("update employee")
+        console.log({employee})
+        if (this.state.isChecked == true) {
+            let res = axios.put(`http://localhost:5000/api/employees/${this.state.employees.employee_id}`, employee)
+        }
+    }
 
     render() {
         let employee = this.props.data
@@ -62,7 +78,7 @@ class EmoployeeUpdateForm extends Component {
                      <label>Name</label>
                 <input type="text" className="form-control" value={employee.address}
                     onChange={this.onAdressChange} />
-                <input type="submit" className="btn btn-info" value="Save" onClick={() => this.props.updateEmployee()} />
+                <input type="submit" className="btn btn-info" value="Save" onClick={() => this.updateEmployee()} />
             </div>
 
             // <div id="updateEmployeeModal" className="modal fade">
