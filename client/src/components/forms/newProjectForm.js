@@ -236,4 +236,4 @@ class NewProjectForm extends Component {
 }
 
                     
-// export default NewProjectForm;
+export default NewProjectForm;

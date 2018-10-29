@@ -122,7 +122,7 @@ class Bids extends Component {
       }
       
      deleteBid = Bid => {
-         if (this.state.isChecked == true) {
+         if (this.state.isChecked === true) {
             let response = axios.delete(`http://localhost:5000/api/Bids/${this.state.checkedId}`)
          }
         }

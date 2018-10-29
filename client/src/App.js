@@ -18,6 +18,12 @@ import './App.css';
 
 
 class App extends Component {
+    // state = {
+    // username: 'jtorres',
+    // password: 'fj39g883',
+    // loggedin: false
+    // };
+
   render() {
     return (
       <div className="row">

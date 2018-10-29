@@ -1,76 +1,14 @@
-// import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
-
-// class Login extends Component {
-//   state = {
-//     username: 'jtorres',
-//     password: 'fj39g883',
-//     submitted: false
-//   };
-
-//   handleChange = e =>{
-//     const { name, value } = e.target;
-//     this.setState({ [name]: value });
-
-//   }
-
-//   handleSubmit = e => {
-//     e.preventDefault();
-
-//     this.setState({ 
-//       submitted: true, 
-//       username: '',
-//       password: ''
-//     });
-
-//     console.log(this.state);
-    
-//   }
-
-
-
-//   render() {
-
-//     const {username, password } = this.state;
-
-//     return (
-
-
-//       <div className="col-md-6 col-md-offset-3">
-//         <h2>Login</h2>
-//         <form name="form" onSubmit={this.handleSubmit}>
-//           <div className={'form-group'}>
-//             <label name="username">Username</label>
-//             <input type='username' className="form-control" name="username" value={username} onChange = {this.handleChange} />
-//           </div>
-//           <div className={'form-group'}>
-//             <label name="password">Password</label>
-//             <input type='password' className="form-control" name="password" value={password} onChange ={this.handleChange} />
-//           </div>
-//           <div className="form-group">
-//             <button className="btn btn-primary">Login</button>
-//           </div>
-//         </form>
-//       </div>
-//     );
-//   }
-// }
-
-// export default Login;
-
-
-
-
-
 import React, { Component } from "react";
+import {Redirect} from "react-router-dom";
 
 class Login extends Component {
 
   state = {
     username: 'jtorres',
     password: 'fj39g883',
-    submitted: false
-  };
+    loggedin: false
+  }
+
 
   // validateForm() {
   //   return this.state.email.length > 0 && this.state.password.length > 0;
@@ -88,13 +26,22 @@ class Login extends Component {
     this.setState({
       username:"",
       password: "",
-      submitted: true
+      loggedin: true
     });
   }
 
 
   render() { 
+    if (this.state.loggedin === true )
+    {
+      return <Redirect
+      to={{
+        pathname: "/dataTable",
+      }}
+    />
+    }
     return ( 
+
         <div className="container">
           <form onSubmit={this.handleSubmit}>
             <div className={'form-group'}>

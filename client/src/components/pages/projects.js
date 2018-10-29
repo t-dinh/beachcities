@@ -142,7 +142,7 @@ class Projects extends Component {
          }
          
         deleteProject = project => {
-            if (this.state.isChecked == true) {
+            if (this.state.isChecked === true) {
                let response = axios.delete(`http://localhost:5000/api/projects/${this.state.checkedId}`)
             }
            }

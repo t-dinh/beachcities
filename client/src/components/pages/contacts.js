@@ -128,7 +128,7 @@ class Contacts extends Component {
 
     componentDidMount() {
         this.grabContact();
-        // this.deletecontacts();
+        this.deletecontacts();
     }
 
     handleInputChange(e){
@@ -139,7 +139,7 @@ class Contacts extends Component {
          }
          
         deleteContact = contact => {
-            if (this.state.isChecked == true) {
+            if (this.state.isChecked === true) {
                let response = axios.delete(`http://localhost:5000/api/contacts/${this.state.checkedId}`)
             }
            }
@@ -264,4 +264,4 @@ class Contacts extends Component {
     }
 }
 
-// export default Contacts;
+export default Contacts;
