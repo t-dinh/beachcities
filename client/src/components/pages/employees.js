@@ -177,21 +177,7 @@ class Employees extends Component {
         })
         console.log(e.name)
     }
-    updateEmployee = () => {
-        let employee = {
-            "employee_id": this.state.checkedId,
-            "name": this.state.name,
-            "phone": this.state.phone,
-            "email": this.state.email,
-            "address": this.state.address,
-            "city": this.state.city,
-            "zip": this.state.zip,
-            "status": this.state.status
-        }
-        if (this.state.isChecked == true) {
-            let res = axios.put(`http://localhost:5000/api/employees/${this.state.employees.employee_id}`, employee)
-        }
-    }
+
     deleteEmployee = async employee => {
         console.log('delete employee');
         for (var i = 0; i < this.state.checkedId.length; i++) {
