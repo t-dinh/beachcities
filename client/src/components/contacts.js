@@ -1,36 +1,36 @@
-import React, { Component } from 'react';
-import axios from 'axios'
+// import React, { Component } from 'react';
+// import axios from 'axios'
 
-class Contacts extends Component {
-    state = {
-        contacts: []
-    }
+// class Contacts extends Component {
+//     state = {
+//         contacts: []
+//     }
 
-    grabData = data => {
-        axios.get('http://localhost:5000/api/contacts')
-        .then(response => {
-            console.log(response.data)
-            let contacts = response.data;
-            this.setState({
+//     grabData = data => {
+//         axios.get('http://localhost:5000/api/contacts')
+//         .then(response => {
+//             console.log(response.data)
+//             let contacts = response.data;
+//             this.setState({
     
-                contacts: data
-            })
-    });
-    }
+//                 contacts: data
+//             })
+//     });
+//     }
 
-    g
+//     g
 
     
-    componentDidMount() {
-        this.grabData();
+//     componentDidMount() {
+//         this.grabData();
 
-    }
+//     }
 
-    render() {
-        return (
+//     render() {
+//         return (
     
-           <div>Contacts</div>
-        );
-      }
-    }
-    export default Contacts;
+//            <div>Contacts</div>
+//         );
+//       }
+//     }
+//     export default Contacts;
