@@ -4,7 +4,7 @@ import NewEmployeeForm from '../forms/newEmployeeForm';
 
 class Employees extends Component {
     state = {
-        employees: [],
+        employees: [], 
         id:'',
         name: '',
         phone: '',
@@ -151,7 +151,7 @@ class Employees extends Component {
         this.setState({
             checkedId: checkedId
         })
-        console.log(checkedId)
+        console.log(e.name)
     }
  updateEmployee = () => {
             let employee = {
