@@ -33,19 +33,19 @@ namespace Server
             services.AddEntityFrameworkNpgsql().AddDbContext<BcpDBContext>(options => options.UseNpgsql(connectionString)); //ADD FOR DB
             services.AddCors();
 
-                    // services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                    // .AddJwtBearer(options => 
-                    // {
-                    //     options.TokenValidationParameters = new TokenValidationParameters 
-                    //     {
-                    //         ValidateIssuer = false,
-                    //         ValidateLifetime = true,
-                    //         ValidateAudience = false,
-                    //         ValidateIssuerSigningKey = true,
-                    //         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretsuperSecretsuperSecret"))
-                    //     };
+                    services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                    .AddJwtBearer(options => 
+                    {
+                        options.TokenValidationParameters = new TokenValidationParameters 
+                        {
+                            ValidateIssuer = false,
+                            ValidateLifetime = true,
+                            ValidateAudience = false,
+                            ValidateIssuerSigningKey = true,
+                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretsuperSecretsuperSecret"))
+                        };
 
-                    // });
+                    });
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

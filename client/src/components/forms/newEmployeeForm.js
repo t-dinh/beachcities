@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { addEmployee } from '../../actions';
 
 class NewEmployeeForm extends Component {
 
@@ -78,7 +79,7 @@ class NewEmployeeForm extends Component {
     }
 
     submitEmployee = async employee => {
-        let response = await axios.post('http://localhost:5000/api/employees', employee)
+        await axios.post('http://localhost:5000/api/employees', employee)
     }
 
     grabEmployee = async data => {

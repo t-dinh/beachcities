@@ -128,7 +128,7 @@ class Contacts extends Component {
 
     componentDidMount() {
         this.grabContact();
-        // this.deletecontacts();
+        this.deleteContact();
     }
 
     handleInputChange(e){
@@ -139,8 +139,8 @@ class Contacts extends Component {
          }
          
         deleteContact = contact => {
-            if (this.state.isChecked == true) {
-               let response = axios.delete(`http://localhost:5000/api/contacts/${this.state.checkedId}`)
+            if (this.state.isChecked === true) {
+               axios.delete(`http://localhost:5000/api/contacts/${this.state.checkedId}`)
             }
            }
 

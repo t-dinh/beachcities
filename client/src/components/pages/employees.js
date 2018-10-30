@@ -177,7 +177,6 @@ class Employees extends Component {
         })
         console.log(e.name)
     }
-
     deleteEmployee = async employee => {
         console.log('delete employee');
         for (var i = 0; i < this.state.checkedId.length; i++) {
@@ -236,12 +235,7 @@ class Employees extends Component {
                         })}
                     </table>
                 </div>
-<NewEmployeeForm 
-addNewEmployee={this.addNewEmployee}/>
-                 
 
-
-      
 
                  <div id="updateEmployeeModal" className="modal fade">
                     <div className="modal-dialog">

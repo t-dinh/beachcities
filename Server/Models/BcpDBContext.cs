@@ -15,6 +15,6 @@ namespace Server
         public DbSet<Bid>           bid         { get; set; }
 
         public DbSet<Project>       project     { get; set; }
-        public DbSet<AppUser>       appUser     { get; set; }
+        public DbSet<AppUser>       appuser     { get; set; }
     }
 }
