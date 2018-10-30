@@ -8,7 +8,6 @@ import {
 const initialState = {
     isLoggedin: false,
     isLoading: false,
-    // employees: [],
     projects: [],
     // bids: [],
     // contacts: []

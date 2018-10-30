@@ -2,15 +2,8 @@ import {
     ADD_EMPLOYEE,
     DELETE_EMPLOYEE,
     EDIT_EMPLOYEE,
-    ADD_PROJECT,
-    DELETE_PROJECT,
-    EDIT_PROJECT,
-    ADD_CONTACT,
-    DELETE_CONTACT,
-    EDIT_CONTACT,
-    ADD_BID,
-    DELETE_BID,
-    EDIT_BID,
+    FETCH_EMPLOYEE,
+    RECEIVED_EMPLOYEE
   } from '../constants'
   
   
@@ -28,12 +21,13 @@ import {
       case RECEIVED_EMPLOYEE:
         return {
           ...state,
-          employees: action.payload,
+          employees: [action.payload],
           isLoading: false
         }
       case FETCH_EMPLOYEE:
         return {
           ...state,
+          employees: [...action.payload],
           isLoading: true
         }
       case ADD_EMPLOYEE:
@@ -43,13 +37,13 @@ import {
         }
       case EDIT_EMPLOYEE:
         let updatedEmployee = action.payload;
-        let index = state.employees.findIndex(x => x.employee_id === updatedEmployee.employee_id)
+        let i = state.employees.findIndex(x => x.employee_id === updatedEmployee.employee_id)
         return {
           ...state,
           employees: [
-            ...state.employees.slice(0, index),
+            ...state.employees.slice(0, i),
             updatedEmployee,
-            ...state.employees.slice(index + 1)
+            ...state.employees.slice(i + 1)
           ]
         }
       case DELETE_EMPLOYEE:

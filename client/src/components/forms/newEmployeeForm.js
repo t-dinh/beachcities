@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { addEmployee } from '../../actions';
+import { addEmployee } from '../../redux/actions/index';
+import { connect } from 'react-redux';
 
 class NewEmployeeForm extends Component {
 
@@ -63,7 +64,7 @@ class NewEmployeeForm extends Component {
     }
     onClick = e => {
         e.preventDefault();
-        this.props.addNewEmployee(this.state);
+        this.props.addEmployee(this.state);
         this.setState({
             name: '',
             phone: '',
@@ -190,5 +191,8 @@ class NewEmployeeForm extends Component {
     }
 
 }
+const mapDispatchToProps = dispatch => ({
+    addEmployee: employee => dispatch(addEmployee(employee))
+})
 
-export default NewEmployeeForm;
+export default connect(null, mapDispatchToProps)(NewEmployeeForm);

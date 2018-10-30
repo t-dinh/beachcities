@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 // import Bids from './components/pages/bids';
 // import Projects from './components/pages/projects'
 import Login from './components/login';
-// import Employees from './components/pages/employees';
+import Employees from './components/pages/employees';
 // import EmployeeUpdateForm from './components/forms/EmployeeUpdateForm';
 // import NewEmployeeForm from './components/forms/newEmployeeForm';
 // import NewContactForm from './components/forms/newContactForm';
@@ -38,6 +38,7 @@ class App extends Component {
 
             <Calendar/>   */}
             <Login />
+            <Employees />
       </div>
     );
   }

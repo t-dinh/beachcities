@@ -2,6 +2,7 @@ import {
   ADD_EMPLOYEE,
   DELETE_EMPLOYEE,
   EDIT_EMPLOYEE,
+  RECEIVED_EMPLOYEE,
   ADD_PROJECT,
   DELETE_PROJECT,
   EDIT_PROJECT,
@@ -15,11 +16,12 @@ import {
 } from '../constants'
 import axios from 'axios';
 
-export const getEmployees = () => dispatch =>
+export const getEmployees = () => dispatch => {
+console.log("hello");
   axios.get("http://localhost:5000/api/employees")
     .then(res => {
       dispatch({ type: FETCH_EMPLOYEE, payload: res.data })
-    })
+    })}
 
 export const addEmployee = (employee) => dispatch =>
   axios.post('http://localhost:5000/api/employees', employee)
