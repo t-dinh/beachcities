@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class EmoployeeUpdateForm extends Component {
+class EmployeeUpdateForm extends Component {
     state = {
         name: "test",
         phone: "",
@@ -130,4 +130,8 @@ class EmoployeeUpdateForm extends Component {
     }
 }
 
-export default EmoployeeUpdateForm;
+// const mapStateToProps = state => ({
+//     employees: state.employeeReducer.employees
+// })
+
+export default EmployeeUpdateForm;
