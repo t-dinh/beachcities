@@ -12,7 +12,19 @@ import {
   DELETE_BID,
   EDIT_BID,
 } from '../constants'
+import axios from 'axios';
 
+export const addEmployee = (employee) => dispatch =>
+axios.post('http://localhost:5000/api/employees', employee)
+.then(res => {
+  dispatch({ type: ADD_EMPLOYEE , payload: res.data})
+});
+
+export const deleteEmployee = (id) => dispatch =>
+axios.delete(`http://localhost:5000/api/employees/${id}`)
+.then(res => {
+  dispatch({ type: DELETE_EMPLOYEE, payload: res.data})
+});
 
 
 
