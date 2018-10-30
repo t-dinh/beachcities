@@ -235,12 +235,7 @@ class Employees extends Component {
                         })}
                     </table>
                 </div>
-<NewEmployeeForm 
-addNewEmployee={this.addNewEmployee}/>
-                 
 
-
-      
 
                  <div id="updateEmployeeModal" className="modal fade">
                     <div className="modal-dialog">
