@@ -90,27 +90,6 @@ class NewEmployeeForm extends Component {
         })
 
     }
-    // addNewEmployee = async employee => {
-    //     console.log('add new employee invoked');
-    //     let res = await axios.post('http://localhost:5000/api/employees', {
-    //         name: this.state.name,
-    //         phone: this.state.phone,
-    //         email: this.state.email,
-    //         address: this.state.address,
-    //         city: this.state.city,
-    //         zip: this.state.zip,
-    //         status: this.state.status,
-    //         comments: this.state.comments
-    //     }); 
-    //res.data => new employee object
-
-    //     console.log("res: ", res.data);
-    //     if (res.data) {
-    //         this.setState({
-    //             employees: [...this.state.employees, res.data]
-    //         });
-    //     }
-    // }
 
     componentDidMount() {
         this.grabEmployee();

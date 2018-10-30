@@ -320,9 +320,7 @@ class Employees extends Component {
 
                 <EmployeeUpdateForm 
                     editOn={this.editOn}
-                    updateEmployee={this.updateEmployee}
                     editingIndex={this.editingIndex}
-                    updateEmployee={this.updateEmployee}
                     data={this.state.editingEmployee}
                     />
                    }

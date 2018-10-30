@@ -3,7 +3,7 @@ import axios from 'axios';
 
 class EmployeeUpdateForm extends Component {
     state = {
-        name: "test",
+        name: "",
         phone: "",
         email: "",
         address: "",
@@ -13,8 +13,10 @@ class EmployeeUpdateForm extends Component {
         comments: ""
     }
 
-    onNameChange = () => {
-        console.log('on name change');
+    onNameChange = event => {
+        this.setState({
+            name: event.target.value
+        })
     }
 
     onEmailChange = () => {
@@ -41,7 +43,7 @@ class EmployeeUpdateForm extends Component {
         console.log('on name change');
     }
 
-    updateEmployee = (e) => {
+    updateEmployee = () => {
         let employee = {
             "name": this.state.name,
             "phone": this.state.phone,
@@ -56,6 +58,23 @@ class EmployeeUpdateForm extends Component {
         if (this.state.isChecked == true) {
             let res = axios.put(`http://localhost:5000/api/employees/${this.state.employees.employee_id}`, employee)
         }
+    }
+
+    onClick = e => {
+        e.preventDefault();
+        this.updateEmployee(this.state);
+        this.setState({
+            name: '',
+            phone: '',
+            email: '',
+            address: '',
+            city: '',
+            zip: '',
+            status: '',
+            comments: ''
+        });
+        // this.grabEmployee();
+        console.log("end of onClick");
     }
 
     render() {
