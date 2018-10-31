@@ -3,30 +3,48 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import NewProjectForm from '../forms/newProjectForm';
 import { connect } from 'react-redux';
-import { getProjects, addProject } from '../../redux/actions/index';
-// import ProjectUpdateForm from '../forms/ProjectUpdateForm'
+import { getProjects, deleteProject, addProject, storeProject } from '../../redux/actions/index';
+import { Redirect } from 'react-router';
 
 class Projects extends Component {
-
     state = {
-        isChecked: false
+        isChecked: false,
+        checkedId: [],
+        redirect: false
     }
+
     componentDidMount() {
         this.props.getProjects();
     }
-    handleInputChange(c) {
-        this.setState({
-          checkedId: c.target.id,
-          isChecked: true
-        });
-      }
-
-    deleteProject = project => {
-        if (this.state.isChecked === true) {
-          axios.delete(`http://localhost:5000/api/projects/${this.state.checkedId}`)
+    
+    handleInputChange = e => {
+        const checkedId = this.state.checkedId
+        let index
+        if (e.target.checked) {
+            checkedId.push(+e.target.id)
+        } else {
+            index = checkedId.indexOf(+e.target.id)
+            checkedId.splice(index, 1)
         }
-      }
+        this.setState({
+            checkedId: checkedId,
+            isChecked: e.target.checked
+        });
+        console.log(this.state.checkedId);
+    }
+
+    onSendProject(project) {
+        console.log('onsendproject');
+        console.log(project);
+        this.props.storeProject(project);
+        this.setState({
+            redirect: true
+        })
+    }
+
     render() {
+        const { redirect } = this.state
+        if (redirect) return (<Redirect to="/updateProject" />)
         return (
             <div className="containter">
                 <div className="nav"><a href="#addProjectModal" className="btn btn-success" data-toggle="modal">
@@ -78,8 +96,10 @@ class Projects extends Component {
                                     <td>{projects.actual_cost}</td>
                                     <td>{projects.satisfaction}</td>
                                     <td>{projects.comments}</td>
-                                    <td><button className="btn btn-primary">update</button></td>
+                                    <td>
+                                        <button id={projects.project_id} className="btn btn-primary" onClick={() => this.onSendProject(projects)}>Update</button>
 
+                                    </td>
                                 </tr>
                             )
                             )}
@@ -118,6 +138,8 @@ const mapStateToProps = state => ({
 
 const mapPropsToDispatch = dispatch => ({
     getProjects: () => dispatch(getProjects()),
-    addProject: (project) => dispatch(addProject(project))
+    addProject: (project) => dispatch(addProject(project)),
+    addProject: (project) => dispatch(addProject(project)),
+    storeProject: (project) => dispatch(storeProject(project))
 })
 export default connect(mapStateToProps, mapPropsToDispatch)(Projects);

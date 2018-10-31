@@ -11,6 +11,7 @@ import Projects from './components/pages/projects'
 import Login from './components/login';
 import Employees from './components/pages/employees';
 import EmployeeUpdateForm from './components/forms/EmployeeUpdateForm';
+import ProjectUpdateForm from './components/forms/ProjectUpdateForm';
 // import NewEmployeeForm from './components/forms/newEmployeeForm';
 // import NewContactForm from './components/forms/newContactForm';
 // import NewBidForm from './components/forms/newBidForm';
@@ -41,6 +42,7 @@ class App extends Component {
             <Route path="/bids" render={() => <Bids />} />
             <Route path="/projects" render={() => <Projects />} />
             <Route path="/update" render={() => <EmployeeUpdateForm /> } />
+            <Route path="/updateProject" render={() => <ProjectUpdateForm /> } />
       
             </Switch>    
             {/* <Calendar/>   */}

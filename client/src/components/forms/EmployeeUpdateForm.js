@@ -64,7 +64,7 @@ componentDidMount() {
         }
         console.log("update employee")
         console.log({employee})
-        if (this.state.isChecked == true) {
+        if (this.state.isChecked === true) {
             let res = axios.put(`http://localhost:5000/api/employees/${this.state.employees.employee_id}`, employee)
         }
     }
