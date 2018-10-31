@@ -14,7 +14,8 @@ import {
   ADD_BID,
   DELETE_BID,
   EDIT_BID,
-  FETCH_EMPLOYEE
+  FETCH_EMPLOYEE,
+  FETCH_CONTACT
 } from '../constants'
 import axios from 'axios';
 

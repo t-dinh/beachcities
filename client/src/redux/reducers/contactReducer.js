@@ -17,9 +17,9 @@ const initialState = {
   
 }
 
-const contactReducer = (state = intitialState, action) => {
+const contactReducer = (state = initialState, action) => {
     switch (action.type) {
-        case RECIEVED_CONTACT:
+        case RECEIVED_CONTACT:
         return { 
             ...state,
             contacts: action.payload,
