@@ -41,11 +41,14 @@ export const addEmployee = (employee) => dispatch =>
 export const storeEmployee = (employee) => dispatch =>
     dispatch({ type: STORE_EMPLOYEE, payload: employee})
 
-export const editEmployee = (employee) => dispatch =>
-  axios.put(`http://localhost:5000/api/employees/${employee.employee_id}`, employee)
+export const editEmployee = (id, employee) => dispatch => {
+    console.log('from redux action');
+    console.log(employee);
+  axios.put(`http://localhost:5000/api/employees/${id}`, employee)
     .then(res => {
       dispatch({ type: EDIT_EMPLOYEE, payload: res.data })
     })
+  }
 
 export const deleteEmployee = (id) => dispatch => {
   console.log("id" , id);

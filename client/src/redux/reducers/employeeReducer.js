@@ -29,7 +29,7 @@ import {
       case FETCH_EMPLOYEE:
         return {
           ...state,
-          employees: [...action.payload],
+          employees: action.payload,
           isLoading: true
         }
       case ADD_EMPLOYEE:
@@ -40,14 +40,16 @@ import {
       case EDIT_EMPLOYEE:
         let updatedEmployee = action.payload;
         let i = state.employees.findIndex(x => x.employee_id === updatedEmployee.employee_id)
+        console.log(i)
         return {
           ...state,
           employees: [
-            ...state.employees.slice(0, i),
+            ...state.employees.slice(-1, i),
             updatedEmployee,
-            ...state.employees.slice(i + 1)
+            ...state.employees.slice(i + 0)
           ]
         }
+        
         case STORE_EMPLOYEE:
         return {
           ...state,
