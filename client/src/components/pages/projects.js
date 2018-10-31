@@ -3,30 +3,48 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import NewProjectForm from '../forms/newProjectForm';
 import { connect } from 'react-redux';
-import { getProjects, addProject } from '../../redux/actions/index';
-// import ProjectUpdateForm from '../forms/ProjectUpdateForm'
+import { getProjects, deleteProject, addProject, storeProject } from '../../redux/actions/index';
+import { Redirect } from 'react-router';
 
 class Projects extends Component {
-
     state = {
-        isChecked: false
+        isChecked: false,
+        checkedId: [],
+        redirect: false
     }
+
     componentDidMount() {
         this.props.getProjects();
     }
-    handleInputChange(c) {
-        this.setState({
-          checkedId: c.target.id,
-          isChecked: true
-        });
-      }
 
-    deleteProject = project => {
-        if (this.state.isChecked === true) {
-          axios.delete(`http://localhost:5000/api/projects/${this.state.checkedId}`)
+    handleInputChange = e => {
+        const checkedId = this.state.checkedId
+        let index
+        if (e.target.checked) {
+            checkedId.push(+e.target.id)
+        } else {
+            index = checkedId.indexOf(+e.target.id)
+            checkedId.splice(index, 1)
         }
-      }
+        this.setState({
+            checkedId: checkedId,
+            isChecked: e.target.checked
+        });
+        console.log(this.state.checkedId);
+    }
+
+    onSendProject(project) {
+        console.log('onsendproject');
+        console.log(project);
+        this.props.storeProject(project);
+        this.setState({
+            redirect: true
+        })
+    }
+
     render() {
+        const { redirect } = this.state
+        if (redirect) return (<Redirect to="/updateProject" />)
         return (
             <div className="containter">
                 <div className="nav"><a href="#addProjectModal" className="btn btn-success" data-toggle="modal">
@@ -56,30 +74,32 @@ class Projects extends Component {
                             <th>Update</th>
                         </tr>
                         {
-                            this.props.projects.projects.map(projects => (
+                            this.props.projects.projects.map(project => (
 
                                 <tr>
                                     <td>
                                         <input className="checkbox" type="checkbox"
                                             value={this.state.isChecked}
-                                            id={projects.project_id}
+                                            id={project.project_id}
                                             onChange={this.handleInputChange.bind(this)}>
                                         </input>
                                     </td>
-                                    <td>{projects.contact.name}</td>
-                                    <td>{projects.contact.phone}</td>
-                                    <td>{projects.address}</td>
-                                    <td>{projects.city}</td>
-                                    <td>{projects.zip}</td>
-                                    <td>{projects.est_cost}</td>
-                                    <td>{projects.est_finish}</td>
-                                    <td>{projects.start_date}</td>
-                                    <td>{projects.materials}</td>
-                                    <td>{projects.actual_cost}</td>
-                                    <td>{projects.satisfaction}</td>
-                                    <td>{projects.comments}</td>
-                                    <td><button className="btn btn-primary">update</button></td>
+                                    <td>{project.contact.name}</td>
+                                    <td>{project.contact.phone}</td>
+                                    <td>{project.address}</td>
+                                    <td>{project.city}</td>
+                                    <td>{project.zip}</td>
+                                    <td>{project.est_cost}</td>
+                                    <td>{project.est_finish}</td>
+                                    <td>{project.start_date}</td>
+                                    <td>{project.materials}</td>
+                                    <td>{project.actual_cost}</td>
+                                    <td>{project.satisfaction}</td>
+                                    <td>{project.comments}</td>
+                                    <td>
+                                        <button id={project.project_id} className="btn btn-primary" onClick={() => this.onSendProject(project)}>Update</button>
 
+                                    </td>
                                 </tr>
                             )
                             )}
@@ -97,7 +117,7 @@ class Projects extends Component {
                                 </div>
                                 <div className="modal-footer">
                                     <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel" />
-                                    <input type="submit" className="btn btn-success" value="Delete" onClick={this.deleteProject} />
+                                    <input type="submit" className="btn btn-success" value="Delete" onClick={() => this.props.deleteProject(this.state.checkedId)} />
                                 </div>
                             </form>
                         </div>
@@ -118,6 +138,8 @@ const mapStateToProps = state => ({
 
 const mapPropsToDispatch = dispatch => ({
     getProjects: () => dispatch(getProjects()),
-    addProject: (project) => dispatch(addProject(project))
+    deleteProject: (id) => dispatch(deleteProject(id)),
+    addProject: (project) => dispatch(addProject(project)),
+    storeProject: (project) => dispatch(storeProject(project))
 })
 export default connect(mapStateToProps, mapPropsToDispatch)(Projects);

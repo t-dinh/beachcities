@@ -3,7 +3,8 @@ import {
   DELETE_PROJECT,
   EDIT_PROJECT,
   FETCH_PROJECT,
-  RECEIVED_PROJECT
+  RECEIVED_PROJECT,
+  STORE_PROJECT
 } from '../constants'
 
 
@@ -13,7 +14,8 @@ const initialState = {
   employees: [],
   projects: [],
   bids: [],
-  contacts: []
+  contacts: [],
+  editingProject: {}
 }
 
 const projectReducer = (state = initialState, action) => {
@@ -27,7 +29,7 @@ const projectReducer = (state = initialState, action) => {
     case FETCH_PROJECT:
       return {
         ...state,
-        projects: [...action.payload],
+        projects: action.payload,
         isLoading: true
       }
     case ADD_PROJECT:
@@ -45,6 +47,11 @@ const projectReducer = (state = initialState, action) => {
           updatedProject,
           ...state.projects.slice(i + 1)
         ]
+      }
+      case STORE_PROJECT:
+      return {
+        ...state,
+        editingProject: action.payload
       }
     case DELETE_PROJECT:
       let deletedProjectId = action.payload.project_id;

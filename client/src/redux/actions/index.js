@@ -9,23 +9,32 @@ import {
   DELETE_PROJECT,
   EDIT_PROJECT,
   FETCH_PROJECT,
-  RECEIVED_PROJECT,
+  STORE_PROJECT,
 
   ADD_CONTACT,
   DELETE_CONTACT,
   EDIT_CONTACT,
   FETCH_CONTACT,
   RECEIVED_CONTACT,
+  STORE_CONTACT,
 
   ADD_BID,
   DELETE_BID,
   EDIT_BID,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+ 
+=======
+>>>>>>> 27fd6f2be852f45825c83e0d99ff15ae95dbaa05
+>>>>>>> ef39b6e9f4ac45abfbf0e6602873cd28ff96270c
   STORE_EMPLOYEE
 } from '../constants'
 import axios from 'axios';
 
 export const getEmployees = () => dispatch => {
-console.log("hello");
+console.log("get employees");
   axios.get("http://localhost:5000/api/employees")
     .then(res => {
       dispatch({ type: FETCH_EMPLOYEE, payload: res.data })
@@ -58,30 +67,8 @@ export const deleteEmployee = (id) => dispatch => {
     })};
 
 
-// export const getEmployees = (employees) => dispatch => {
-//   dispatch({ type: FETCH_EMPLOYEE });
-
-//   axios.get(`https://localhost:5000/api/employees`) 
-//       .then(res => {
-//           console.log(res.data);
-//           let employees = res.data.employees.map(employee => ({
-//               employee_id: employee.employee_id,
-//               name: employee.name,
-//               phone: employee.phone,
-//               email: employee.email,
-//               address: employee.address,
-//               city: employee.city,
-//               status: employee.status
-//           }))
-//           dispatch({ type: FETCH_EMPLOYEE, payload: employees })
-//       });
-// }
-
-
-// export const sendData = data => ({ type: ADD_EMPLOYEE, payload: data })
-
 export const getProjects = () => dispatch => {
-console.log("hello");
+console.log("getProjects");
   axios.get("http://localhost:5000/api/projects")
     .then(res => {
       dispatch({ type: FETCH_PROJECT, payload: res.data })
@@ -92,6 +79,9 @@ export const addProject = (project) => dispatch =>
     .then(res => {
       dispatch({ type: ADD_PROJECT, payload: res.data })
     });
+
+export const storeProject = (project) => dispatch =>
+    dispatch({ type: STORE_PROJECT, payload: project})
 
 export const editProject = (project) => dispatch =>
   axios.put(`http://localhost:5000/api/projects/${project.project_id}`, project)
@@ -137,6 +127,9 @@ export const getContacts = () => dispatch =>
       .then(res => {
         dispatch({ type: EDIT_CONTACT, payload: res.data })
       })
+
+   export const storeContact = (contact) => dispatch =>
+    dispatch({ type: STORE_CONTACT, payload: contact})
   
   export const deleteContact = (id) => dispatch =>
     axios.delete(`http://localhost:5000/api/contacts/${id}`)

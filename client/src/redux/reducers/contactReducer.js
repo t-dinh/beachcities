@@ -3,7 +3,8 @@ import {
     EDIT_CONTACT,
     DELETE_CONTACT,
     FETCH_CONTACT,
-    RECEIVED_CONTACT
+    RECEIVED_CONTACT,
+    STORE_CONTACT
 }from '../constants'
 
 
@@ -14,7 +15,7 @@ const initialState = {
     employees: [],
     projects: [],
     bids: [],
-  
+    editingObject: {} 
 }
 
 const contactReducer = (state = initialState, action) => {
@@ -23,7 +24,7 @@ const contactReducer = (state = initialState, action) => {
         case RECEIVED_CONTACT:
         return { 
             ...state,
-            contacts: action.payload,
+            contacts: [action.payload],
             isLoading: false
         }
         case FETCH_CONTACT:
@@ -47,6 +48,11 @@ const contactReducer = (state = initialState, action) => {
               updatedContact,
               ...state.contacts.slice(index + 1)
             ]
+          }
+          case STORE_CONTACT:
+          return {
+            ...state,
+            editingObject: action.payload
           }
         case DELETE_CONTACT:
           let deletedContactId = action.payload.contact_id;
