@@ -29,7 +29,7 @@ const projectReducer = (state = initialState, action) => {
     case FETCH_PROJECT:
       return {
         ...state,
-        projects: [...action.payload],
+        projects: action.payload,
         isLoading: true
       }
     case ADD_PROJECT:

@@ -25,7 +25,7 @@ import {
 import axios from 'axios';
 
 export const getEmployees = () => dispatch => {
-console.log("hello");
+console.log("get employees");
   axios.get("http://localhost:5000/api/employees")
     .then(res => {
       dispatch({ type: FETCH_EMPLOYEE, payload: res.data })
@@ -56,7 +56,7 @@ export const deleteEmployee = (id) => dispatch => {
 
 
 export const getProjects = () => dispatch => {
-console.log("hello");
+console.log("getProjects");
   axios.get("http://localhost:5000/api/projects")
     .then(res => {
       dispatch({ type: FETCH_PROJECT, payload: res.data })
@@ -67,6 +67,9 @@ export const addProject = (project) => dispatch =>
     .then(res => {
       dispatch({ type: ADD_PROJECT, payload: res.data })
     });
+
+export const storeProject = (project) => dispatch =>
+    dispatch({ type: STORE_PROJECT, payload: project})
 
 export const editProject = (project) => dispatch =>
   axios.put(`http://localhost:5000/api/projects/${project.project_id}`, project)
@@ -79,9 +82,6 @@ export const deleteProject = (id) => dispatch =>
     .then(res => {
       dispatch({ type: DELETE_PROJECT, payload: res.data })
     });
-
-    export const storeProject = (project) => dispatch =>
-    dispatch({ type: STORE_PROJECT, payload: project})
 
 // export const ADD_EMPLOYEE
 // export const DELETE_EMPLOYEE

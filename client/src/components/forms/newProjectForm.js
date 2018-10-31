@@ -110,7 +110,7 @@ class NewProjectForm extends Component {
                             <div className="form-group">
                                 
                                     <label>Address</label>
-                                    <input name = "address" type="text" value={this.state.address} onChange={this.handleOnChange} className="form-control" placeholder="" />
+                                    <input name="address" type="text" value={this.state.address} onChange={this.handleOnChange} className="form-control" placeholder="" />
                                 
                             </div>
                             <div className="form-group">

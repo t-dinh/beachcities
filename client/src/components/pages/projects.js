@@ -16,7 +16,7 @@ class Projects extends Component {
     componentDidMount() {
         this.props.getProjects();
     }
-    
+
     handleInputChange = e => {
         const checkedId = this.state.checkedId
         let index
@@ -74,30 +74,30 @@ class Projects extends Component {
                             <th>Update</th>
                         </tr>
                         {
-                            this.props.projects.projects.map(projects => (
+                            this.props.projects.projects.map(project => (
 
                                 <tr>
                                     <td>
                                         <input className="checkbox" type="checkbox"
                                             value={this.state.isChecked}
-                                            id={projects.project_id}
+                                            id={project.project_id}
                                             onChange={this.handleInputChange.bind(this)}>
                                         </input>
                                     </td>
-                                    <td>{projects.contact.name}</td>
-                                    <td>{projects.contact.phone}</td>
-                                    <td>{projects.address}</td>
-                                    <td>{projects.city}</td>
-                                    <td>{projects.zip}</td>
-                                    <td>{projects.est_cost}</td>
-                                    <td>{projects.est_finish}</td>
-                                    <td>{projects.start_date}</td>
-                                    <td>{projects.materials}</td>
-                                    <td>{projects.actual_cost}</td>
-                                    <td>{projects.satisfaction}</td>
-                                    <td>{projects.comments}</td>
+                                    <td>{project.contact.name}</td>
+                                    <td>{project.contact.phone}</td>
+                                    <td>{project.address}</td>
+                                    <td>{project.city}</td>
+                                    <td>{project.zip}</td>
+                                    <td>{project.est_cost}</td>
+                                    <td>{project.est_finish}</td>
+                                    <td>{project.start_date}</td>
+                                    <td>{project.materials}</td>
+                                    <td>{project.actual_cost}</td>
+                                    <td>{project.satisfaction}</td>
+                                    <td>{project.comments}</td>
                                     <td>
-                                        <button id={projects.project_id} className="btn btn-primary" onClick={() => this.onSendProject(projects)}>Update</button>
+                                        <button id={project.project_id} className="btn btn-primary" onClick={() => this.onSendProject(project)}>Update</button>
 
                                     </td>
                                 </tr>
@@ -117,7 +117,7 @@ class Projects extends Component {
                                 </div>
                                 <div className="modal-footer">
                                     <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel" />
-                                    <input type="submit" className="btn btn-success" value="Delete" onClick={this.deleteProject} />
+                                    <input type="submit" className="btn btn-success" value="Delete" onClick={() => this.props.deleteProject(this.state.checkedId)} />
                                 </div>
                             </form>
                         </div>
@@ -138,7 +138,7 @@ const mapStateToProps = state => ({
 
 const mapPropsToDispatch = dispatch => ({
     getProjects: () => dispatch(getProjects()),
-    addProject: (project) => dispatch(addProject(project)),
+    deleteProject: (id) => dispatch(deleteProject(id)),
     addProject: (project) => dispatch(addProject(project)),
     storeProject: (project) => dispatch(storeProject(project))
 })
