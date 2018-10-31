@@ -78,27 +78,28 @@ class EmployeeUpdateForm extends Component {
     }
 
     render() {
-        let employee = this.props.data
-        console.log('employee:', employee);
+        // let employee = this.props.data
+        // console.log('employee:', employee);
         return (
-            <div>
-                <div className="header">
-                    <h1>Edit employee</h1>
-                </div>
-                <label>Name</label>
-                <input type="text" className="form-control" defaultValue={employee.name}
-                    onChange={this.onNameChange} />
-                     <label>Name</label>
-                <input type="text" className="form-control" value={employee.phone}
-                    onChange={this.onPhoneChange} />
-                     <label>Name</label>
-                <input type="text" className="form-control" value={employee.email}
-                    onChange={this.onEmailChange} />
-                     <label>Name</label>
-                <input type="text" className="form-control" value={employee.address}
-                    onChange={this.onAdressChange} />
-                <input type="submit" className="btn btn-info" value="Save" onClick={() => this.updateEmployee()} />
-            </div>
+        //     <div>
+        //         <div className="header">
+        //             <h1>Edit employee</h1>
+        //         </div>
+        //         <label>Name</label>
+        //         <input type="text" className="form-control" defaultValue={employee.name}
+        //             onChange={this.onNameChange} />
+        //              <label>Name</label>
+        //         <input type="text" className="form-control" value={employee.phone}
+        //             onChange={this.onPhoneChange} />
+        //              <label>Name</label>
+        //         <input type="text" className="form-control" value={employee.email}
+        //             onChange={this.onEmailChange} />
+        //              <label>Name</label>
+        //         <input type="text" className="form-control" value={employee.address}
+        //             onChange={this.onAdressChange} />
+        //         <input type="submit" className="btn btn-info" value="Save" onClick={() => this.updateEmployee()} />
+        //     </div>
+        <div></div>
 
             // <div id="updateEmployeeModal" className="modal fade">
             //     <div className="modal-dialog">

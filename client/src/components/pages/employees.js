@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import NewEmployeeForm from '../forms/newEmployeeForm';
 import { connect } from 'react-redux';
@@ -16,24 +15,6 @@ state={
         this.props.getEmployees();
     }
 
-
-
-    //     editOn = (employee, event) => {
-    //         console.log('event target:', event.target);
-    //         console.log(employee);
-    //         // this.setState({
-    //         //     editingEmployee: this.state.employees[index],
-    //         //     isEditing: !this.state.isEditing,
-    //         //     editingIndex: index
-    //         // })
-
-    //         // event.target.setAttribute("data-toggle", "modal");
-    //         this.setState({
-    //             isEditing: true,
-    //             editingEmployee: employee
-    //         });
-    //     }
-
         handleInputChange = e => {
             const checkedId = this.state.checkedId
             let index
@@ -49,83 +30,6 @@ state={
             });
             console.log(this.state.checkedId);
         }
-
-
-
-    //     grabEmployee = async data => {
-    //         console.log('grab employee invoked');
-    //         let res = await axios.get('http://localhost:5000/api/employees')
-    //         this.setState({
-    //             employees: res.data
-    //         })
-
-
-    //     }
-    //     addNewEmployee = async employee => {
-    //         console.log('add new employee invoked');
-    //         let res = await axios.post('http://localhost:5000/api/employees', employee); // res.data => new employee object
-
-    //         console.log("res: ", res.data);
-    //         if (res.data) {
-    //             this.setState({
-    //                 employees: [...this.state.employees, res.data]
-    //             });
-    //         }
-    //     }
-    //     deleteEmployee = async employee => {
-    //         console.log('delete employee');
-    //         let res = await axios.delete('http://localhost:5000/api/employees/?name={name}', {
-    //             name: this.state.name
-    //         });
-    //         console.log("res: ", res.data);
-    //         if(res.data){
-    //             this.setState({
-    //                 employees: [...this.state.employees, res.data]
-    //             });
-    //         }
-    //     }
-    //     updateEmployee = async employee => {
-    //         console.log('update existing employee invoked');
-    //         let res = await axios.put('http://localhost:5000/api/id/?id={id}',{
-    //              name: this.state.name      
-    //     });
-
-    //     console.log("res: ", res.data);
-    //     if (res.data) {
-    //         this.setState({
-    //             employees: [...this.state.employees, res.data]
-    //         });
-    //     }
-    //  }
-
-    //     componentDidMount() {
-    //         this.grabEmployee();
-    //         // this.deleteEmployees();
-    //     }
-
-    //     // deleteEmployees() {
-    //     //     for (let i = 6; i <= 11; i++) {
-    //     //         axios.delete(`http://localhost:5000/api/employees/${i}`);
-    //     //     }
-    //     // }
-    //     popId = e => {
-    //         let checkedId = this.state.checkedId.pop();
-    //         this.setState({
-    //             checkedId: checkedId
-    //         })
-    //         console.log(e.name)
-    //     }
-        // deleteEmployees = async employee => {
-        //     console.log('delete employee');
-        //     for (var i = 0; i < this.state.checkedId.length; i++) {
-        //         this.props.deleteEmployee(this.state.checkedId[i]);
-        //         console.log(this.state.checkedId[i])
-                
-        //     }
-        // }
-
-
-
 
     render() {
         return (
@@ -166,7 +70,7 @@ state={
                                     <td>{employees.city}</td>
                                     <td>{employees.status}</td>
                                     <td>{employees.comments}</td>
-                                    <td><button className="btn btn-primary">update</button></td>
+                                    <td><Link to ="/update"><button className="btn btn-primary">update</button></Link></td>
 
                                 </tr>
                             )
@@ -194,20 +98,11 @@ state={
                 <NewEmployeeForm
                     addNewEmployee={this.props.addEmployee()}
                 />
+                <EmployeeUpdateForm />
             </div>
 
+            
 
-
-
-            // {
-            //     this.state.isEditing &&
-
-            // <EmployeeUpdateForm 
-            //     editOn={this.editOn}
-            //     editingIndex={this.editingIndex}
-            //     data={this.state.editingEmployee}
-            //     />
-            //    }
 
         );
     }
@@ -218,7 +113,7 @@ const mapStateToProps = state => ({
 
 const mapPropsToDispatch = dispatch => ({
     getEmployees: () => dispatch(getEmployees()),
-    deleteEmployee: (e, id) => dispatch(deleteEmployee(e, id)),
+    deleteEmployee: (id) => dispatch(deleteEmployee(id)),
     addEmployee: (employee) => dispatch(addEmployee(employee))
 })
 export default connect(mapStateToProps, mapPropsToDispatch)(Employees);

@@ -45,10 +45,14 @@ class App extends Component {
             {/* <Calendar/>   */}
             {/* <Projects /> */}
 
+            {/* <Calendar/> */}
+            {/* <Login /> */}
+            <EmployeeUpdateForm />
       </div>
     );
   }
 }
+//test
 
 export default App;
-;
+
