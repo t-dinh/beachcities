@@ -88,19 +88,27 @@ namespace Server
             return Ok(employee);
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        [HttpDelete]
+        public IActionResult Delete([FromBody] int[] ids)
         {
+            Console.WriteLine("***********************");
+            Console.WriteLine(ids[0]);
+            Console.WriteLine("***********************");
+            
+            foreach (int id in ids) 
+            {
             Employee item = _context.employee.Find(id);
-
+            
             if (item == null)
             {
                 return NotFound();
             }
-
-            _context.employee.Remove(item);
+                _context.employee.Remove(item);
+            }
             _context.SaveChanges();
-            return Ok(item);
+            
+
+            return Ok(_context.employee.ToList());  
         }
 
 
