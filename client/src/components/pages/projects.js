@@ -14,23 +14,18 @@ class Projects extends Component {
     componentDidMount() {
         this.props.getProjects();
     }
-    handleInputChange = e => {
-        const checkedId = this.state.checkedId
-        let index
-        if (e.target.checked) {
-            checkedId.push(+e.target.id)
-        } else {
-            index = checkedId.indexOf(+e.target.id)
-            checkedId.splice(index, 1)
-        }
+    handleInputChange(c) {
         this.setState({
-            checkedId: checkedId,
-            isChecked: e.target.checked
+          checkedId: c.target.id,
+          isChecked: true
         });
-        console.log(this.state.checkedId);
-    }
+      }
 
-
+    deleteProject = project => {
+        if (this.state.isChecked === true) {
+          axios.delete(`http://localhost:5000/api/projects/${this.state.checkedId}`)
+        }
+      }
     render() {
         return (
             <div className="containter">
