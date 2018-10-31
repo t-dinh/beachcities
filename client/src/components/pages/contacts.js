@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 import NewContactForm from '../forms/newContactForm';
 import { connect } from 'react-redux';
 import { getContacts, deleteContact, addContact } from '../../redux/actions/index';
-import EmployeeUpdateForm from '../forms/EmployeeUpdateForm'
+import ContactUpdateForm from '../forms/ContactUpdateForm'
+
 class Contacts extends Component {
     state = {
-       
         isChecked: false,
         checkedId: []
     }
@@ -14,153 +14,31 @@ class Contacts extends Component {
         this.props.getContacts();
     }
 
-//     onNameChange = e => {
-//         this.setState({
-//             name: e.target.value
-//         })
-//     }
-//     onPhoneChange = event => {
-//         this.setState({
-//             phone: event.target.value
-//         })
-//     }
-
-//     onEmailChange = event => {
-//         this.setState({
-//             email: event.target.value
-//         })
-//     }
-
-//     onAddressChange = event => {
-//         this.setState({
-//             address: event.target.value
-//         })
-//     }
-//     onCityChange = event => {
-//         this.setState({
-//             city: event.target.value
-//         })
-//     }
-
-//     onZipChange = event => {
-//         this.setState({
-//             zip: event.target.value
-//         })
-//     }
-
-//     onStatusChange = event => {
-//         this.setState({
-//             status: event.target.value
-//         })
-//     }
-
-//     onSatisfactionChange = event => {
-//         this.setState({
-//             satisfaction: event.target.value
-//         })
-//     }
-//     onCommentsChange = event => {
-//         this.setState({
-//             comments: event.target.value
-//         })
-//     }
-
-//     onClick = async e => {
-//         e.preventDefault();
-//         this.addNewContact();
-//         this.setState({
-//             name: ""
-//         });
-//         await this.grabContact();
-//         console.log("end of onClick");
-//     }
-
-//     grabContact = async data => {
-//         console.log('grab Contact invoked');
-//         let res = await axios.get('http://localhost:5000/api/contacts')
-//         this.setState({
-//             contacts: res.data
-//         })
-
-//     }
-//     addNewContact = async contact => {
-//         console.log('add new Contact invoked');
-//         let res = await axios.post('http://localhost:5000/api/contacts', contact);
-
-//         console.log("res: ", res.data);
-//         if (res.data) {
-//             this.setState({
-//                 contacts: [...this.state.contacts, res.data]
-//             });
-//         }
-//     }
-
-//     deleteContact = async contact => {
-//         console.log('delete contact');
-//         let res = await axios.delete('http://localhost:5000/api/contacts/?name={name}', {
-//             name: this.state.name
-//         });
-//         console.log("res: ", res.data);
-//         if(res.data){
-//             this.setState({
-//                 contacts: [...this.state.contacts, res.data]
-//             });
-//         }
-//     }
-//     updateContact = async contact => {
-//         console.log('update existing contact invoked');
-//         let res = await axios.put('http://localhost:5000/api/id/?id={id}',{
-//              name: this.state.name      
-//     });
- 
-//     console.log("res: ", res.data);
-//     if (res.data) {
-//         this.setState({
-//             contacts: [...this.state.contacts, res.data]
-//         });
-//     }
-//  }
-
-//     componentDidMount() {
-//         this.grabContact();
-//         this.deleteContact();
-//     }
-
-//     handleInputChange(e){
-//         this.setState({
-//              checkedId: e.target.id,
-//              isChecked: true
-//            });
-//          }
-         
-//         deleteContact = contact => {
-//             if (this.state.isChecked === true) {
-//                axios.delete(`http://localhost:5000/api/contacts/${this.state.checkedId}`)
-//             }
-//            }
-handleInputChange = e => {
-    const checkedId = this.state.checkedId
-    let index
-    if (e.target.checked) {
-        checkedId.push(+e.target.id)
-    } else {
-        index = checkedId.indexOf(+e.target.id)
-        checkedId.splice(index, 1)
+    handleInputChange = e => {
+        const checkedId = this.state.checkedId
+        let index
+        if (e.target.checked) {
+            checkedId.push(+e.target.id)
+        } else {
+            index = checkedId.indexOf(+e.target.id)
+            checkedId.splice(index, 1)
+        }
+        this.setState({
+            checkedId: checkedId,
+            isChecked: e.target.checked
+        });
+        console.log(this.state.checkedId);
     }
-    this.setState({
-        checkedId: checkedId,
-        isChecked: e.target.checked
-    });
-    console.log(this.state.checkedId);
-}
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <div className="nav"><a href="#addContactModal" className="btn btn-success" data-toggle="modal">
                     <i className="material-icons">&#xE147;</i> <span>Add New Contact</span></a>
+                    <a href="#updateContactModal" className="btn btn-success" data-toggle="modal" onClick={this.popId}>
+                        <i className="material-icons">&#xE147;</i> <span>Update Contact</span></a>
                     <a href="#deleteContactModal" className="btn btn-danger" data-toggle="modal"><i className="material-icons">&#xE15C;</i> <span>Delete
-                </span></a></div>
+            </span></a></div>
                 <div className="tableBox">
                     {/* what gets rendered in this table will come from the database */}
                     <table className="table">
@@ -174,77 +52,33 @@ handleInputChange = e => {
                             <th>Status</th>
                             <th>Comments</th>
                         </tr>
-                        {this.state.contacts.map(c => {
-                            return (
+                        {
+                            this.props.contacts.contacts.map(contacts => (
+
                                 <tr>
                                     <td>
-                                    <input className="checkbox" type="checkbox" 
-                                    value= {this.state.isChecked} 
-                                    id={c.contact_id}
-                                    onChange={this.handleInputChange.bind(this)}>
-                                    </input>
+                                        <input className="checkbox" type="checkbox"
+                                            value={this.state.isChecked}
+                                            id={contacts.contact_id}
+                                            onChange={this.handleInputChange.bind(this)}>
+                                        </input>
                                     </td>
-                                    <td>{c.name}</td>
-                                    <td>{c.phone}</td>
-                                    <td>{c.email}</td>
-                                    <td>{c.address}</td>
-                                    <td>{c.city}</td>
-                                    <td>{c.status}</td>
-                                    <td>{c.comments}</td>
-                                    
+                                    <td>{contacts.name}</td>
+                                    <td>{contacts.phone}</td>
+                                    <td>{contacts.email}</td>
+                                    <td>{contacts.address}</td>
+                                    <td>{contacts.city}</td>
+                                    <td>{contacts.status}</td>
+                                    <td>{contacts.comments}</td>
+                                    <td><Link to="/update"><button className="btn btn-primary">update</button></Link></td>
+
                                 </tr>
                             )
-                        })}
+                            )}
                     </table>
                 </div>
 
 
-                <NewContactForm
-                addNewContact={this.addNewContact} />
-
-
-
-
-                <div id="editContactModal" className="modal fade">
-                    <div className="modal-dialog">
-                        <div className="modal-content">
-                            <form>
-                                <div className="modal-header">
-                                    <h4 className="modal-title">Edit Contact</h4>
-                                    <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                </div>
-                                <div className="modal-body">
-                                    <div className="form-group">
-                                        <label>Last Name</label>
-                                        <input type="text" className="form-control" value={this.state.lastName}
-                                            onChange={this.onLastNameChange} required />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>First Name</label>
-                                        <input type="text" className="form-control" value={this.state.firstName}
-                                            onChange={this.onFirstNameChange} required />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Email</label>
-                                        <input type="text" className="form-control" value={this.state.email}
-                                            onChange={this.onEmailChange} required />                  </div>
-                                    <div className="form-group">
-                                        <label>Phone</label>
-                                        <input type="text" className="form-control" value={this.state.phone}
-                                            onChange={this.onPhoneChange} required />                  </div>
-                                    <div className="form-group">
-                                        <label>Status</label>
-                                        <input type="text" className="form-control" value={this.state.status}
-                                            onChange={this.onStatusChange} required />                  </div>
-                                </div>
-                                <div className="modal-footer">
-                                    <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel" />
-                                    <input type="submit" className="btn btn-info" value="Save" />
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
 
 
                 <div id="deleteContactModal" className="modal fade">
@@ -261,25 +95,29 @@ handleInputChange = e => {
                                 </div>
                                 <div className="modal-footer">
                                     <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel" />
-                                    <input type="submit" className="btn btn-danger" value="Delete" />
+                                    <input type="submit" className="btn btn-success" value="Delete" onClick={() => this.props.deleteContact(this.state.checkedId)} />
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
+
+                <NewContactForm
+                    addContact={this.props.addContact()}
+                />
+                <ContactUpdateForm />
             </div>
 
         );
     }
 }
-
 const mapStateToProps = state => ({
     contacts: state.contactReducer
 })
 
 const mapPropsToDispatch = dispatch => ({
     getContacts: () => dispatch(getContacts()),
-    deleteContact: (c, id) => dispatch(deleteContact(c, id)),
+    deleteContact: (id) => dispatch(deleteContact(id)),
     addContact: (contact) => dispatch(addContact(contact))
 })
 export default connect(mapStateToProps, mapPropsToDispatch)(Contacts);

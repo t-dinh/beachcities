@@ -18,6 +18,7 @@ const initialState = {
 }
 
 const contactReducer = (state = initialState, action) => {
+  let index;
     switch (action.type) {
         case RECEIVED_CONTACT:
         return { 
@@ -38,7 +39,7 @@ const contactReducer = (state = initialState, action) => {
           }
         case EDIT_CONTACT:
           let updatedContact = action.payload;
-          let index = state.contacts.findIndex(x => x.contact_id === updatedContact.contact_id)
+          index = state.contacts.findIndex(x => x.contact_id === updatedContact.contact_id)
           return {
             ...state,
             contacts: [
@@ -48,15 +49,14 @@ const contactReducer = (state = initialState, action) => {
             ]
           }
         case DELETE_CONTACT:
-          // let deletedContactId = action.payload.contact_id;
-          // let index = state.contacts.findIndex(x => x.contact_id === deletedContactId)
+          let deletedContactId = action.payload.contact_id;
+          index = state.contacts.findIndex(x => x.contact_id === deletedContactId)
           return {
             ...state,
-            contacts: action.payload
-            // contacts: [
-              // ...state.contacts.slice(0, index),
-              // ...state.contacts.slice(index + 1)
-            // ]
+            contacts: [
+             ...state.contacts.slice(0, index),
+             ...state.contacts.slice(index + 1)
+           ]
           }
     
     
