@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-// import NewProjectForm from '../forms/newEmployeeForm';
+import NewProjectForm from '../forms/newProjectForm';
 import { connect } from 'react-redux';
-import { getProjects } from '../../redux/actions/index';
+import { getProjects, addProject } from '../../redux/actions/index';
 // import ProjectUpdateForm from '../forms/ProjectUpdateForm'
 
 class Projects extends Component {
 
     state = {
-        isChecked : false
+        isChecked: false
     }
     componentDidMount() {
         this.props.getProjects();
@@ -33,13 +33,14 @@ class Projects extends Component {
 
     render() {
         return (
-            <div>
+            <div className="containter">
                 <div className="nav"><a href="#addProjectModal" className="btn btn-success" data-toggle="modal">
                     <i className="material-icons">&#xE147;</i> <span>Add New project</span></a>
                     <a href="#updateProjectModal" className="btn btn-success" data-toggle="modal" onClick={this.popId}>
                         <i className="material-icons">&#xE147;</i> <span>Update project</span></a>
                     <a href="#deleteProjectModal" className="btn btn-danger" data-toggle="modal"><i className="material-icons">&#xE15C;</i> <span>Delete
                 </span></a></div>
+                <h1> Projects </h1>
                 <div className="tableBox">
                     {/* what gets rendered in this table will come from the database */}
                     <table className="table">
@@ -57,6 +58,7 @@ class Projects extends Component {
                             <th>Actual Cost</th>
                             <th>Comments</th>
                             <th>Satisfaction</th>
+                            <th>Update</th>
                         </tr>
                         {
                             this.props.projects.projects.map(projects => (
@@ -106,10 +108,10 @@ class Projects extends Component {
                         </div>
                     </div>
                 </div>
+                <NewProjectForm
+                addProjectEmployee={this.props.addProject()}
+            />
             </div>
-
-
-
 
 
         );
@@ -121,5 +123,6 @@ const mapStateToProps = state => ({
 
 const mapPropsToDispatch = dispatch => ({
     getProjects: () => dispatch(getProjects()),
+    addProject: (project) => dispatch(addProject(project))
 })
 export default connect(mapStateToProps, mapPropsToDispatch)(Projects);
