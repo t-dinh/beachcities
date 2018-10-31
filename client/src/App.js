@@ -48,8 +48,7 @@ class App extends Component {
             {/* <Calendar/>   */}
             {/* <Projects /> */}
 
-            {/* <Calendar/> */}
-            <Login />
+            {/* <Calendar/> */}l l
             
       </div>
     );
