@@ -1,5 +1,9 @@
 
 import React, { Component } from 'react';
+
+// import { Switch, Route } from 'react-router-dom';
+// import Contacts from './components/pages/contacts';
+// import Bids from './components/pages/bids';
 import { Switch, Route } from 'react-router-dom';
 import Contacts from './components/pages/contacts';
 import Bids from './components/pages/bids';
@@ -38,6 +42,8 @@ class App extends Component {
             <Route path="/update" render={() => <EmployeeUpdateForm /> } />
       
             </Switch>    
+            {/* <Calendar/>   */}
+            {/* <Projects /> */}
 
             {/* <Calendar/> */}
             {/* <Login /> */}

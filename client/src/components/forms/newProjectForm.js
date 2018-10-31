@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { addProject } from '../../redux/actions/index';
+import { connect } from 'react-redux';
 
 class NewProjectForm extends Component {
     state = {
@@ -98,7 +100,7 @@ class NewProjectForm extends Component {
 
     onClick = e => {
         e.preventDefault();
-        this.props.addNewProject(this.state);
+        this.props.addProject(this.state);
         this.setState({
             address: '',
             city: '',
@@ -234,6 +236,8 @@ class NewProjectForm extends Component {
     }
 
 }
-
+const mapDispatchToProps = dispatch => ({
+    addProject: Project => dispatch(addProject(Project))
+})
                     
-export default NewProjectForm;
+export default connect(null, mapDispatchToProps)(NewProjectForm);
