@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // import { Switch, Route } from 'react-router-dom';
 // import Contacts from './components/pages/contacts';
 // import Bids from './components/pages/bids';
-// import Projects from './components/pages/projects'
+import Projects from './components/pages/projects'
 import Login from './components/login';
 import Employees from './components/pages/employees';
 // import EmployeeUpdateForm from './components/forms/EmployeeUpdateForm';
@@ -38,7 +38,7 @@ class App extends Component {
 
             <Calendar/>   */}
             <Login />
-            <Employees />
+            <Projects />
       </div>
     );
   }

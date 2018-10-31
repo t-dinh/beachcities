@@ -49,7 +49,7 @@ CREATE TABLE Project(
     materials       varchar(500),
     actual_cost     varchar(50),
     comments        varchar(500),
-    satisfaction   varchar(500),
+    satisfaction    varchar(500),
     contact_id      int REFERENCES Contact (contact_id)
 );
 
