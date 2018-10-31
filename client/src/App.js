@@ -47,7 +47,7 @@ class App extends Component {
 
             {/* <Calendar/> */}
             {/* <Login /> */}
-            <EmployeeUpdateForm />
+            
       </div>
     );
   }

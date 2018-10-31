@@ -70,7 +70,7 @@ state={
                                     <td>{employees.city}</td>
                                     <td>{employees.status}</td>
                                     <td>{employees.comments}</td>
-                                    <td><Link to ="/update"><button className="btn btn-primary">update</button></Link></td>
+                                    <td><Link to ={{pathname: "/update", state: {employee: employees.employee_id}}}><button id={employees.employee_id} className="btn btn-primary">update</button></Link></td>
 
                                 </tr>
                             )
@@ -98,7 +98,7 @@ state={
                 <NewEmployeeForm
                     addNewEmployee={this.props.addEmployee()}
                 />
-                <EmployeeUpdateForm />
+                
             </div>
 
             
