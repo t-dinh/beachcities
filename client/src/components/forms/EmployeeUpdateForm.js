@@ -1,113 +1,65 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Field } from 'redux-form';
 import { connect } from 'react-redux';
-import { editEmployee , getEmployees} from '../../redux/actions/index';
+import { Redirect } from 'react-router';
+import { editEmployee, getEmployees } from '../../redux/actions/index';
 
 class EmployeeUpdateForm extends Component {
     state = {
-        name: "",
-        phone: "",
-        email: "",
-        address: "",
-        city: "",
-        zip: "",
-        status: "",
-        comments: ""
+        employee: {
+            name: this.props.employee.name,
+            phone: this.props.employee.phone,
+            email: this.props.employee.email,
+            address: this.props.employee.address,
+            city: this.props.employee.city,
+            zip: this.props.employee.zip,
+            status: this.props.employee.status,
+            comments: this.props.employee.comments,
+            project_id: this.props.employee.project_id,
+            project: this.props.employee.project
+        },
+        redirect: false
     }
-componentDidMount() {
-    // console.log(this.props.location.state);
-    this.props.getEmployees();
 
-    console.log('employee: ', this.props.employee);
+    componentDidMount() {
 
-}
+    }
 
-    onNameChange = event => {
+    onClick = (e) => {
+        // console.log("id from onclick: ", id);
+        let id = this.props.employee.employee_id;
+        this.props.editEmployee(id, this.state.employee);
         this.setState({
-            name: event.target.value
-        })
-    }
-
-    onEmailChange = () => {
-        console.log('on name change');
-    }
-
-    onPhoneChange = () => {
-        console.log('on name change');
-    }
-
-    onAddressChange = () => {
-        console.log('on name change');
-    }
-
-    onCityChange = () => {
-        console.log('on name change');
-    }
-
-    onStatusChange = () => {
-        console.log('on name change');
-    }
-
-    onCommentsChange = () => {
-        console.log('on name change');
-    }
-
-    updateEmployee = () => {
-        let employee = {
-            "name": this.state.name,
-            "phone": this.state.phone,
-            "email": this.state.email,
-            "address": this.state.address,
-            "city": this.state.city,
-            "zip": this.state.zip,
-            "status": this.state.status
-        }
-        console.log("update employee")
-        console.log({employee})
-        if (this.state.isChecked == true) {
-            let res = axios.put(`http://localhost:5000/api/employees/${this.state.employees.employee_id}`, employee)
-        }
-    }
-
-    onClick = e => {
-        e.preventDefault();
-        this.updateEmployee(this.state);
-        this.setState({
-            name: '',
-            phone: '',
-            email: '',
-            address: '',
-            city: '',
-            zip: '',
-            status: '',
-            comments: ''
+           redirect: true
         });
-        // this.grabEmployee();
-        console.log("end of onClick");
     }
 
     render() {
-        // console.log(this.props.location.state.data);
+        const { redirect } = this.state
+        console.log(this.props.employee);
+
+        if (redirect) return (<Redirect to="/employee" />)
         return (
             <div>
                 <div className="header">
                     <h1>Edit employee</h1>
                 </div>
                 <label>Name</label>
-                <input type="text" className="form-control" id={this.props.employee_id} defaultValue={this.props.employee.name}
-                    onChange={this.onNameChange} />
-                     <label>Name</label>
-                <input type="text" className="form-control" 
-                    onChange={this.onPhoneChange} />
-                     <label>Name</label>
-                <input type="text" className="form-control" 
-                    onChange={this.onEmailChange} />
-                     <label>Name</label>
-                <input type="text" className="form-control" 
-                    onChange={this.onAdressChange} />
-                <input type="submit" className="btn btn-info" value="Save" onClick={(employee) => this.props.editEmployee(employee)} />
+                <input type="text" className="form-control" id="name" value={this.state.employee.name}
+                    onChange={(e) => this.setState({ employee: { ...this.state.employee, name: e.target.value } })} />
+                <label>Name</label>
+                <input type="text" className="form-control" value={this.state.employee.phone}
+                    onChange={(e) => this.setState({ employee: {...this.state.employee, phone: e.target.value }})} />
+                <label>Name</label>
+                <input type="text" className="form-control" value={this.state.employee.email}
+                    onChange={(e) => this.setState({ employee: {...this.state.employee, email: e.target.value }})} />
+                <label>Name</label>
+                <input type="text" className="form-control" value={this.state.employee.address}
+                    onChange={(e) => this.setState({ employee: {...this.state.employee, address: e.target.value }})} />
+                <input type="submit" className="btn btn-info" value="Save" onClick={(e) => this.onClick(e)} />
             </div>
-        
+
 
             // <div id="updateEmployeeModal" className="modal fade">
             //     <div className="modal-dialog">
@@ -164,6 +116,6 @@ const mapStateToProps = state => ({
 })
 const mapPropsToDispatch = dispatch => ({
     getEmployees: () => dispatch(getEmployees()),
-    editEmployee: (employee) => dispatch(editEmployee(employee))
+    editEmployee: (id, employee) => dispatch(editEmployee(id, employee))
 })
 export default connect(mapStateToProps, mapPropsToDispatch)(EmployeeUpdateForm);

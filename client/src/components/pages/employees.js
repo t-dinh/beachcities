@@ -86,7 +86,7 @@ state={
                                     <td>{employees.city}</td>
                                     <td>{employees.status}</td>
                                     <td>{employees.comments}</td>
-                                    <td>>
+                                    <td>
                                         <button id={employees.employee_id} className="btn btn-primary" onClick={() => this.onSendEmployee(employees)}>update</button>
 
                                     </td>
