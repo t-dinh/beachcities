@@ -41,11 +41,11 @@ class App extends Component {
 
             {/* <Calendar/> */}
             {/* <Login /> */}
-            {/* <Employees /> */}
+            <EmployeeUpdateForm />
       </div>
     );
   }
 }
 
 export default App;
-;
+
