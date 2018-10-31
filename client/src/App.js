@@ -18,6 +18,7 @@ import EmployeeUpdateForm from './components/forms/EmployeeUpdateForm';
 // import Calendar from 'react-calendar';
 import Navbar from './components/navbar';
 import './App.css';
+import ContactUpdateForm from './components/forms/ContactUpdateForm';
 
   
 class App extends Component {
@@ -47,6 +48,7 @@ class App extends Component {
 
             {/* <Calendar/> */}
             {/* <Login /> */}
+            <ContactUpdateForm />
             <EmployeeUpdateForm />
       </div>
     );
