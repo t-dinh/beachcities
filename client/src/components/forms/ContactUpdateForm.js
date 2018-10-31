@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { editContact , getContacts} from '../../redux/actions/index';
 
 class ContactUpdateForm extends Component {
     state = {
@@ -12,6 +14,11 @@ class ContactUpdateForm extends Component {
         status: "",
         comments: ""
     }
+    componentDidMount() {
+        this.props.getContacts();
+
+        console.log('contact:', this.props.contact);
+    }
 
     onNameChange = event => {
         this.setState({
@@ -19,27 +26,45 @@ class ContactUpdateForm extends Component {
         })
     }
 
-    onEmailChange = () => {
+    onEmailChange = (event) => {
+        this.setState({
+            email: event.target.value
+        })
         console.log('on name change');
     }
 
-    onPhoneChange = () => {
+    onPhoneChange = (event) => {
+        this.setState({
+            phone: event.target.value
+        })
         console.log('on name change');
     }
 
-    onAddressChange = () => {
+    onAddressChange = (event) => {
+        this.setState({
+            address: event.target.value
+        })
         console.log('on name change');
     }
 
-    onCityChange = () => {
+    onCityChange = (event) => {
+        this.setState({
+            city: event.target.value
+        })
         console.log('on name change');
     }
 
-    onStatusChange = () => {
+    onStatusChange = (event) => {
+        this.setState({
+            status: event.target.value
+        })
         console.log('on name change');
     }
 
-    onCommentsChange = () => {
+    onCommentsChange = (event) => {
+        this.setState({
+            comments: event.target.value
+        })
         console.log('on name change');
     }
 
@@ -81,25 +106,25 @@ class ContactUpdateForm extends Component {
         // let employee = this.props.data
         // console.log('employee:', employee);
         return (
-        //     <div>
-        //         <div className="header">
-        //             <h1>Edit employee</h1>
-        //         </div>
-        //         <label>Name</label>
-        //         <input type="text" className="form-control" defaultValue={employee.name}
-        //             onChange={this.onNameChange} />
-        //              <label>Name</label>
-        //         <input type="text" className="form-control" value={employee.phone}
-        //             onChange={this.onPhoneChange} />
-        //              <label>Name</label>
-        //         <input type="text" className="form-control" value={employee.email}
-        //             onChange={this.onEmailChange} />
-        //              <label>Name</label>
-        //         <input type="text" className="form-control" value={employee.address}
-        //             onChange={this.onAdressChange} />
-        //         <input type="submit" className="btn btn-info" value="Save" onClick={() => this.updateEmployee()} />
-        //     </div>
-        <div></div>
+            <div>
+                <div className="header">
+                    <h1>Edit employee</h1>
+                </div>
+                <label>Name</label>
+                <input type="text" className="form-control" id={this.props.contact_id} defaultValue={this.props.contact.name}
+                    onChange={this.onNameChange} />
+                     <label>Name</label>
+                <input type="text" className="form-control" id={this.props.contact_id} defaultValue={this.props.contact.phone}
+                    onChange={this.onPhoneChange} />
+                     <label>Name</label>
+                <input type="text" className="form-control" id={this.props.contact_id} defaultValue={this.props.contact.email}
+                    onChange={this.onEmailChange} />
+                     <label>Name</label>
+                <input type="text" className="form-control" id={this.props.contact_id} defaultValue={this.props.contact.address}
+                    onChange={this.onAdressChange} />
+                <input type="submit" className="btn btn-info" value="Save" onClick={() => this.updateEmployee()} />
+            </div>
+        
 
             // <div id="updateEmployeeModal" className="modal fade">
             //     <div className="modal-dialog">
@@ -154,4 +179,12 @@ class ContactUpdateForm extends Component {
 //     employees: state.employeeReducer.employees
 // })
 
-export default ContactUpdateForm;
+const mapStateToProps = state => ({
+    contacts: state.contactReducer.contacts,
+    contact: state.contactReducer.editingObject
+})
+const mapPropsToDispatch = dispatch => ({
+    getContacts: () => dispatch(getContacts()),
+    editContact: (contact) => dispatch(editContact(contact))
+})
+export default connect(mapStateToProps, mapPropsToDispatch)(ContactUpdateForm);

@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import NewContactForm from '../forms/newContactForm';
 import { connect } from 'react-redux';
-import { getContacts, deleteContact, addContact } from '../../redux/actions/index';
+import { getContacts, deleteContact, addContact,storeContact } from '../../redux/actions/index';
 import ContactUpdateForm from '../forms/ContactUpdateForm'
+import { Redirect } from 'react-router';
+
 
 class Contacts extends Component {
     state = {
         isChecked: false,
-        checkedId: []
+        checkedId: [],
+        redirect: false
     }
     componentWillMount() {
         this.props.getContacts();
@@ -30,7 +33,17 @@ class Contacts extends Component {
         console.log(this.state.checkedId);
     }
 
+    onSendContact(contact){
+        console.log('onsendcontact');
+        console.log(contact);
+        this.props.storeContact(contact);
+        this.setState({
+            redirect: true
+        })
+    }
     render() {
+        const { redirect } = this.state
+        if(redirect) return (<Redirect to="/update" />)
         return (
             <div className="container">
                 <div className="nav"><a href="#addContactModal" className="btn btn-success" data-toggle="modal">
@@ -70,7 +83,7 @@ class Contacts extends Component {
                                     <td>{contacts.city}</td>
                                     <td>{contacts.status}</td>
                                     <td>{contacts.comments}</td>
-                                    <td><Link to="/update"><button className="btn btn-primary">update</button></Link></td>
+                                    <button id={contacts.contact_id} className="btn btn-primary" onClick={() => this.onSendContact(contacts)}>update</button>
 
                                 </tr>
                             )
@@ -118,6 +131,7 @@ const mapStateToProps = state => ({
 const mapPropsToDispatch = dispatch => ({
     getContacts: () => dispatch(getContacts()),
     deleteContact: (id) => dispatch(deleteContact(id)),
-    addContact: (contact) => dispatch(addContact(contact))
+    addContact: (contact) => dispatch(addContact(contact)),
+    storeContact: (contact) => dispatch(storeContact(contact))
 })
 export default connect(mapStateToProps, mapPropsToDispatch)(Contacts);
