@@ -60,52 +60,6 @@ class EmployeeUpdateForm extends Component {
                 <input type="submit" className="btn btn-info" value="Save" onClick={(e) => this.onClick(e)} />
             </div>
 
-
-            // <div id="updateEmployeeModal" className="modal fade">
-            //     <div className="modal-dialog">
-            //         <div className="modal-content">
-            //             <form>
-            //                 <div className="modal-header">
-            //                     <h4 className="modal-title">Edit Employee</h4>
-            //                 </div>
-            //                 <div className="modal-body">
-            //                     <div className="form-group">
-            //                         <label>Name</label>
-            //                         <input type="text" className="form-control" id="name" value={employee.name}
-            //                             onChange={this.onNameChange} />
-            //                     </div>
-            //                     <div className="form-group">
-            //                         <label>Email</label>
-            //                         <input type="text" className="form-control" value="Email"
-            //                             onChange={this.onEmailChange} />                  </div>
-            //                     <div className="form-group">
-            //                         <label>Phone</label>
-            //                         <input type="text" className="form-control" value="Phone"
-            //                             onChange={this.onPhoneChange} />                  </div>
-            //                     <div className="form-group">
-            //                         <label>Address</label>
-            //                         <input type="text" className="form-control" value="Address"
-            //                             onChange={this.onAddressChange} />                  </div>
-            //                     <div className="form-group">
-            //                         <label>City</label>
-            //                         <input type="text" className="form-control" value="City"
-            //                             onChange={this.onCityChange} />                  </div>
-            //                     <div className="form-group">
-            //                         <label>Status</label>
-            //                         <input type="text" className="form-control" value="Status"
-            //                             onChange={this.onStatusChange} />                  </div>
-            //                     <div className="form-group">
-            //                         <label>Comment</label>
-            //                         <input type="text" className="form-control" value="comments" onChange={this.onCommentsChange} required />                  </div>
-            //                 </div>
-            //                 <div className="modal-footer">
-            //                     <input type="button" className="btn btn-default" data-dismiss="modal" onClick={() => this.setState({ checkedId: [] })} value="Cancel" />
-            //                     <input type="submit" className="btn btn-info" value="Save" onClick={() => this.updateEmployee()} />
-            //                 </div>
-            //             </form>
-            //         </div>
-            //     </div>
-            // </div>
         );
     }
 }

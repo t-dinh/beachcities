@@ -75,11 +75,14 @@ export const addProject = (project) => dispatch =>
 export const storeProject = (project) => dispatch =>
     dispatch({ type: STORE_PROJECT, payload: project})
 
-export const editProject = (project) => dispatch =>
-  axios.put(`http://localhost:5000/api/projects/${project.project_id}`, project)
-    .then(res => {
-      dispatch({ type: EDIT_PROJECT, payload: res.data })
-    })
+    export const editProject = (id, project) => dispatch => {
+      console.log('editing the project');
+      console.log(project);
+    axios.put(`http://localhost:5000/api/projects/${id}`, project)
+      .then(res => {
+        dispatch({ type: EDIT_PROJECT, payload: res.data })
+      })
+    }
 
 export const deleteProject = (id) => dispatch =>
   axios.delete(`http://localhost:5000/api/projects/${id}`)

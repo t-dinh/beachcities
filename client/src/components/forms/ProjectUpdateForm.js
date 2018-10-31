@@ -1,32 +1,45 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Field } from 'redux-form';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router';
 import { editProject, getProjects } from '../../redux/actions/index';
 
 class ProjectUpdateForm extends Component {
     state = {
-        address: '',
-        city: '',
-        zip: '',
-        est_cost: '',
-        est_finish: '',
-        start_date: '',
-        end_date: '',
-        materials: '',
-        actual_cost: '',
-        comments: '',
-        satisfaction:'',
-        contact: {
-            name: '',
+        project: {
+        address: this.props.project.address,
+        city: this.props.project.city,
+        zip: this.props.project.zip,
+        est_cost: this.props.project.est_cost,
+        est_finish: this.props.project.est_finish,
+        start_date: this.props.project.start_date,
+        end_date: this.props.project.end_date,
+        materials: this.props.project.materials,
+        actual_cost: this.props.project.actual_cost,
+        comments: this.props.project.comments,
+        satisfaction: this.props.project.satisfaction,
+        // contact: {
+        //     // name: this.props.project.contact.name
+        // }
         },
+        redirect: false
     }
     componentDidMount() {
-        this.props.getProjects();
+        // this.props.getProjects();
 
-        console.log('project: ', this.props.project);
+        // console.log('project: ', this.props.project);
 
     }
 
+    onClick = (e) => {
+        // console.log("id from onclick: ", id);
+        let id = this.props.project.project_id;
+        this.props.editProject(id, this.state.project);
+        this.setState({
+           redirect: true
+        });
+    }
     onNameChange = event => {
         this.setState({
             name: event.target.value
@@ -40,94 +53,58 @@ class ProjectUpdateForm extends Component {
            });
          }
 
-    updateProject = () => {
-        let project = {
-            "address": this.state.address,
-            "city": this.state.city,
-            "est_cost": this.state.est_cost,
-            "est_finish" : this.state.est_finish,
-            "start_date" : this.state.start_date,
-            "end_date" : this.state.end_date,
-            "materials" : this.state.materials,
-            "actual_cost" : this.state.actual_cost,
-            "comments" : this.state.comments,
-            "satisfaction" : this.state.satisfaction
-        }
-        console.log("update project")
-        console.log({ project })
-        if (this.state.isChecked === true) {
-            let res = axios.put(`http://localhost:5000/api/projects/${this.state.projects.project_id}`, project)
-        }
-    }
-
-    onClick = e => {
-        e.preventDefault();
-        this.updateProject(this.state);
-        this.setState({
-            address: '',
-            city: '',
-            zip: '',
-            est_cost: '',
-            est_finish: '',
-            start_date: '',
-            end_date: '',
-            materials: '',
-            actual_cost: '',
-            comments: '',
-            satisfaction:''
-        });
-        // this.grabProject();
-        console.log("end of onClick");
-    }
-
     render() {
         // console.log(this.props.location.state.data);
+        const { redirect } = this.state
+        console.log(this.props.project);
+
+        if (redirect) return (<Redirect to="/projects"/>)
         return (
             <div>
                 <div className="header">
                     <h1>Edit Project</h1>
                 </div>
                 <label>Address</label>
-                <input name="address" type="text" className="form-control" id={this.props.project_id} defaultValue={this.props.project.address}
-                    onChange={this.onAddressChange} />
+                <input type="text" className="form-control" id="address" value={this.state.project.address}
+                    onChange={(e) => this.setState({project: { ...this.state.project, address: e.target.value } })} />
                 
                 <label>City</label>
-                <input name="city" type="text" className="form-control" id={this.props.project_id} defaultValue={this.props.project.city}
-                    onChange={this.onPhoneChange} />
+                <input type="text" className="form-control" id="city" value={this.state.project.city}
+                    onChange={(e) => this.setState({project: { ...this.state.project, city: e.target.value } })} />
                 
                 <label>Est. Cost</label>
-                <input name="est_cost" type="text" className="form-control" id={this.props.project_id} defaultValue={this.props.project.est_cost}
-                    onChange={this.onEmailChange} />
+                <input type="text" className="form-control" id="est_cost" value={this.state.project.est_cost}
+                    onChange={(e) => this.setState({project: { ...this.state.project, est_cost: e.target.value } })} />
                 
                 <label>Est. Finish</label>
-                <input name="est_finish"  type="text" className="form-control" id={this.props.project_id} defaultValue={this.props.project.est_finish}
-                    onChange={this.onAdressChange} />
+                <input type="text" className="form-control" id="est_finish" value={this.state.project.est_finish}
+                    onChange={(e) => this.setState({project: { ...this.state.project, est_finish: e.target.value } })} />
 
                 <label>Start Date</label>
-                <input name="start_date" type="text" className="form-control" id={this.props.project_id} defaultValue={this.props.project.start_date}
-                    onChange={this.onAdressChange} />
+                <input type="text" className="form-control" id="start_date" value={this.state.project.start_date}
+                    onChange={(e) => this.setState({project: { ...this.state.project, start_date: e.target.value } })} />
 
                 <label>End Date</label>
-                <input name="end_date"  type="text" className="form-control" id={this.props.project_id} defaultValue={this.props.project.end_date}
-                    onChange={this.onAdressChange} />
+                <input type="text" className="form-control" id="end_date" value={this.state.project.end_date}
+                    onChange={(e) => this.setState({project: { ...this.state.project, end_date: e.target.value } })} />
 
                 <label>Materials</label>
-                <input name="materials" type="text" className="form-control" id={this.props.project_id} defaultValue={this.props.project.materials}
-                    onChange={this.onAdressChange} />
+                <input type="text" className="form-control" id="materials" value={this.state.project.materials}
+                    onChange={(e) => this.setState({project: { ...this.state.project, materials: e.target.value } })} />
 
                 <label>Actual Cost</label>
-                <input name="actual_cost" type="text" className="form-control" id={this.props.project_id} defaultValue={this.props.project.actual_cost}
-                    onChange={this.onAdressChange} />
+                <input type="text" className="form-control" id="actual_cost" value={this.state.project.actual_cost}
+                    onChange={(e) => this.setState({project: { ...this.state.project, actual_cost: e.target.value } })} />
 
                 <label>Comments</label>
-                <input name="comments" type="text" className="form-control" id={this.props.project_id} defaultValue={this.props.project.comments}
-                    onChange={this.onAdressChange} />
+                <input type="text" className="form-control" id="comments" value={this.state.project.comments}
+                    onChange={(e) => this.setState({project: { ...this.state.project, comments: e.target.value } })} />
 
                 <label>Satisfaction</label>
-                <input type="text" className="form-control" id={this.props.project_id} defaultValue={this.props.project.satisfaction}
-                    onChange={this.onAdressChange} />
+                <input type="text" className="form-control" id="satisfaction" value={this.state.project.satisfaction}
+                    onChange={(e) => this.setState({project: { ...this.state.project, satisfaction: e.target.value } })} />
 
-                <input type="submit" className="btn btn-info" value="Save" onClick={(project) => this.props.editProject(project)} />
+                <input type="submit" className="btn btn-info" value="Save" onClick={(e) => this.onClick(e)} />
             </div>
 
 
@@ -141,6 +118,6 @@ const mapStateToProps = state => ({
 })
 const mapPropsToDispatch = dispatch => ({
     getProjects: () => dispatch(getProjects()),
-    editProject: (project) => dispatch(editProject(project))
+    editProject: (id, project) => dispatch(editProject(id, project))
 })
 export default connect(mapStateToProps, mapPropsToDispatch)(ProjectUpdateForm);

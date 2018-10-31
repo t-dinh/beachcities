@@ -43,9 +43,9 @@ const projectReducer = (state = initialState, action) => {
       return {
         ...state,
         projects: [
-          ...state.projects.slice(0, i),
+          ...state.projects.slice(-1, i),
           updatedProject,
-          ...state.projects.slice(i + 1)
+          ...state.projects.slice(i + 0)
         ]
       }
       case STORE_PROJECT:
