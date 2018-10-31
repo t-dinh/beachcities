@@ -5,7 +5,7 @@ import { editEmployee , getEmployees} from '../../redux/actions/index';
 
 class EmployeeUpdateForm extends Component {
     state = {
-        name: this.props.employees.name,
+        name: "",
         phone: "",
         email: "",
         address: "",
@@ -15,8 +15,10 @@ class EmployeeUpdateForm extends Component {
         comments: ""
     }
 componentDidMount() {
-    console.log(this.props.location && this.props.location.state);
+    // console.log(this.props.location.state);
     this.props.getEmployees();
+
+    console.log('employee: ', this.props.employee);
 
 }
 
@@ -85,15 +87,14 @@ componentDidMount() {
     }
 
     render() {
-        // let employee = this.props.data
-        // console.log('employee:', employee);
+        // console.log(this.props.location.state.data);
         return (
             <div>
                 <div className="header">
                     <h1>Edit employee</h1>
                 </div>
                 <label>Name</label>
-                <input type="text" className="form-control" id={this.props.employee_id} initialState={this.props.employees.name}
+                <input type="text" className="form-control" id={this.props.employee_id} defaultValue={this.props.employee.name}
                     onChange={this.onNameChange} />
                      <label>Name</label>
                 <input type="text" className="form-control" 
@@ -158,7 +159,8 @@ componentDidMount() {
 }
 
 const mapStateToProps = state => ({
-    employees: state.employeeReducer.employees
+    employees: state.employeeReducer.employees,
+    employee: state.employeeReducer.editingObject
 })
 const mapPropsToDispatch = dispatch => ({
     getEmployees: () => dispatch(getEmployees()),

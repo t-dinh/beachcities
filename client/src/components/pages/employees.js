@@ -2,36 +2,52 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import NewEmployeeForm from '../forms/newEmployeeForm';
 import { connect } from 'react-redux';
-import { getEmployees, deleteEmployee, addEmployee } from '../../redux/actions/index';
+import { getEmployees, deleteEmployee, addEmployee, storeEmployee } from '../../redux/actions/index';
 import EmployeeUpdateForm from '../forms/EmployeeUpdateForm'
+import { Redirect } from 'react-router';
 
 class Employees extends Component {
 state={
     isChecked: false,
-    checkedId: []
+    checkedId: [],
+    redirect: false
 }
 
     componentDidMount() {
         this.props.getEmployees();
     }
 
-        handleInputChange = e => {
-            const checkedId = this.state.checkedId
-            let index
-            if (e.target.checked) {
-                checkedId.push(+e.target.id)
-            } else {
-                index = checkedId.indexOf(+e.target.id)
-                checkedId.splice(index, 1)
-            }
-            this.setState({
-                checkedId: checkedId,
-                isChecked: e.target.checked
-            });
-            console.log(this.state.checkedId);
+    handleInputChange = e => {
+        const checkedId = this.state.checkedId
+        let index
+        if (e.target.checked) {
+            checkedId.push(+e.target.id)
+        } else {
+            index = checkedId.indexOf(+e.target.id)
+            checkedId.splice(index, 1)
         }
+        this.setState({
+            checkedId: checkedId,
+            isChecked: e.target.checked
+        });
+        console.log(this.state.checkedId);
+    }
+
+    onSendEmployee(employee) {
+        console.log('onsendemployee');
+        console.log(employee);
+        this.props.storeEmployee(employee);
+        this.setState({
+            redirect: true
+        })
+    }
+
+
 
     render() {
+    const { redirect } = this.state
+    if (redirect) return (<Redirect to="/update" />)
+
         return (
             <div className= "container">
                 <div className="nav"><a href="#addEmployeeModal" className="btn btn-success" data-toggle="modal">
@@ -70,7 +86,10 @@ state={
                                     <td>{employees.city}</td>
                                     <td>{employees.status}</td>
                                     <td>{employees.comments}</td>
-                                    <td><Link to ={{pathname: "/update", state: {employee: employees.employee_id}}}><button id={employees.employee_id} className="btn btn-primary">update</button></Link></td>
+                                    <td>>
+                                        <button id={employees.employee_id} className="btn btn-primary" onClick={() => this.onSendEmployee(employees)}>update</button>
+
+                                    </td>
 
                                 </tr>
                             )
@@ -114,6 +133,7 @@ const mapStateToProps = state => ({
 const mapPropsToDispatch = dispatch => ({
     getEmployees: () => dispatch(getEmployees()),
     deleteEmployee: (id) => dispatch(deleteEmployee(id)),
-    addEmployee: (employee) => dispatch(addEmployee(employee))
+    addEmployee: (employee) => dispatch(addEmployee(employee)),
+    storeEmployee: (employee) => dispatch(storeEmployee(employee))
 })
 export default connect(mapStateToProps, mapPropsToDispatch)(Employees);

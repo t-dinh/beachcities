@@ -15,7 +15,8 @@ import {
   DELETE_BID,
   EDIT_BID,
   FETCH_EMPLOYEE,
-  FETCH_CONTACT
+  FETCH_CONTACT,
+  STORE_EMPLOYEE
 } from '../constants'
 import axios from 'axios';
 
@@ -31,6 +32,9 @@ export const addEmployee = (employee) => dispatch =>
     .then(res => {
       dispatch({ type: ADD_EMPLOYEE, payload: res.data })
     });
+
+export const storeEmployee = (employee) => dispatch =>
+    dispatch({ type: STORE_EMPLOYEE, payload: employee})
 
 export const editEmployee = (employee) => dispatch =>
   axios.put(`http://localhost:5000/api/employees/${employee.employee_id}`, employee)

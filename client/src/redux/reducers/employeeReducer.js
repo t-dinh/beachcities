@@ -3,7 +3,8 @@ import {
     DELETE_EMPLOYEE,
     EDIT_EMPLOYEE,
     FETCH_EMPLOYEE,
-    RECEIVED_EMPLOYEE
+    RECEIVED_EMPLOYEE,
+    STORE_EMPLOYEE
   } from '../constants'
   
   
@@ -13,7 +14,8 @@ import {
     employees: [],
     projects: [],
     bids: [],
-    contacts: []
+    contacts: [],
+    editingObject: {}
   }
   
   const employeeReducer = (state = initialState, action) => {
@@ -45,6 +47,11 @@ import {
             updatedEmployee,
             ...state.employees.slice(i + 1)
           ]
+        }
+        case STORE_EMPLOYEE:
+        return {
+          ...state,
+          editingObject: action.payload
         }
       case DELETE_EMPLOYEE:
         // let deletedEmployeeId = action.payload.employee_id;
