@@ -16,10 +16,16 @@ import {
   EDIT_CONTACT,
   FETCH_CONTACT,
   RECEIVED_CONTACT,
+  STORE_CONTACT,
 
   ADD_BID,
   DELETE_BID,
   EDIT_BID,
+<<<<<<< HEAD
+
+ 
+=======
+>>>>>>> 27fd6f2be852f45825c83e0d99ff15ae95dbaa05
   STORE_EMPLOYEE
 } from '../constants'
 import axios from 'axios';
@@ -115,6 +121,9 @@ export const getContacts = () => dispatch =>
       .then(res => {
         dispatch({ type: EDIT_CONTACT, payload: res.data })
       })
+
+   export const storeContact = (contact) => dispatch =>
+    dispatch({ type: STORE_CONTACT, payload: contact})
   
   export const deleteContact = (id) => dispatch =>
     axios.delete(`http://localhost:5000/api/contacts/${id}`)
