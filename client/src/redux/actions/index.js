@@ -9,7 +9,7 @@ import {
   DELETE_PROJECT,
   EDIT_PROJECT,
   FETCH_PROJECT,
-  RECEIVED_PROJECT,
+  STORE_PROJECT,
 
   ADD_CONTACT,
   DELETE_CONTACT,
@@ -20,8 +20,6 @@ import {
   ADD_BID,
   DELETE_BID,
   EDIT_BID,
-  FETCH_EMPLOYEE,
-  FETCH_CONTACT,
   STORE_EMPLOYEE
 } from '../constants'
 import axios from 'axios';
@@ -57,28 +55,6 @@ export const deleteEmployee = (id) => dispatch => {
     })};
 
 
-// export const getEmployees = (employees) => dispatch => {
-//   dispatch({ type: FETCH_EMPLOYEE });
-
-//   axios.get(`https://localhost:5000/api/employees`) 
-//       .then(res => {
-//           console.log(res.data);
-//           let employees = res.data.employees.map(employee => ({
-//               employee_id: employee.employee_id,
-//               name: employee.name,
-//               phone: employee.phone,
-//               email: employee.email,
-//               address: employee.address,
-//               city: employee.city,
-//               status: employee.status
-//           }))
-//           dispatch({ type: FETCH_EMPLOYEE, payload: employees })
-//       });
-// }
-
-
-// export const sendData = data => ({ type: ADD_EMPLOYEE, payload: data })
-
 export const getProjects = () => dispatch => {
 console.log("hello");
   axios.get("http://localhost:5000/api/projects")
@@ -103,6 +79,9 @@ export const deleteProject = (id) => dispatch =>
     .then(res => {
       dispatch({ type: DELETE_PROJECT, payload: res.data })
     });
+
+    export const storeProject = (project) => dispatch =>
+    dispatch({ type: STORE_PROJECT, payload: project})
 
 // export const ADD_EMPLOYEE
 // export const DELETE_EMPLOYEE
