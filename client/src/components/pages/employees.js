@@ -3,11 +3,14 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import NewEmployeeForm from '../forms/newEmployeeForm';
 import { connect } from 'react-redux';
-import { getEmployees } from '../../redux/actions/index';
+import { getEmployees, deleteEmployee } from '../../redux/actions/index';
 import EmployeeUpdateForm from '../forms/EmployeeUpdateForm'
 
 class Employees extends Component {
-
+state={
+    isChecked: false,
+    checkedId: []
+}
 
     componentDidMount() {
         this.props.getEmployees();
@@ -31,21 +34,21 @@ class Employees extends Component {
     //         });
     //     }
 
-    //     handleInputChange = e => {
-    //         const checkedId = this.state.checkedId
-    //         let index
-    //         if (e.target.checked) {
-    //             checkedId.push(+e.target.id)
-    //         } else {
-    //             index = checkedId.indexOf(+e.target.id)
-    //             checkedId.splice(index, 1)
-    //         }
-    //         this.setState({
-    //             checkedId: checkedId,
-    //             isChecked: e.target.checked
-    //         });
-    //         console.log(this.state.checkedId);
-    //     }
+        handleInputChange = e => {
+            const checkedId = this.state.checkedId
+            let index
+            if (e.target.checked) {
+                checkedId.push(+e.target.id)
+            } else {
+                index = checkedId.indexOf(+e.target.id)
+                checkedId.splice(index, 1)
+            }
+            this.setState({
+                checkedId: checkedId,
+                isChecked: e.target.checked
+            });
+            console.log(this.state.checkedId);
+        }
 
 
 
@@ -112,21 +115,18 @@ class Employees extends Component {
     //         })
     //         console.log(e.name)
     //     }
-    //     deleteEmployee = async employee => {
-    //         console.log('delete employee');
-    //         for (var i = 0; i < this.state.checkedId.length; i++) {
-    //             let res = await axios.delete("http://localhost:5000/api/employees/" + this.state.checkedId[i]);
-    //             console.log("res: ", res.data);
-    //         }
-    //     }
-    //  checkwhatever = e => {
-    //      console.log(this.state.employee_id)
-    //  }
-    //     checkstate = e => { console.log(this.state.checkedId) }
+        // deleteEmployee = async employee => {
+        //     console.log('delete employee');
+        //     for (var i = 0; i < this.state.checkedId.length; i++) {
+        //         let res = await axios.delete("http://localhost:5000/api/employees/" + this.state.checkedId[i]);
+        //         console.log("res: ", res.data);
+        //     }
+        // }
+
 
     render() {
         return (
-            <div>
+            <div className= "container">
                 <div className="nav"><a href="#addEmployeeModal" className="btn btn-success" data-toggle="modal">
                     <i className="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
                     <a href="#updateEmployeeModal" className="btn btn-success" data-toggle="modal" onClick={this.popId}>
@@ -150,11 +150,11 @@ class Employees extends Component {
 
                                 <tr>
                                     <td>
-                                        {/* <input className="checkbox" type="checkbox"
+                                        <input className="checkbox" type="checkbox"
                                             value={this.state.isChecked}
                                             id={employees.employee_id}
                                             onChange={this.handleInputChange.bind(this)}>
-                                        </input> */}
+                                        </input>
                                     </td>
                                     <td>{employees.name}</td>
                                     <td>{employees.phone}</td>
@@ -182,7 +182,7 @@ class Employees extends Component {
                                 </div>
                                 <div className="modal-footer">
                                     <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel" />
-                                    <input type="submit" className="btn btn-success" value="Delete" onClick={this.deleteEmployee} />
+                                    <input type="submit" className="btn btn-success" value="Delete" onClick={this.props.deleteEmployee(this.state.checkedId)} />
                                 </div>
                             </form>
                         </div>
@@ -215,5 +215,6 @@ const mapStateToProps = state => ({
 
 const mapPropsToDispatch = dispatch => ({
     getEmployees: () => dispatch(getEmployees()),
+    deleteEmployee: id => dispatch(deleteEmployee(id))
 })
 export default connect(mapStateToProps, mapPropsToDispatch)(Employees);

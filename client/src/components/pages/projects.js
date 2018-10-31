@@ -8,121 +8,28 @@ import { getProjects } from '../../redux/actions/index';
 
 class Projects extends Component {
 
-
+    state = {
+        isChecked : false
+    }
     componentDidMount() {
         this.props.getProjects();
     }
+    handleInputChange = e => {
+        const checkedId = this.state.checkedId
+        let index
+        if (e.target.checked) {
+            checkedId.push(+e.target.id)
+        } else {
+            index = checkedId.indexOf(+e.target.id)
+            checkedId.splice(index, 1)
+        }
+        this.setState({
+            checkedId: checkedId,
+            isChecked: e.target.checked
+        });
+        console.log(this.state.checkedId);
+    }
 
-
-
-    //     editOn = (project, event) => {
-    //         console.log('event target:', event.target);
-    //         console.log(project);
-    //         // this.setState({
-    //         //     editingProject: this.state.projects[index],
-    //         //     isEditing: !this.state.isEditing,
-    //         //     editingIndex: index
-    //         // })
-
-    //         // event.target.setAttribute("data-toggle", "modal");
-    //         this.setState({
-    //             isEditing: true,
-    //             editingProject: project
-    //         });
-    //     }
-
-    //     handleInputChange = e => {
-    //         const checkedId = this.state.checkedId
-    //         let index
-    //         if (e.target.checked) {
-    //             checkedId.push(+e.target.id)
-    //         } else {
-    //             index = checkedId.indexOf(+e.target.id)
-    //             checkedId.splice(index, 1)
-    //         }
-    //         this.setState({
-    //             checkedId: checkedId,
-    //             isChecked: e.target.checked
-    //         });
-    //         console.log(this.state.checkedId);
-    //     }
-
-
-
-    //     grabProject = async data => {
-    //         console.log('grab project invoked');
-    //         let res = await axios.get('http://localhost:5000/api/projects')
-    //         this.setState({
-    //             projects: res.data
-    //         })
-
-
-    //     }
-    //     addNewProject = async project => {
-    //         console.log('add new project invoked');
-    //         let res = await axios.post('http://localhost:5000/api/projects', project); // res.data => new project object
-
-    //         console.log("res: ", res.data);
-    //         if (res.data) {
-    //             this.setState({
-    //                 projects: [...this.state.projects, res.data]
-    //             });
-    //         }
-    //     }
-    //     deleteProject = async project => {
-    //         console.log('delete project');
-    //         let res = await axios.delete('http://localhost:5000/api/projects/?name={name}', {
-    //             name: this.state.name
-    //         });
-    //         console.log("res: ", res.data);
-    //         if(res.data){
-    //             this.setState({
-    //                 projects: [...this.state.projects, res.data]
-    //             });
-    //         }
-    //     }
-    //     updateProject = async project => {
-    //         console.log('update existing project invoked');
-    //         let res = await axios.put('http://localhost:5000/api/id/?id={id}',{
-    //              name: this.state.name      
-    //     });
-
-    //     console.log("res: ", res.data);
-    //     if (res.data) {
-    //         this.setState({
-    //             projects: [...this.state.projects, res.data]
-    //         });
-    //     }
-    //  }
-
-    //     componentDidMount() {
-    //         this.grabProject();
-    //         // this.deleteProjects();
-    //     }
-
-    //     // deleteProjects() {
-    //     //     for (let i = 6; i <= 11; i++) {
-    //     //         axios.delete(`http://localhost:5000/api/projects/${i}`);
-    //     //     }
-    //     // }
-    //     popId = e => {
-    //         let checkedId = this.state.checkedId.pop();
-    //         this.setState({
-    //             checkedId: checkedId
-    //         })
-    //         console.log(e.name)
-    //     }
-    //     deleteProject = async project => {
-    //         console.log('delete project');
-    //         for (var i = 0; i < this.state.checkedId.length; i++) {
-    //             let res = await axios.delete("http://localhost:5000/api/projects/" + this.state.checkedId[i]);
-    //             console.log("res: ", res.data);
-    //         }
-    //     }
-    //  checkwhatever = e => {
-    //      console.log(this.state.project_id)
-    //  }
-    //     checkstate = e => { console.log(this.state.checkedId) }
 
     render() {
         return (
@@ -156,11 +63,11 @@ class Projects extends Component {
 
                                 <tr>
                                     <td>
-                                        {/* <input className="checkbox" type="checkbox"
+                                        <input className="checkbox" type="checkbox"
                                             value={this.state.isChecked}
                                             id={projects.project_id}
                                             onChange={this.handleInputChange.bind(this)}>
-                                        </input> */}
+                                        </input>
                                     </td>
                                     <td>{projects.contact.name}</td>
                                     <td>{projects.contact.phone}</td>
@@ -174,7 +81,6 @@ class Projects extends Component {
                                     <td>{projects.actual_cost}</td>
                                     <td>{projects.satisfaction}</td>
                                     <td>{projects.comments}</td>
-                                    <td>{projects.contact.name}</td>
                                     <td><button className="btn btn-primary">update</button></td>
 
                                 </tr>
@@ -200,23 +106,11 @@ class Projects extends Component {
                         </div>
                     </div>
                 </div>
-                {/* <NewprojectForm
-                    addNewproject={this.addNewproject}
-                    name={this.state.name} /> */}
             </div>
 
 
 
 
-            // {
-            //     this.state.isEditing &&
-
-            // <projectUpdateForm 
-            //     editOn={this.editOn}
-            //     editingIndex={this.editingIndex}
-            //     data={this.state.editingproject}
-            //     />
-            //    }
 
         );
     }
