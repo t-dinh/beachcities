@@ -35,11 +35,13 @@ export const editEmployee = (employee) => dispatch =>
       dispatch({ type: EDIT_EMPLOYEE, payload: res.data })
     })
 
-export const deleteEmployee = (id) => dispatch =>
-  axios.delete(`http://localhost:5000/api/employees/${id}`)
+export const deleteEmployee = (id) => dispatch => {
+  console.log("id" , id);
+  axios.delete("http://localhost:5000/api/employees/", { data: id })
     .then(res => {
+      console.log('delete res', res);
       dispatch({ type: DELETE_EMPLOYEE, payload: res.data })
-    });
+    })};
 
 // export const getEmployees = (employees) => dispatch => {
 //   dispatch({ type: FETCH_EMPLOYEE });
