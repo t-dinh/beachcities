@@ -79,42 +79,6 @@ class NewEmployeeForm extends Component {
         console.log("end of onClick");
     }
 
-    submitEmployee = async employee => {
-        await axios.post('http://localhost:5000/api/employees', employee)
-    }
-
-    grabEmployee = async data => {
-        console.log('grab employee invoked');
-        let res = await axios.get('http://localhost:5000/api/employees')
-        this.setState({
-            employees: res.data
-        })
-
-    }
-
-    componentDidMount() {
-        this.grabEmployee();
-        //this.addNewEmployee();
-        // this.deleteEmployees();
-    }
-
-    deleteEmployees() {
-        for (let i = 59; i <= 65; i++) {
-            axios.delete(`http://localhost:5000/api/employees/${i}`);
-        }
-
-    }
-    // formLogin = event => {
-    //     event.preventDefault();
-
-    //     this.props.addToItems(this.state);
-
-    //     this.setState({
-    //         username: ' ',
-    //         password: ' '
-    //     })
-    // }
-
     render() {
         return (
             <div id="addEmployeeModal" className="modal fade">

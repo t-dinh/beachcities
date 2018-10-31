@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import NewEmployeeForm from '../forms/newEmployeeForm';
 import { connect } from 'react-redux';
-import { getEmployees, deleteEmployee } from '../../redux/actions/index';
+import { getEmployees, deleteEmployee, addEmployee } from '../../redux/actions/index';
 import EmployeeUpdateForm from '../forms/EmployeeUpdateForm'
 
 class Employees extends Component {
@@ -115,13 +115,16 @@ state={
     //         })
     //         console.log(e.name)
     //     }
-        // deleteEmployee = async employee => {
+        // deleteEmployees = async employee => {
         //     console.log('delete employee');
         //     for (var i = 0; i < this.state.checkedId.length; i++) {
-        //         let res = await axios.delete("http://localhost:5000/api/employees/" + this.state.checkedId[i]);
-        //         console.log("res: ", res.data);
+        //         this.props.deleteEmployee(this.state.checkedId[i]);
+        //         console.log(this.state.checkedId[i])
+                
         //     }
         // }
+
+
 
 
     render() {
@@ -182,15 +185,15 @@ state={
                                 </div>
                                 <div className="modal-footer">
                                     <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel" />
-                                    <input type="submit" className="btn btn-success" value="Delete" onClick={this.props.deleteEmployee(this.state.checkedId)} />
+                                    <input type="submit" className="btn btn-success" value="Delete"  onClick={() => this.props.deleteEmployee(this.state.checkedId)} />
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-                {/* <NewEmployeeForm
-                    addNewEmployee={this.addNewEmployee}
-                    name={this.state.name} /> */}
+                <NewEmployeeForm
+                    addNewEmployee={this.props.addEmployee()}
+                />
             </div>
 
 
@@ -215,6 +218,7 @@ const mapStateToProps = state => ({
 
 const mapPropsToDispatch = dispatch => ({
     getEmployees: () => dispatch(getEmployees()),
-    deleteEmployee: id => dispatch(deleteEmployee(id))
+    deleteEmployee: (e, id) => dispatch(deleteEmployee(e, id)),
+    addEmployee: (employee) => dispatch(addEmployee(employee))
 })
 export default connect(mapStateToProps, mapPropsToDispatch)(Employees);

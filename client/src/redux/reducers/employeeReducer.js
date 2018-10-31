@@ -47,14 +47,15 @@ import {
           ]
         }
       case DELETE_EMPLOYEE:
-        let deletedEmployeeId = action.payload.employee_id;
-        let index = state.employees.findIndex(x => x.employee_id === deletedEmployeeId)
+        // let deletedEmployeeId = action.payload.employee_id;
+        // let index = state.employees.findIndex(x => x.employee_id === deletedEmployeeId)
         return {
           ...state,
-          employees: [
-            ...state.employees.slice(0, index),
-            ...state.employees.slice(index + 1)
-          ]
+          employees: action.payload
+          // employees: [
+          //   ...state.employees.slice(0, index),
+          //   ...state.employees.slice(index + 1)
+          // ]
         }
   
   
