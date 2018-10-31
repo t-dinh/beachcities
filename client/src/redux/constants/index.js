@@ -13,6 +13,10 @@ export const RECEIVED_PROJECT = 'RECEIVED_PROJECT';
 export const ADD_CONTACT = 'ADD_CONTACT';
 export const DELETE_CONTACT = 'DELETE_CONTACT';
 export const EDIT_CONTACT = 'EDIT_CONTACT';
+export const FETCH_CONTACT = 'FETCH_CONTACT';
+export const RECEIVED_CONTACT = 'RECEIVED_CONTACT';
+
+
 
 export const ADD_BID = 'ADD_BID';
 export const DELETE_BID = 'DELETE_BID';

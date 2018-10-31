@@ -1,149 +1,158 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import NewContactForm from '../forms/newContactForm';
-
+import { connect } from 'react-redux';
+import { getContacts, deleteContact, addContact } from '../../redux/actions/index';
+import EmployeeUpdateForm from '../forms/EmployeeUpdateForm'
 class Contacts extends Component {
     state = {
-        contacts: [],
-        id:'',
-        name: '',
-        phone: '',
-        email: '',
-        address: '',
-        city: '',
-        zip: '',
-        status: '',
-        satisfaction:'',
-        comments: '',
+       
         isChecked: false,
-        checkedId: ''
+        checkedId: []
+    }
+    componentWillMount() {
+        this.props.getContacts();
     }
 
-    onNameChange = e => {
-        this.setState({
-            name: e.target.value
-        })
-    }
-    onPhoneChange = event => {
-        this.setState({
-            phone: event.target.value
-        })
-    }
+//     onNameChange = e => {
+//         this.setState({
+//             name: e.target.value
+//         })
+//     }
+//     onPhoneChange = event => {
+//         this.setState({
+//             phone: event.target.value
+//         })
+//     }
 
-    onEmailChange = event => {
-        this.setState({
-            email: event.target.value
-        })
-    }
+//     onEmailChange = event => {
+//         this.setState({
+//             email: event.target.value
+//         })
+//     }
 
-    onAddressChange = event => {
-        this.setState({
-            address: event.target.value
-        })
-    }
-    onCityChange = event => {
-        this.setState({
-            city: event.target.value
-        })
-    }
+//     onAddressChange = event => {
+//         this.setState({
+//             address: event.target.value
+//         })
+//     }
+//     onCityChange = event => {
+//         this.setState({
+//             city: event.target.value
+//         })
+//     }
 
-    onZipChange = event => {
-        this.setState({
-            zip: event.target.value
-        })
-    }
+//     onZipChange = event => {
+//         this.setState({
+//             zip: event.target.value
+//         })
+//     }
 
-    onStatusChange = event => {
-        this.setState({
-            status: event.target.value
-        })
-    }
+//     onStatusChange = event => {
+//         this.setState({
+//             status: event.target.value
+//         })
+//     }
 
-    onSatisfactionChange = event => {
-        this.setState({
-            satisfaction: event.target.value
-        })
-    }
-    onCommentsChange = event => {
-        this.setState({
-            comments: event.target.value
-        })
-    }
+//     onSatisfactionChange = event => {
+//         this.setState({
+//             satisfaction: event.target.value
+//         })
+//     }
+//     onCommentsChange = event => {
+//         this.setState({
+//             comments: event.target.value
+//         })
+//     }
 
-    onClick = async e => {
-        e.preventDefault();
-        this.addNewContact();
-        this.setState({
-            name: ""
-        });
-        await this.grabContact();
-        console.log("end of onClick");
-    }
+//     onClick = async e => {
+//         e.preventDefault();
+//         this.addNewContact();
+//         this.setState({
+//             name: ""
+//         });
+//         await this.grabContact();
+//         console.log("end of onClick");
+//     }
 
-    grabContact = async data => {
-        console.log('grab Contact invoked');
-        let res = await axios.get('http://localhost:5000/api/contacts')
-        this.setState({
-            contacts: res.data
-        })
+//     grabContact = async data => {
+//         console.log('grab Contact invoked');
+//         let res = await axios.get('http://localhost:5000/api/contacts')
+//         this.setState({
+//             contacts: res.data
+//         })
 
-    }
-    addNewContact = async contact => {
-        console.log('add new Contact invoked');
-        let res = await axios.post('http://localhost:5000/api/contacts', contact);
+//     }
+//     addNewContact = async contact => {
+//         console.log('add new Contact invoked');
+//         let res = await axios.post('http://localhost:5000/api/contacts', contact);
 
-        console.log("res: ", res.data);
-        if (res.data) {
-            this.setState({
-                contacts: [...this.state.contacts, res.data]
-            });
-        }
-    }
+//         console.log("res: ", res.data);
+//         if (res.data) {
+//             this.setState({
+//                 contacts: [...this.state.contacts, res.data]
+//             });
+//         }
+//     }
 
-    deleteContact = async contact => {
-        console.log('delete contact');
-        let res = await axios.delete('http://localhost:5000/api/contacts/?name={name}', {
-            name: this.state.name
-        });
-        console.log("res: ", res.data);
-        if(res.data){
-            this.setState({
-                contacts: [...this.state.contacts, res.data]
-            });
-        }
-    }
-    updateContact = async contact => {
-        console.log('update existing contact invoked');
-        let res = await axios.put('http://localhost:5000/api/id/?id={id}',{
-             name: this.state.name      
-    });
+//     deleteContact = async contact => {
+//         console.log('delete contact');
+//         let res = await axios.delete('http://localhost:5000/api/contacts/?name={name}', {
+//             name: this.state.name
+//         });
+//         console.log("res: ", res.data);
+//         if(res.data){
+//             this.setState({
+//                 contacts: [...this.state.contacts, res.data]
+//             });
+//         }
+//     }
+//     updateContact = async contact => {
+//         console.log('update existing contact invoked');
+//         let res = await axios.put('http://localhost:5000/api/id/?id={id}',{
+//              name: this.state.name      
+//     });
  
-    console.log("res: ", res.data);
-    if (res.data) {
-        this.setState({
-            contacts: [...this.state.contacts, res.data]
-        });
-    }
- }
+//     console.log("res: ", res.data);
+//     if (res.data) {
+//         this.setState({
+//             contacts: [...this.state.contacts, res.data]
+//         });
+//     }
+//  }
 
-    componentDidMount() {
-        this.grabContact();
-        this.deleteContact();
-    }
+//     componentDidMount() {
+//         this.grabContact();
+//         this.deleteContact();
+//     }
 
-    handleInputChange(e){
-        this.setState({
-             checkedId: e.target.id,
-             isChecked: true
-           });
-         }
+//     handleInputChange(e){
+//         this.setState({
+//              checkedId: e.target.id,
+//              isChecked: true
+//            });
+//          }
          
-        deleteContact = contact => {
-            if (this.state.isChecked === true) {
-               axios.delete(`http://localhost:5000/api/contacts/${this.state.checkedId}`)
-            }
-           }
-
+//         deleteContact = contact => {
+//             if (this.state.isChecked === true) {
+//                axios.delete(`http://localhost:5000/api/contacts/${this.state.checkedId}`)
+//             }
+//            }
+handleInputChange = e => {
+    const checkedId = this.state.checkedId
+    let index
+    if (e.target.checked) {
+        checkedId.push(+e.target.id)
+    } else {
+        index = checkedId.indexOf(+e.target.id)
+        checkedId.splice(index, 1)
+    }
+    this.setState({
+        checkedId: checkedId,
+        isChecked: e.target.checked
+    });
+    console.log(this.state.checkedId);
+}
 
     render() {
         return (
@@ -264,4 +273,13 @@ class Contacts extends Component {
     }
 }
 
-export default Contacts;
+const mapStateToProps = state => ({
+    contacts: state.contactReducer
+})
+
+const mapPropsToDispatch = dispatch => ({
+    getContacts: () => dispatch(getContacts()),
+    deleteContact: (c, id) => dispatch(deleteContact(c, id)),
+    addContact: (contact) => dispatch(addContact(contact))
+})
+export default connect(mapStateToProps, mapPropsToDispatch)(Contacts);
