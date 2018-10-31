@@ -21,14 +21,6 @@ import {
   ADD_BID,
   DELETE_BID,
   EDIT_BID,
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-
- 
-=======
->>>>>>> 27fd6f2be852f45825c83e0d99ff15ae95dbaa05
->>>>>>> ef39b6e9f4ac45abfbf0e6602873cd28ff96270c
   STORE_EMPLOYEE
 } from '../constants'
 import axios from 'axios';
