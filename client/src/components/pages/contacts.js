@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import NewContactForm from '../forms/newContactForm';
 import { connect } from 'react-redux';
-import { getContacts, deleteContact, addContact,storeContact } from '../../redux/actions/index';
+import { getContacts, deleteContact, addContact, storeContact } from '../../redux/actions/index';
 import ContactUpdateForm from '../forms/ContactUpdateForm'
 import { Redirect } from 'react-router';
 
@@ -13,7 +12,7 @@ class Contacts extends Component {
         checkedId: [],
         redirect: false
     }
-    componentWillMount() {
+    componentDidMount() {
         this.props.getContacts();
     }
 
@@ -43,7 +42,7 @@ class Contacts extends Component {
     }
     render() {
         const { redirect } = this.state
-        if(redirect) return (<Redirect to="/update" />)
+        if(redirect) return (<Redirect to="/updateContact" />)
         return (
             <div className="container">
                 <div className="nav"><a href="#addContactModal" className="btn btn-success" data-toggle="modal">
@@ -53,7 +52,7 @@ class Contacts extends Component {
                     <a href="#deleteContactModal" className="btn btn-danger" data-toggle="modal"><i className="material-icons">&#xE15C;</i> <span>Delete
             </span></a></div>
                 <div className="tableBox">
-                    {/* what gets rendered in this table will come from the database */}
+                <h1> Contacts </h1>
                     <table className="table">
                         <tr>
                             <th></th>
@@ -118,7 +117,6 @@ class Contacts extends Component {
                 <NewContactForm
                     addContact={this.props.addContact()}
                 />
-                <ContactUpdateForm />
             </div>
 
         );

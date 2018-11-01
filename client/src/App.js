@@ -18,32 +18,48 @@ import Navbar from './components/navbar';
 import './App.css';
 import ContactUpdateForm from './components/forms/ContactUpdateForm';
 
-  
+
 class App extends Component {
-    state = {
-    username: 'jtorres',
-    password: 'fj39g883',
-    loggedin: true
-    };
+  state = {
+    admin: [
+      {
+        username: 'jtorres',
+        password: 'fj39g883'
+    }
+    ],
+    loggedin: false
+  };
+
+  login = (username, password) => {
+    let adminUser = this.state.admin.filter(account => account.username === username && account.password === password);
+    return this.state.loggedin = true;
+  }
+componentDidMount() {
+  console.log(this.state.admin.username)
+}
 
   render() {
     return (
-      <div className="tablecontainer">
-       {/* {
-        this.state.loggedin && <div className = "navbar"><Navbar /></div>
-        } */}
-        <Switch>
-            <Route exact path="/" render={() => <Login />} />
-            <Route path="/contacts" render={() => <Contacts />}/>
-            <Route path="/employee" render={() => <Employees />} />
-            <Route path="/bids" render={() => <Bids />} />
-            <Route path="/projects" render={() => <Projects />} />
-            <Route path="/update" render={() => <EmployeeUpdateForm /> } />
-            <Route path="/updateProject" render={() => <ProjectUpdateForm /> } />
-            <Route path="/updateBid" render={() => <BidUpdateForm /> } />
-            <Route path="/updateContact" render={() => <ContactUpdateForm />} />
+      <div className="container">
       
-            </Switch>
+        {
+          this.state.loggedin && <div className="navbar"><Navbar /> Welcome, {this.state.admin.username}</div>
+        }
+          <div>
+        <Switch>
+          <Route exact path="/" render={() => <Login login={this.login} />} />
+          <Route path="/contacts" render={() => <Contacts />} />
+          <Route path="/employee" render={() => <Employees />} />
+          <Route path="/bids" render={() => <Bids />} />
+          <Route path="/projects" render={() => <Projects />} />
+          <Route path="/update" render={() => <EmployeeUpdateForm />} />
+          <Route path="/updateProject" render={() => <ProjectUpdateForm />} />
+          <Route path="/updateBid" render={() => <BidUpdateForm />} />
+          <Route path="/updateContact" render={() => <ContactUpdateForm />} />
+
+        </Switch>
+        </div>
+
       </div>
     );
   }

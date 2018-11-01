@@ -57,7 +57,7 @@ class Bids extends Component {
           <a href="#deleteBidModal" className="btn btn-danger" data-toggle="modal"><i className="material-icons">&#xE15C;</i> <span>Delete
                 </span></a></div>
         <div className="tableBox">
-          {/* what gets rendered in this table will come from the database */}
+        <h1> Bids </h1>
           <table className="table">
             <tr>
               <th> </th>

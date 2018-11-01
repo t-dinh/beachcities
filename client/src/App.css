@@ -15,6 +15,10 @@ a:active {
 }
 .tableBox {
   width: 900px;
+  margin-top: 10px;
+}
+.navbar{
+  margin-top: 20px;
 }
 .nav{
   float: right;
@@ -23,7 +27,7 @@ a:active {
   margin-top: 100px;
 }
 .btn-link {
-  font-size: 25px;
+  font-size: 22px;
 }
 th {
   color: gray;
@@ -168,4 +172,19 @@ font-weight: normal;
 }
 .table tr:hover button { 
   opacity:1;  
+}
+#loginBox{
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 500px;
+  height: 400px;
+  padding: 40px;
+  position: absolute;
+  left: 800px;
+  margin-top: 100px;
+  
+}
+.form-group{
+  width: 200px;
+
 }

@@ -11,7 +11,7 @@ import {
 const initialState = {
     isLoggedin: false,
     isLoading: false,
-    constants: [],
+    contacts: [],
     employees: [],
     projects: [],
     bids: [],

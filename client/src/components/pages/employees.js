@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { getEmployees, deleteEmployee, addEmployee, storeEmployee } from '../../redux/actions/index';
 import EmployeeUpdateForm from '../forms/EmployeeUpdateForm'
 import { Redirect } from 'react-router';
+import Calendar from 'react-calendar';
 
 class Employees extends Component {
   state = {
@@ -49,15 +50,19 @@ class Employees extends Component {
     if (redirect) return (<Redirect to="/update" />)
 
     return (
-      <div className="container">
+      <div className="tableBox">
+      
+        
+               <div className="row"> 
+              {/* <div className="col-md-3"><Calendar /></div>  */}
+        <div className="tableBox" id="col-md-6">
         <div className="nav"><a href="#addEmployeeModal" className="btn btn-success" data-toggle="modal">
           <i className="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
           <a href="#updateEmployeeModal" className="btn btn-success" data-toggle="modal" onClick={this.popId}>
             <i className="material-icons">&#xE147;</i> <span>Update Employee</span></a>
           <a href="#deleteEmployeeModal" className="btn btn-danger" data-toggle="modal"><i className="material-icons">&#xE15C;</i> <span>Delete
                 </span></a></div>
-        <div className="tableBox">
-          {/* what gets rendered in this table will come from the database */}
+                <h1> Employees </h1>
           <table className="table">
             <tr>
               <th> </th>
@@ -66,7 +71,10 @@ class Employees extends Component {
               <th>Email</th>
               <th>Address</th>
               <th>City</th>
+              <th>Zip</th>
               <th>Status</th>
+              <th>Comments</th>
+              <th>Projects</th>
             </tr>
             {
               this.props.employees.employees.map(employees => (
@@ -84,8 +92,10 @@ class Employees extends Component {
                   <td>{employees.email}</td>
                   <td>{employees.address}</td>
                   <td>{employees.city}</td>
+                  <td>{employees.zip}</td>
                   <td>{employees.status}</td>
                   <td>{employees.comments}</td>
+                  <td>{employees.projects}</td>
                   <td>
                     <button id={employees.employee_id} className="btn btn-primary" onClick={() => this.onSendEmployee(employees)}>update</button>
 
@@ -95,7 +105,7 @@ class Employees extends Component {
               )
               )}
           </table>
-        </div>
+        </div></div>
 
         <div id="deleteEmployeeModal" className="modal fade">
           <div className="modal-dialog">

@@ -114,8 +114,8 @@ export const getContacts = () => dispatch =>
         dispatch({ type: ADD_CONTACT, payload: res.data })
       });
   
-  export const editContact = (contact) => dispatch =>
-    axios.put(`http://localhost:5000/api/contacts/${contact.contact_id}`, contact)
+  export const editContact = (id, contact) => dispatch =>
+    axios.put(`http://localhost:5000/api/contacts/${id}`, contact)
       .then(res => {
         dispatch({ type: EDIT_CONTACT, payload: res.data })
       })
