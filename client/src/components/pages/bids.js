@@ -1,145 +1,66 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 import NewBidForm from '../forms/newBidForm';
+import { connect } from 'react-redux';
+import { getBids, deleteBid, addBid, storeBid } from '../../redux/actions/index';
+// import BidUpdateForm from '../forms/BidUpdateForm'
+import { Redirect } from 'react-router';
 
 class Bids extends Component {
   state = {
-    Bids: [],
-    id: '',
-    consult_date: '',
-    address: '',
-    phone: '',
-    city: '',
-    zip: '',
-    est_cost: '',
-    est_finish: '',
-    status: '',
-    comments: '',
-    contact: '',
     isChecked: false,
-    checkedId: ''
-  }
-
-  onNameChange = e => {
-    this.setState({
-      name: e.target.value
-    })
-  }
-  onPhoneChange = event => {
-    this.setState({
-      phone: event.target.value
-    })
-  }
-
-  onEmailChange = event => {
-    this.setState({
-      email: event.target.value
-    })
-  }
-
-  onAddressChange = event => {
-    this.setState({
-      address: event.target.value
-    })
-  }
-  onCityChange = event => {
-    this.setState({
-      city: event.target.value
-    })
-  }
-
-  onZipChange = event => {
-    this.setState({
-      zip: event.target.value
-    })
-  }
-
-  onStatusChange = event => {
-    this.setState({
-      status: event.target.value
-    })
-  }
-
-  onSatisfactionChange = event => {
-    this.setState({
-      satisfaction: event.target.value
-    })
-  }
-  onCommentsChange = event => {
-    this.setState({
-      comments: event.target.value
-    })
-  }
-
-  onClick = async e => {
-    e.preventDefault();
-    this.addNewBid();
-    this.setState({
-      name: ""
-    });
-    await this.grabBid();
-    console.log("end of onClick");
-  }
-
-  grabBid = async data => {
-    console.log('grab Bid invoked');
-    let res = await axios.get('http://localhost:5000/api/Bids')
-    this.setState({
-      Bids: res.data
-    })
-
-  }
-  addNewBid = async Bid => {
-    console.log('add new Bid invoked');
-    let res = await axios.post('http://localhost:5000/api/Bids', {
-      name: this.state.name
-    }); // res.data => new Bid object
-
-    console.log("res: ", res.data);
-    if (res.data) {
-      this.setState({
-        Bids: [...this.state.Bids, res.data]
-      });
-    }
+    checkedId: [],
+    redirect: false
   }
 
   componentDidMount() {
-    this.grabBid();
-    // this.deleteBids();
+    this.props.getBids();
   }
 
-  // deleteBids() {
-  //     for (let i = 6; i <= 11; i++) {
-  //         axios.delete(`http://localhost:5000/api/Bids/${i}`);
-  //     }
-  // }
-
-  handleInputChange(c) {
-    this.setState({
-      checkedId: c.target.id,
-      isChecked: true
-    });
-  }
-
-  deleteBid = Bid => {
-    if (this.state.isChecked === true) {
-      axios.delete(`http://localhost:5000/api/Bids/${this.state.checkedId}`)
+  handleInputChange = e => {
+    const checkedId = this.state.checkedId
+    let index
+    if (e.target.checked) {
+      checkedId.push(+e.target.id)
+    } else {
+      index = checkedId.indexOf(+e.target.id)
+      checkedId.splice(index, 1)
     }
+    this.setState({
+      checkedId: checkedId,
+      isChecked: e.target.checked
+    });
+    console.log(this.state.checkedId);
   }
+
+  onSendBid(bid) {
+    console.log('onsendbid');
+    console.log(bid);
+    this.props.storeBid(bid);
+    this.setState({
+      redirect: true
+    })
+  }
+
 
 
   render() {
+    const { redirect } = this.state
+    if (redirect) return (<Redirect to="/updateBid" />)
+
     return (
-      <div>
+      <div className="container">
         <div className="nav"><a href="#addBidModal" className="btn btn-success" data-toggle="modal">
           <i className="material-icons">&#xE147;</i> <span>Add New Bid</span></a>
-          <a href="#deleteBidModal" className="btn btn-danger" onClick={this.deleteBid} data-toggle="modal"><i className="material-icons">&#xE15C;</i> <span>Delete
+          <a href="#updateBidModal" className="btn btn-success" data-toggle="modal" onClick={this.popId}>
+            <i className="material-icons">&#xE147;</i> <span>Update Bid</span></a>
+          <a href="#deleteBidModal" className="btn btn-danger" data-toggle="modal"><i className="material-icons">&#xE15C;</i> <span>Delete
                 </span></a></div>
         <div className="tableBox">
           {/* what gets rendered in this table will come from the database */}
           <table className="table">
             <tr>
-              <th></th>
+              <th> </th>
               <th>Consultation Date</th>
               <th>Last Contact</th>
               <th>Address</th>
@@ -151,38 +72,33 @@ class Bids extends Component {
               <th>Comments</th>
               <th>Contact</th>
             </tr>
-            {this.state.Bids.map(b => {
-              return (
+            {this.props.bids.bids.map(bids => (
                 <tr>
                   <td>
                     <input className="checkbox" type="checkbox"
                       value={this.state.isChecked}
-                      id={b.bid_id}
+                      id={bids.bid_id}
                       onChange={this.handleInputChange.bind(this)}>
                     </input>
                   </td>
-                  <td>{b.consult_date}</td>
-                  <td>{b.last_contact}</td>
-                  <td>{b.address}</td>
-                  <td>{b.city}</td>
-                  <td>{b.zip}</td>
-                  <td>{b.est_cost}</td>
-                  <td>{b.est_finish}</td>
-                  <td>{b.status}</td>
-                  <td>{b.comments}</td>
-                  <td>{b.contact.name}</td>
+                  <td>{bids.consult_date}</td>
+                  <td>{bids.last_contact}</td>
+                  <td>{bids.address}</td>
+                  <td>{bids.city}</td>
+                  <td>{bids.zip}</td>
+                  <td>{bids.est_cost}</td>
+                  <td>{bids.est_finish}</td>
+                  <td>{bids.status}</td>
+                  <td>{bids.comments}</td>
+                  <td>{bids.contact.name}</td>
+                  <td>
+                    <button id={bids.bid_id} className="btn btn-primary" onClick={() => this.onSendBid(bids)}>update</button>
+                  </td>
                 </tr>
               )
-            })}
+            )}
           </table>
         </div>
-
-
-        <NewBidForm />
-
-
-
-
 
 
         <div id="deleteBidModal" className="modal fade">
@@ -191,24 +107,37 @@ class Bids extends Component {
               <form>
                 <div className="modal-header">
                   <h4 className="modal-title">Delete Bid</h4>
+                  <h5>This Cannot Be Undone</h5>
                   <button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div className="modal-body">
-                  <p>Are you sure you want to delete these Records?</p>
-                  <p className="text-warning"><small>This action cannot be undone.</small></p>
                 </div>
                 <div className="modal-footer">
                   <input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel" />
-                  <input type="submit" className="btn btn-danger" value="Delete" />
+                  <input type="submit" className="btn btn-success" value="Delete" onClick={() => this.props.deleteBid(this.state.checkedId)} />
                 </div>
               </form>
             </div>
           </div>
         </div>
+        <NewBidForm
+          addNewBid={this.props.addBid()}
+        />
+
       </div>
+
+
+
 
     );
   }
 }
+const mapStateToProps = state => ({
+  bids: state.bidReducer
+})
 
-export default Bids;
+const mapPropsToDispatch = dispatch => ({
+  getBids: () => dispatch(getBids()),
+  deleteBid: (id) => dispatch(deleteBid(id)),
+  addBid: (bid) => dispatch(addBid(bid)),
+  storeBid: (bid) => dispatch(storeBid(bid))
+})
+export default connect(mapStateToProps, mapPropsToDispatch)(Bids);

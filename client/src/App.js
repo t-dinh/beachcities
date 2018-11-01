@@ -1,9 +1,5 @@
 
 import React, { Component } from 'react';
-
-// import { Switch, Route } from 'react-router-dom';
-// import Contacts from './components/pages/contacts';
-// import Bids from './components/pages/bids';
 import { Switch, Route } from 'react-router-dom';
 import Contacts from './components/pages/contacts';
 import Bids from './components/pages/bids';
@@ -12,6 +8,7 @@ import Login from './components/login';
 import Employees from './components/pages/employees';
 import EmployeeUpdateForm from './components/forms/EmployeeUpdateForm';
 import ProjectUpdateForm from './components/forms/ProjectUpdateForm';
+import BidUpdateForm from './components/forms/BidsUpdateForm';
 // import NewEmployeeForm from './components/forms/newEmployeeForm';
 // import NewContactForm from './components/forms/newContactForm';
 // import NewBidForm from './components/forms/newBidForm';
@@ -43,13 +40,10 @@ class App extends Component {
             <Route path="/projects" render={() => <Projects />} />
             <Route path="/update" render={() => <EmployeeUpdateForm /> } />
             <Route path="/updateProject" render={() => <ProjectUpdateForm /> } />
+            <Route path="/updateBid" render={() => <BidUpdateForm /> } />
+            <Route path="/updateContact" render={() => <ContactUpdateForm />} />
       
-            </Switch>    
-            {/* <Calendar/>   */}
-            {/* <Projects /> */}
-
-            {/* <Calendar/> */}l l
-            
+            </Switch>
       </div>
     );
   }

@@ -2,7 +2,6 @@ import {
   ADD_EMPLOYEE,
   DELETE_EMPLOYEE,
   EDIT_EMPLOYEE,
-  RECEIVED_EMPLOYEE,
   FETCH_EMPLOYEE,
 
   ADD_PROJECT,
@@ -15,15 +14,21 @@ import {
   DELETE_CONTACT,
   EDIT_CONTACT,
   FETCH_CONTACT,
-  RECEIVED_CONTACT,
   STORE_CONTACT,
 
   ADD_BID,
   DELETE_BID,
   EDIT_BID,
-  STORE_EMPLOYEE
+  STORE_EMPLOYEE, 
+  FETCH_BID,
+  STORE_BID
 } from '../constants'
 import axios from 'axios';
+
+
+/**
+ * =-=-=-=-=-=-=-=-= EMPLOYEE ACTIONS
+*/
 
 export const getEmployees = () => dispatch => {
 console.log("get employees");
@@ -58,6 +63,9 @@ export const deleteEmployee = (id) => dispatch => {
       dispatch({ type: DELETE_EMPLOYEE, payload: res.data })
     })};
 
+/**
+ * =-=-=-=-=-=-=-=-=PROJECTS ACTIONS
+*/    
 
 export const getProjects = () => dispatch => {
 console.log("getProjects");
@@ -90,21 +98,10 @@ export const deleteProject = (id) => dispatch =>
       dispatch({ type: DELETE_PROJECT, payload: res.data })
     });
 
-// export const ADD_EMPLOYEE
-// export const DELETE_EMPLOYEE
-// export const EDIT_EMPLOYEE
+/**
+ * =-=-=-=-=-=-=-=-=CONTACTS ACTIONS
+*/
 
-
-
-// export const ADD_PROJECT
-// export const DELETE_PROJECT
-// export const EDIT_PROJECT
-
-
-
-// export const ADD_CONTACT
-// export const DELETE_CONTACT
-// export const EDIT_CONTACT
 export const getContacts = () => dispatch =>
     axios.get("http://localhost:5000/api/contacts")
       .then(res => {
@@ -133,13 +130,36 @@ export const getContacts = () => dispatch =>
       });
 
 
-// export const ADD_BID
-// export const DELETE_BID
-// export const EDIT_BID
+/**
+ * =-=-=-=-=-=-=-=-=BID ACTIONS 
+*/
 
+export const getBids = () => dispatch =>
+    axios.get("http://localhost:5000/api/bids")
+      .then(res => {
+        dispatch({ type: FETCH_BID, payload: res.data })
+      })
+  
+  export const addBid = (bid) => dispatch =>
+    axios.post('http://localhost:5000/api/bids', bid)
+      .then(res => {
+        dispatch({ type: ADD_BID, payload: res.data })
+      })
+  
+  export const editBid = (bid) => dispatch =>
+    axios.put(`http://localhost:5000/api/bids/${bid.bid_id}`, bid)
+      .then(res => {
+        dispatch({ type: EDIT_BID, payload: res.data })
+      })
 
-
-
+   export const storeBid = (bid) => dispatch =>
+    dispatch({ type: STORE_BID, payload: bid})
+  
+  export const deleteBid = (id) => dispatch =>
+    axios.delete(`http://localhost:5000/api/bids/${id}`)
+      .then(res => {
+        dispatch({ type: DELETE_BID, payload: res.data })
+      })
 
 
 

@@ -24,3 +24,6 @@ export const STORE_CONTACT = 'STORE_CONTACT';
 export const ADD_BID = 'ADD_BID';
 export const DELETE_BID = 'DELETE_BID';
 export const EDIT_BID = 'EDIT_BID';
+export const FETCH_BID = 'FETCH_BID';
+export const RECEIVED_BID = 'RECEIVED_BID';
+export const STORE_BID = 'STORE_BID';
