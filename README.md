@@ -1,5 +1,6 @@
 # beachcities ERP
-An enterprise resource planning web application for a local company to manage and track employees, projects, clients, and related data.
+An enterprise resource planning web application for a local company to manage and track employees, projects, clients, and related data.<br>
+<img src="https://media.giphy.com/media/mMFTiKX8JlKkQnHEkA/giphy.gif" height="300"/>
 >Technologies used:
 
  >Frontend: React.js, React Redux
